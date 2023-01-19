@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.*;
 
-public class Growths {
+public class Stats {
 
 	final static String[] LT = { "59", "89", "D2", "D1", "DE", "C6", "47", "21", "BA", "DB", "C5", "EC", "35", "BD", "9F", "9B",
 			"2D", "7B", "B2", "09", "F7", "53", "99", "8F", "C4", "90", "FA", "34", "F8", "19", "94", "02", "ED",
@@ -19,13 +19,20 @@ public class Growths {
 			"10", "55", "D9", "CB", "8C", "72", "86", "6F", "64", "80", "CA", "A2", "05", "AC", "4A", "B1", "0B",
 			"38", "E1", "AD", "31", "B3", "98", "78", "B8", "22", "76", "9A", "24", "A7", "25", "B5", "F2", "B9",
 			"B0", "3A" };
-	static ArrayList<String> LOOKUP_TABLE;
+	private static ArrayList<String> LOOKUP_TABLE;
+	private static FileSys f;
+	private static ArrayList<String> Static;
+	public static void ensureInitialization() throws IOException {
+		if(f == null) {
+			f = FileSys.getInstance();
+			Data.ensureInstance();
+			Static = f.readFile("/rom/static.txt");
+		}
+	}
 	
-	
-	public static void run() throws IOException {
+	public static void runGrowths() throws IOException {
+		ensureInitialization();
 		LOOKUP_TABLE = new ArrayList<String>(Arrays.asList(LT));
-		FileSys f = FileSys.getInstance();
-		Data.ensureInstance();
 		Random rnd = new Random();
 		boolean zero = false; //TODO: actually check for zero growths
 		
@@ -87,8 +94,7 @@ public class Growths {
 
 		}
 		
-		ArrayList<String> Static = f.readFile("/rom/static.txt");
-		for(int i = 0, k = 12; i < 51; i++) {
+		for(int i = 0, k = 12; i < 52; i++) {
 			if(i == 2) {
 				continue;
 			}
@@ -97,6 +103,98 @@ public class Growths {
 			Static.set(k + (143 * i), "0x" + Growths[i][0] + Growths[i][1] + Growths[i][2] + Growths[i][3]);
 			Static.set(k + (143 * i) + 1, "0x" + Growths[i][4] + Growths[i][5] + Growths[i][6] + Growths[i][7]);
 		}
+	}
+	
+	public static void runModifiers() throws IOException {
+		ensureInitialization();
+		Random rng = new Random();
+		int seed = rng.nextInt();
+		FileSys f = FileSys.getInstance();
+		ArrayList<ArrayList<String>> a = new ArrayList<ArrayList<String>>();
+		for(int i = 0; i < 52; i++) {
+			ArrayList<String> m = new ArrayList<String>();
+			rng = new Random(seed + i);
+			for(int j = 0; j < 7; j++) {
+				if(j == 0 || j == 1) {
+					int r = -1 * rng.nextInt(4);
+					switch(r) {
+					case -3:
+						m.add("FD");
+						break;
+					case -2:
+						m.add("FE");
+						break;
+					case -1:
+						m.add("FF");
+						break;
+					default:
+						m.add("00");
+						break;
+					}
+				}
+				else {
+					int r = rng.nextInt(4);
+					switch(r) {
+					case 3:
+						m.add("03");
+						break;
+					case 2:
+						m.add("02");
+						break;
+					case 1:
+						m.add("01");
+						break;
+					default:
+						m.add("00");
+						break;
+					}
+				}
+			}
+			Collections.shuffle(m);
+			a.add(m);
+			if(i == 2) {
+				continue;
+			}
+			int[] caps = new int[7];
+			for(int j = 0; j < 7; j++) {
+				switch(m.get(j)) {
+				case "00":
+					caps[j] = 0;
+					break;
+				case "01":
+					caps[j] = 1;
+					break;
+				case "02":
+					caps[j] = 2;
+					break;
+				case "03":
+					caps[j] = 3;
+					break;
+				case "FD":
+					caps[j] = -3;
+					break;
+				case "FE":
+					caps[j] = -2;
+					break;
+				case "FF":
+					caps[j] = -1;
+					break;
+				}
+			}
+			Data.log.get(i < 2 ? i : i - 1).caps = caps;
+		}
+		for(int i = 0, k = 16; i < 52; i++) {
+			if(i == 2) {
+				continue;
+			}
+			ArrayList<String> m = a.get(i);
+			int index = k + 143 * i;
+			Static.set(index, Static.get(index).substring(0, 4) + m.get(0) + m.get(1) + m.get(2));
+			Static.set(index + 1, "0x" + m.get(3) + m.get(4) + m.get(5) + m.get(6));
+		}
+	}
+	
+	public static void close() throws IOException {
 		f.writeFile("/output/romfs/data/person/static.txt", Static);
 	}
 	

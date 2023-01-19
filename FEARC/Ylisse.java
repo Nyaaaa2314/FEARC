@@ -11,7 +11,9 @@ public class Ylisse {
 		
 		
 		if(debug) {
-			Growths.run();
+			Stats.runGrowths();
+			Stats.runModifiers();
+			Stats.close();
 			FileSys f = FileSys.getInstance();
 			ArrayList<String> logs = new ArrayList<String>();
 			for(LogEntry l : Data.log) {

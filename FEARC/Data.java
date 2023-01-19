@@ -8,7 +8,7 @@ public class Data {
 	private Data() {
 		log = new ArrayList<LogEntry>();
 		log.add(new LogEntry("M!Robin"));
-		log.add(new LogEntry("M!Robin"));
+		log.add(new LogEntry("F!Robin"));
 		for(String s : CharacterNames) {
 			log.add(new LogEntry(s));
 		}
