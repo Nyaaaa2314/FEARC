@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.*;
-
 public class Ylisse {
 	public static boolean debug; //Public boolean that I can check from any class to run debug-specific code
 	public static boolean unix; //Public boolean if the user is on a unix OS or windows for path formatting

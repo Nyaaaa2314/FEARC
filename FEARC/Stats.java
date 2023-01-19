@@ -26,7 +26,7 @@ public class Stats {
 		if(f == null) {
 			f = FileSys.getInstance();
 			Data.ensureInstance();
-			Static = f.readFile("/rom/static.txt");
+			Static = f.readFile("/data/bins/static.txt");
 		}
 	}
 	
@@ -37,25 +37,18 @@ public class Stats {
 		boolean zero = false; //TODO: actually check for zero growths
 		
 		int[][] GrowthValues = new int[52][8];
-		
-		int seed = rnd.nextInt(263263263);
 		// int[] Growths = new int[8];
 		String[] HexG = new String[8];
 		// int[] GRlog = new int[8];
 		String[] GRLog = new String[8 * 52];
 		String[][] Growths = new String[52][8];
 		for (int i = 0; i < 52; i++) {
-			int seed2 = seed;
-			while (seed2 == seed) {
-				seed = rnd.nextInt(263263263);
-			}
 			int ID = i;
 			int GR = 0;
 			String GRHex = "";
 			int index = 0;
 			for (int j = 0; j < 8; j++) {
-				Random rng = new Random(i + j + seed); // This keeps the randomization from being the same across the
-													   // stats by forcing a new seed for every character and stat.
+				Random rng = new Random(i + j ^ System.currentTimeMillis()); 
 				switch (j) {
 				case 0:
 					GR = 35 + rng.nextInt(15);
