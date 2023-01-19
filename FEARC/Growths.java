@@ -27,7 +27,7 @@ public class Growths {
 		Random rnd = new Random();
 		boolean zero = false; //TODO: actually check for zero growths
 		
-		
+		int[][] GrowthValues = new int[52][8];
 		
 		int seed = rnd.nextInt(263263263);
 		// int[] Growths = new int[8];
@@ -64,6 +64,7 @@ public class Growths {
 					GR = 10 + rng.nextInt(40);
 					break;
 				}
+				GrowthValues[i][j] = GR;
 				GRHex = Integer.toHexString(GR).toUpperCase();
 				if (GRHex.length() == 1) {
 					GRHex = "0" + GRHex;
