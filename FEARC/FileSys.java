@@ -53,8 +53,19 @@ public class FileSys {
 	}
 	
 	public void writeFile(String path, ArrayList<String> content) throws IOException {
-		Files.write(new File(ensureFormat(userdir + path)).toPath(), content, StandardOpenOption.TRUNCATE_EXISTING);
+		File temp = new File(ensureFormat(userdir + path));
+		if(!temp.exists()) {
+			temp.createNewFile();
+		}
+		Files.write(temp.toPath(), content, StandardOpenOption.TRUNCATE_EXISTING);
 	}
 	
-	
+	public void setupDir() {
+		new File(ensureFormat(userdir + "/output" )).mkdirs();
+		new File(ensureFormat(userdir + "/output/romfs" )).mkdirs();
+		new File(ensureFormat(userdir + "/output/romfs/data" )).mkdirs();
+		new File(ensureFormat(userdir + "/output/romfs/data/person" )).mkdirs();
+		new File(ensureFormat(userdir + "/output/romfs/data/dispos" )).mkdirs();
+		new File(ensureFormat(userdir + "/output/romfs/scripts" )).mkdirs();
+	}
 }
