@@ -155,6 +155,7 @@ public class Stats {
 			if(i == 2) {
 				continue;
 			}
+			//TODO: make this more efficient | reminder for later: move caps[j] up to the first switch
 			int[] caps = new int[7];
 			for(int j = 0; j < 7; j++) {
 				switch(m.get(j)) {
