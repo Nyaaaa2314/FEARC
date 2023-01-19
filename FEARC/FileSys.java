@@ -28,7 +28,7 @@ public class FileSys {
 	
 	//Method to convert between windows and mac folder formatting
 	public String ensureFormat(String s) {
-		if(Ylisse.mac) {
+		if(Ylisse.unix) {
 			return s;
 		}
 		else {
