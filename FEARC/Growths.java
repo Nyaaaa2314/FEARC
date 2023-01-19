@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 public class Growths {
@@ -21,9 +22,10 @@ public class Growths {
 	static ArrayList<String> LOOKUP_TABLE;
 	
 	
-	public static void run() {
+	public static void run() throws IOException {
 		LOOKUP_TABLE = new ArrayList<String>(Arrays.asList(LT));
 		FileSys f = FileSys.getInstance();
+		Data.ensureInstance();
 		Random rnd = new Random();
 		boolean zero = false; //TODO: actually check for zero growths
 		
@@ -85,13 +87,17 @@ public class Growths {
 
 		}
 		
-		
-		
-		
-		
-		
-		
-		
+		ArrayList<String> Static = f.readFile("/rom/static.txt");
+		for(int i = 0, k = 12; i < 51; i++) {
+			if(i == 2) {
+				continue;
+			}
+			//int lindex = i < 2 ? i : i - 1;
+			Data.log.get(i < 2 ? i : i - 1).growths = GrowthValues[i];
+			Static.set(k + (143 * i), "0x" + Growths[i][0] + Growths[i][1] + Growths[i][2] + Growths[i][3]);
+			Static.set(k + (143 * i) + 1, "0x" + Growths[i][4] + Growths[i][5] + Growths[i][6] + Growths[i][7]);
+		}
+		f.writeFile("/output/romfs/data/person/static.txt", Static);
 	}
 	
 	

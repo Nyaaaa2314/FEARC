@@ -11,14 +11,13 @@ public class Ylisse {
 		
 		
 		if(debug) {
-			System.out.println();
+			Growths.run();
 			FileSys f = FileSys.getInstance();
-			ArrayList<String> a = f.readFile("/rom/static.txt");
-			//a.set(0, "omg it worked");
-			//System.out.println(a.size() + "\n" + a.get(0));
-			f.setupDir();
-			//f.writeFile("/output/romfs/data/person/static.txt", a);
-			
+			ArrayList<String> logs = new ArrayList<String>();
+			for(LogEntry l : Data.log) {
+				logs.add(l.toString());
+			}
+			f.writeFile("/output/log.txt", logs);
 		}
 		
 		

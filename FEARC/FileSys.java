@@ -28,14 +28,7 @@ public class FileSys {
 	
 	//Method to convert between windows and mac folder formatting
 	public String ensureFormat(String s) {
-		if(Ylisse.unix) {
-			return s;
-		}
-		else {
-			
-			return s.replaceAll("/", "\\\\\\\\"); 
-		}
-		
+		return Ylisse.unix ? s : s.replaceAll("/", "\\\\\\\\");
 	}
 	
 	
