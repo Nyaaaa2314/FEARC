@@ -1,0 +1,130 @@
+event [6]() {
+    ev::FlagEntry("戦闘会話");
+    ev::FlagEntry("ピックアップクロム");
+    ev::FlagEntry("ピックアッププレイヤー");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad("023");
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+    ev::UnitTransformForP001(ev::UnitGetByPID("PID_P001_プレイヤー"));
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::ForceUnitExpulsion(3);
+    ev::ForceUnitExpulsion(4);
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    ev::TutorialHideProperty(1);
+    ev::TutorialHideTrade(1);
+    ev::TutorialHideUnited(1);
+    ev::TutorialHideAI(1);
+    ev::FlagSet("G_ファイアーエムブレム所持");
+    ev::PlayMovieReturnFadeOut("Movie01.moflex");
+}
+
+event [12](1, 1, 0) {
+    ev::Talk("MID_P001_OP1");
+    ev::TutorialShow("TUTID_システムメニュー");
+    if(ev::TutorialIsEnable()) {
+        ev::TutorialDialog("MID_P001_TUT_システムメニュー");
+        ev::TutorialDialog("MID_P001_TUT_システムメニュー_2");
+        ev::TutorialDialog("MID_P001_TUT_システムメニュー_3");
+        goto L0;
+    }
+    ev::TutorialDialogMustShow("MID_P001_TUT_チュートリアルオフ");
+    label L0;
+}
+
+event [14](1, 1, "戦闘会話") {
+    ev::CameraSetPosition(13, 5);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", 13, 5);
+    ev::EffectWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_P001_TUT_移動");
+    ev::CameraSetPosition(2, 5);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::TutorialShow("TUTID_移動");
+}
+
+event [12](1, 1, 1) {
+    $0 = 13;
+    $1 = 5;
+    ev::CameraSetPosition($0, $1);
+    ev::CameraWait();
+    ev::TutorialShow("TUTID_行動の交代");
+    ev::Talk("MID_P001_TUT_行動の交代");
+}
+
+event [14](2, -1, "戦闘会話") {
+    if(!ev::TutorialGetFlag("TUTID_戦闘") && ev::TutorialIsAbleToAttack()) {
+        ev::TutorialShow("TUTID_戦闘");
+        ev::Talk("MID_P001_TUT_戦闘");
+    }
+}
+
+func ev::IsTutorialUnitCommand() {
+    return !ev::TutorialGetFlag("TUTID_ユニットコマンド");
+}
+
+event [24]("IsTutorialUnitCommand") {
+    ev::TutorialShow("TUTID_ユニットコマンド");
+}
+
+func ev::IsPick1() {
+    return !ev::FlagGet("ピックアップクロム");
+}
+
+event [23]("PID_P001_クロム", "IsPick1") {
+    ev::Talk("MID_P001_PICK_クロム");
+    ev::FlagSet("ピックアップクロム");
+}
+
+func ev::IsPick2() {
+    return !ev::FlagGet("ピックアッププレイヤー");
+}
+
+event [23]("PID_P001_プレイヤー", "IsPick2") {
+    ev::Talk("MID_P001_PICK_プレイヤー");
+    ev::FlagSet("ピックアッププレイヤー");
+}
+
+event [19]("PID_P001_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_P001_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_P001_クロム", 0, "") {
+    ev::Talk("MID_P001_DIE_クロム");
+}
+
+event [21]("PID_P001_プレイヤー", 0, "") {
+    ev::Talk("MID_P001_DIE_プレイヤー");
+}
+
+event [10]() {
+    ev::EnvSEOff(1000);
+    ev::PlayMovieReturnFadeOut("Movie02.moflex");
+    ev::EnvSEOn(1000);
+}
+
+event [11]() {
+    ev::TutorialSetFlag("TUTID_システムメニュー");
+    ev::TutorialSetFlag("TUTID_移動");
+    ev::TutorialSetFlag("TUTID_ユニットコマンド");
+    ev::TutorialSetFlag("TUTID_行動の交代");
+    ev::TutorialSetFlag("TUTID_戦闘");
+    ev::FlagClr("G_ファイアーエムブレム所持");
+    ev::ChapterSetNextIncrement();
+}

@@ -1,0 +1,160 @@
+func bev::X019_OP1() {
+    bev::開始("evtx001_op1", "嵐の夜_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X019");
+    ev::LSEPlay("SE_ENV_RAIN_OCEAN1", 2000);
+    bev::全体待ち(2000);
+    bev::会話("MID_X019_OP1");
+    ev::LSEStop("SE_ENV_RAIN_OCEAN1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X019_ED1() {
+    bev::開始("evtx001_op1", "嵐の夜_平地");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X019");
+    ev::BGMPlay("STRM_BGM_EVT_BRAVE1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X019_ED1");
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X019_ED2() {
+    bev::開始("evtx001_op1", "嵐の夜_平地");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X019");
+    ev::BGMPlay("STRM_BGM_EVT_BRAVE1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X019_ED2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("クロム戦闘会話");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X019_OP1();
+}
+
+event [10]() {
+    if(ev::FlagGet("クロム戦闘会話")) {
+        ev::Dispos("Support01", 4);
+    }
+}
+
+event [11]() {
+    if(ev::FlagGet("クロム戦闘会話")) {
+        bev::X019_ED1();
+    }
+    bev::X019_ED2();
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_X019_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X019_OP2");
+}
+
+event [15](3, 6) {
+    $0 = ev::TurnGet();
+    if(ev::DifficultyGet() <= 1) {
+        if($0 == 4) {
+            ev::Dispos("Reinforce01", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce02", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce03", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce04", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce05", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce06", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce07", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce08", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce09", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce10", 8);
+            ev::DisposWait();
+        }
+        if($0 == 5 && ev::DifficultyGet() == 1) {
+            ev::Dispos("Reinforce11", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce12", 8);
+            ev::DisposWait();
+        }
+        goto L0;
+    }
+    if($0 == 3 || $0 == 5) {
+        ev::Dispos("Reinforce01", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce02", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce03", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce04", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce05", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce06", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce07", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce08", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce09", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce10", 8);
+        ev::DisposWait();
+    }
+    if($0 == 4) {
+        ev::Dispos("Reinforce11", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce12", 8);
+        ev::DisposWait();
+    }
+    label L0;
+}
+
+event [19]("PID_X019_ボス", "PID_クロム", 1, "クロム戦闘会話") {
+    ev::Talk("MID_X019_TK1");
+    ev::FlagSet("クロム戦闘会話");
+}
+
+event [19]("PID_X019_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X019_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X019_ボス", 1, "") {
+    ev::Talk("MID_X019_BOSS_DIE1");
+}

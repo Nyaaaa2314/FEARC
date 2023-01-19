@@ -1,0 +1,149 @@
+func bev::X018_OP1() {
+    bev::開始("evtx001_op1", "緑の街道_低い山");
+    bev::フェードイン(2000);
+    ev::LSEPlay("SE_ENV_WIND1", 2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X018");
+    bev::全体待ち(2000);
+    bev::会話("MID_X018_OP1");
+    ev::BGMStop(1000);
+    ev::LSEStop("SE_ENV_WIND1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X018_OP2() {
+    bev::開始("evtx001_op1", "緑の街道_平地");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X018");
+    ev::LSEPlay("SE_ENV_GLASS1", 1000);
+    bev::全体待ち(1000);
+    bev::会話("MID_X018_OP2");
+    ev::LSEStop("SE_ENV_GLASS1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("ギャンレル会話１");
+    ev::FlagEntry("ギャンレル会話２");
+    ev::FlagEntry("ギャンレル味方");
+    ev::FlagEntry("ギャンレル会話禁止");
+    ev::FlagEntry("ギャンレル戦闘会話");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X018_OP1();
+    bev::X018_OP2();
+}
+
+event [10]() {
+    ev::Talk("MID_X018_ED1");
+}
+
+event [11]() {}
+
+func ev::IsTalkGangrel1() {
+    if(ev::FlagGet("ギャンレル会話禁止")) {
+        return;
+    }
+    if(ev::FlagGet("ギャンレル会話１")) {
+        return;
+    }
+    return 1;
+}
+
+func ev::IsTalkGangrel2() {
+    if(ev::FlagGet("ギャンレル会話禁止")) {
+        return;
+    }
+    if(!ev::FlagGet("ギャンレル会話１")) {
+        return;
+    }
+    if(ev::FlagGet("ギャンレル会話２")) {
+        return;
+    }
+    return 1;
+}
+
+func ev::IsTalkGangrel3() {
+    if(ev::FlagGet("ギャンレル会話禁止")) {
+        return;
+    }
+    if(!ev::FlagGet("ギャンレル会話２")) {
+        return;
+    }
+    if(ev::FlagGet("ギャンレル味方")) {
+        return;
+    }
+    return 1;
+}
+
+event [18]("PID_クロム", "PID_ギャンレル", "evtx001_op1", "IsTalkGangrel1") {
+    ev::BGMStop(1000);
+    ev::Talk("MID_X018_TK1");
+    ev::FlagSet("ギャンレル会話１");
+    ev::FlagSet("ギャンレル会話禁止");
+}
+
+event [18]("PID_クロム", "PID_ギャンレル", "evtx001_op1", "IsTalkGangrel2") {
+    ev::BGMStop(1000);
+    ev::Talk("MID_X018_TK2");
+    ev::FlagSet("ギャンレル会話２");
+    ev::FlagSet("ギャンレル会話禁止");
+}
+
+event [18]("PID_クロム", "PID_ギャンレル", "evtx001_op1", "IsTalkGangrel3") {
+    ev::BGMStop(1000);
+    ev::Talk("MID_X018_TK3");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_ギャンレル");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("ギャンレル味方");
+}
+
+func ev::IsTalkedGangrel() {
+    if(ev::FlagGet("ギャンレル会話禁止")) {
+        return 1;
+    }
+    return;
+}
+
+event [16](-1, -1, -1, -1, 0, "IsTalkedGangrel") {
+    ev::FlagClr("ギャンレル会話禁止");
+}
+
+event [19]("PID_X018_ボス", "PID_ギャンレル", 1, "ギャンレル戦闘会話") {
+    ev::Talk("MID_X018_BT2");
+    ev::FlagSet("ギャンレル戦闘会話");
+}
+
+event [19]("PID_X018_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X018_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X018_ボス", 1, "") {
+    ev::Talk("MID_X018_BOSS_DIE1");
+}
+
+event [21]("PID_ギャンレル", 1, "") {
+    ev::Talk("MID_X018_DIE_ギャンレル");
+}

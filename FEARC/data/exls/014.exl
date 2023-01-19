@@ -1,0 +1,222 @@
+func bev::B014_OP1() {
+    bev::開始("evt014_op1", "海戦の海_船上");
+    bev::フェードイン(2000);
+    bev::場面("MCID_T_014");
+    ev::LSEPlay("SE_ENV_SHIP1", 2000);
+    ev::BGMPlay("STRM_BGM_EVT_BRAVE1", 0);
+    bev::カメラ("op1_01cam");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_マルス");
+    $2 = bev::番号取得("PID_プレイヤー");
+    $3 = bev::番号取得("PID_リズ");
+    bev::位置と向き($0, "A", "C");
+    bev::位置と向き($1, "B", "A");
+    bev::位置と向き($2, "E", "A");
+    bev::位置と向き($3, "F", "A");
+    bev::動作($3, "RizRe");
+    bev::動作($1, "MarRe");
+    bev::全体待ち(3000);
+    bev::会話("MID_014_OP1");
+    bev::会話("MID_014_OP1_2");
+    bev::会話("MID_014_OP1_3");
+    bev::会話("MID_014_OP1_4");
+    bev::動作($3, "RizRe");
+    bev::動作($1, "MarRe");
+    bev::全体待ち(1000);
+    bev::フェードアウト(200);
+    bev::終了();
+}
+
+func bev::B014_OP1_02() {
+    bev::開始("evt014_op1_02", "海戦の海_船上");
+    bev::フェードイン(200);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_014");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_マルス");
+    $2 = bev::番号取得("PID_プレイヤー");
+    $3 = bev::番号取得("PID_リズ");
+    bev::位置と向き($0, "A", "B");
+    bev::位置と向き($1, "B", "A");
+    bev::位置と向き($2, "E", "A");
+    bev::位置と向き($3, "F", "A");
+    bev::動作($3, "RizRe");
+    bev::動作($1, "MarRe");
+    bev::ラジアルブラー(20, 180, 40);
+    bev::画面揺れ回数(0.8, 4);
+    bev::動作($2, "ReHeadache");
+    ev::SEPlay("SE_EVT_HEADACHE1");
+    ev::BGMVolume(0, 500);
+    bev::動作($2, "Headache");
+    bev::全体待ち(500);
+    bev::全体待ち(500);
+    ev::BGMVolume(100, 5000);
+    bev::ラジアルブラー終了();
+    bev::会話("MID_014_OP1_5");
+    bev::会話("MID_014_OP1_6");
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B014_OP2() {
+    bev::開始("evt014_op2", "海戦の海_船上");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_014");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_フラヴィア");
+    $2 = bev::番号取得("PID_プレイヤー");
+    $3 = bev::番号取得("PID_フレデリク");
+    $4 = bev::番号取得("PID_バジーリオ");
+    bev::位置と向き($0, "A", "B");
+    bev::位置と向き($1, "B", "A");
+    bev::位置と向き($2, "E", "A");
+    bev::位置と向き($3, "C", "A");
+    bev::位置と向き($4, "F", "A");
+    bev::動作($1, "FraRe");
+    bev::動作($3, "FreRe");
+    bev::全体待ち(1000);
+    bev::会話("MID_014_OP2");
+    bev::会話("MID_014_OP2_2");
+    bev::会話("MID_014_OP2_3");
+    bev::会話("MID_014_OP2_4");
+    bev::会話("MID_014_OP2_5");
+    bev::会話("MID_014_OP2_6");
+    ev::BGMStop(1000);
+    ev::LSEStop("SE_ENV_SHIP1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B014_ED1() {
+    bev::開始("evt014_ed1", "海戦の海_船上");
+    ev::BGMPlay("STRM_BGM_EVT_CHANCE1", 0);
+    bev::フェードイン(1000);
+    bev::カメラ("ed1_01cam");
+    bev::場面("MCID_T_014");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_プレイヤー");
+    $2 = bev::番号取得("PID_014_兵士");
+    bev::位置と向き($1, "A", "E");
+    bev::位置と向き($0, "B", "E");
+    bev::位置と向き($2, "C", "B");
+    bev::全体待ち(2000);
+    bev::会話("MID_014_ED1");
+    bev::会話("MID_014_ED1_2");
+    bev::待つ($2, 200);
+    bev::待つ($1, 100);
+    bev::走る($0, "H");
+    bev::走る($1, "G");
+    bev::走る($2, "D");
+    ev::BGMStop(2000);
+    bev::白フェードアウト(1000);
+    bev::全体待ち(1000);
+    bev::終了();
+    ev::SEPlay("SE_EVT_EXPLOSION1");
+    ev::LSEPlay("SE_ENV_FIRE2", 1000);
+    bev::白フェードイン(1000);
+    bev::テロップ再生("Tlp_Ev_014_ED2");
+    bev::全体待ち(3000);
+    bev::場面("MCID_T_014");
+    bev::会話("MID_014_ED2");
+    ev::LSEStop("SE_ENV_FIRE2", 2000);
+    bev::フェードアウト(2000);
+    bev::テロップ終了();
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::B014_OP1();
+    bev::B014_OP1_02();
+    bev::B014_OP2();
+}
+
+event [10]() {}
+
+event [11]() {
+    bev::B014_ED1();
+    ev::ChapterSetNextIncrement();
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_014_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_014_OP3");
+}
+
+event [15](3, 7) {
+    $0 = ev::TurnGet();
+    if(ev::DifficultyGet() == 0) {
+        if($0 == 5) {
+            ev::Dispos("Reinforce01", 8);
+            ev::DisposWait();
+        }
+        if($0 == 6) {
+            ev::Dispos("Reinforce02", 8);
+            ev::DisposWait();
+        }
+        if($0 == 7) {
+            ev::Dispos("Reinforce03", 8);
+            ev::DisposWait();
+        }
+        goto L0;
+    }
+    if(ev::DifficultyGet() == 1) {
+        if($0 == 4) {
+            ev::Dispos("Reinforce01", 8);
+            ev::DisposWait();
+        }
+        if($0 == 5) {
+            ev::Dispos("Reinforce02", 8);
+            ev::DisposWait();
+        }
+        if($0 == 6) {
+            ev::Dispos("Reinforce03", 8);
+            ev::DisposWait();
+        }
+        goto L0;
+    }
+    if($0 == 3) {
+        ev::Dispos("Reinforce01", 8);
+        ev::DisposWait();
+    }
+    if($0 == 4) {
+        ev::Dispos("Reinforce02", 8);
+        ev::DisposWait();
+    }
+    if($0 == 5) {
+        ev::Dispos("Reinforce03", 8);
+        ev::DisposWait();
+    }
+    label L0;
+}
+
+event [19]("PID_014_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_014_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_014_ボス", 1, "") {
+    ev::Talk("MID_014_BOSS_DIE1");
+}

@@ -1,0 +1,142 @@
+func bev::X001_OP1() {
+    bev::開始("evtx001_op1", "緑の街道_街道");
+    bev::フェードイン(2000);
+    bev::場面("MCID_T_X001");
+    ev::LSEPlay("SE_ENV_GLASS1", 2000);
+    bev::カメラ("op1_01cam");
+    bev::全体待ち(2000);
+    bev::会話("MID_X001_OP1");
+    ev::LSEStop("SE_ENV_GLASS1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X001_OP2() {
+    bev::開始("evtx001_op1", "森_夜_廃村");
+    bev::フェードイン(1000);
+    bev::場面("MCID_T_X001");
+    ev::BGMPlay("STRM_BGM_EVT_TAIJI2", 0);
+    bev::カメラ("op1_02cam");
+    bev::全体待ち(1000);
+    bev::会話("MID_X001_OP2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X001_OP3() {
+    bev::開始("evtx001_op1", "森_夜_通常");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X001");
+    ev::LSEPlay("SE_ENV_NIGHT1", 2000);
+    bev::全体待ち(1000);
+    bev::会話("MID_X001_OP3");
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X001_OP4() {
+    bev::開始("evtx001_op1", "森_夜_廃村");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X001");
+    bev::全体待ち(1000);
+    bev::会話("MID_X001_OP4");
+    ev::LSEStop("SE_ENV_NIGHT1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X001_ED1() {
+    bev::開始("evtx001_op1", "森_夜_廃村");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X001");
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X001_ED1");
+    bev::全体待ち(500);
+    bev::会話("MID_X001_ED2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X001_ED2B() {
+    bev::開始("evtx001_op1", "森_夜_廃村");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X001");
+    bev::全体待ち(1000);
+    ev::BGMPlay("STRM_BGM_EVT_HEIWA1_2", 50);
+    bev::会話("MID_X001_ED2B");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X001_OP1();
+    bev::X001_OP2();
+    bev::X001_OP3();
+    bev::X001_OP4();
+}
+
+event [10]() {}
+
+event [11]() {
+    $0 = ev::UnitGetByPID("PID_ドニ");
+    if($0 && ev::UnitIsAlive($0)) {
+        if(!ev::UnitIsGrowForX001($0)) {
+            ev::UnitItemToTransporter($0);
+            ev::UnitExpulsionByIndex($0);
+            bev::X001_ED2B();
+            goto L0;
+        }
+        bev::X001_ED1();
+        label L0;
+        goto L1;
+    }
+    bev::X001_ED2B();
+    label L1;
+}
+
+event [12](1, 1, 0) {
+    ev::Dispos("Support01", 8);
+    ev::DisposWait();
+    ev::Talk("MID_X001_EV1");
+    ev::TutorialDialogMustShow("MID_X001_EV1_TUT");
+}
+
+event [19]("PID_X001_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X001_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X001_ボス", 1, "") {
+    ev::Talk("MID_X001_BOSS_DIE1");
+}
+
+event [21]("PID_ドニ", 0, "") {
+    ev::Talk("MID_X001_DIE_ドニ");
+}

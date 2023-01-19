@@ -1,0 +1,157 @@
+func bev::X002_OP1() {
+    bev::開始("evtx001_op1", "北の国から_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X002");
+    ev::BGMPlay("STRM_BGM_EVT_HUON1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X002_OP1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X002_ED1() {
+    bev::開始("evtx001_op1", "北の国から_平地");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X002");
+    ev::BGMPlay("STRM_BGM_EVT_ANNA1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X002_ED1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X002_ED2() {
+    bev::開始("evtx001_op1", "北の国から_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X002");
+    ev::BGMPlay("STRM_BGM_EVT_ANNA1", 0);
+    bev::全体待ち(2000);
+    bev::会話("MID_X002_ED2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("戦闘会話");
+    ev::FlagEntry("敵突撃");
+    ev::FlagEntry("アンナ会話のみ");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X002_OP1();
+}
+
+event [18]("PID_クロム", "PID_X002_アンナ", "evtx001_op1", "アンナ会話のみ") {
+    if(!ev::FlagGet("G_X004クリア")) {
+        ev::Talk("MID_X002_TK1");
+        goto L0;
+    }
+    ev::Talk("MID_X002_TK1_02");
+    label L0;
+    ev::FlagSet("アンナ会話のみ");
+}
+
+event [10]() {}
+
+event [11]() {
+    ev::TutorialSetFlag("TUTID_村");
+    if(!ev::FlagGet("G_X004クリア")) {
+        bev::X002_ED1();
+        goto L0;
+    }
+    bev::X002_ED2();
+    label L0;
+    ev::FlagSet("G_X002クリア");
+}
+
+event [12](1, 1, 0) {
+    ev::TimeWait(1000);
+    ev::BGMPlay("STRM_BGM_EVT_TAIJI2", 0);
+    if(!ev::FlagGet("G_X004クリア")) {
+        ev::Dispos("Event01", 8);
+        ev::DisposWait();
+        $0 = ev::UnitGetByPID("PID_X002_ボス");
+        ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+        ev::CameraWait();
+        ev::TimeWait(500);
+        ev::Talk("MID_X002_OP2");
+        ev::UnitMovePosition(ev::UnitGetByPID("PID_X002_ボスEV"), 11, 23, 2);
+        ev::UnitMoveWait();
+        ev::UnitExpulsionByIndex(ev::UnitGetByPID("PID_X002_ボスEV"));
+        $1 = ev::UnitGetByPID("PID_X002_アンナ");
+        ev::CameraSetPosition(ev::UnitGetX($1), ev::UnitGetY($1));
+        ev::CameraWait();
+        ev::TimeWait(500);
+        ev::Talk("MID_X002_OP3");
+        goto L0;
+    }
+    $2 = ev::UnitGetByPID("PID_X002_アンナ");
+    ev::CameraSetPosition(ev::UnitGetX($2), ev::UnitGetY($2));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X002_OP3_02");
+    label L0;
+    ev::BGMStop(1000);
+}
+
+event [14](1, 1, "evtx001_op1") {
+    $0 = 18;
+    $1 = 3;
+    ev::CameraSetPosition($0, $1);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", $0, $1);
+    ev::EffectWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X002_TUT_村");
+    if(!ev::TutorialGetFlag("TUTID_村")) {
+        ev::TutorialShow("TUTID_村");
+    }
+    $2 = ev::HeroGet();
+    if($2) {
+        ev::CameraSetPosition(ev::UnitGetX($2), ev::UnitGetY($2));
+    }
+    ev::CameraWait();
+}
+
+event [12](-1, -1, 1) {
+    if(!ev::FlagGet("敵突撃")) {
+        if(ev::TrickTst(18, 3, 8, 6)) {
+            ev::FlagSet("敵突撃");
+        }
+    }
+}
+
+event [19]("PID_X002_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X002_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X002_ボス", 1, "") {
+    ev::Talk("MID_X002_BOSS_DIE1");
+}
+
+event [21]("PID_X002_アンナ", 2, "") {
+    ev::Talk("MID_X002_DIE_アンナ");
+}

@@ -1,0 +1,158 @@
+func bev::X007_OP1() {
+    bev::開始("evtx001_op1", "緑の街道_神殿跡地");
+    bev::フェードイン(2000);
+    bev::場面("MCID_T_X007");
+    ev::BGMPlay("STRM_BGM_EVT_TAIJI2_2", 1000);
+    bev::カメラ("op1_01cam");
+    bev::全体待ち(2000);
+    bev::会話("MID_X007_OP1");
+    bev::全体待ち(1000);
+    bev::会話("MID_X007_OP1_02");
+    bev::全体待ち(1000);
+    bev::会話("MID_X007_OP1_03");
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X007_OP1_04() {
+    bev::開始("evtx001_op1", "緑の街道_林");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X007");
+    bev::全体待ち(1000);
+    bev::会話("MID_X007_OP1_04");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X007_ED2() {
+    bev::開始("evtx001_op1", "緑の街道_神殿跡地");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X007");
+    ev::BGMPlay("STRM_BGM_EVT_TENNEN1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X007_ED2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("ブレディ味方");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X007_OP1();
+    bev::X007_OP1_04();
+}
+
+event [10]() {
+    if(!ev::FlagGet("ブレディ味方")) {
+        $0 = ev::UnitGetByPID("PID_ブレディ");
+        if($0 && ev::UnitIsAlive($0)) {
+            ev::UnitTransferByIndex($0, 0);
+        }
+    }
+    $1 = ev::ForceUnitGetCountPID(2, "PID_X007_村人");
+    if(!$1) {
+        ev::Talk("MID_X007_ED1_03");
+        goto L0;
+    }
+    if($1 < 5) {
+        ev::Talk("MID_X007_ED1_02");
+        goto L0;
+    }
+    ev::BGMPlay("STRM_BGM_EVT_HEIWA1_2", 50);
+    ev::Talk("MID_X007_ED1");
+    ev::BGMStop(2000);
+    label L0;
+    if($1 >= 1) {
+        ev::ItemGain(0, "IID_リライブ");
+    }
+    if($1 >= 2) {
+        ev::ItemGain(0, "IID_聖なる槍");
+    }
+    if($1 >= 3) {
+        ev::ItemGain(0, "IID_金塊（中）");
+    }
+    if($1 >= 4) {
+        ev::ItemGain(0, "IID_天使の衣");
+    }
+    if($1 >= 5) {
+        ev::ItemGain(0, "IID_リザーブ");
+    }
+}
+
+event [11]() {
+    $0 = ev::UnitGetByPID("PID_ブレディ");
+    if($0 && ev::UnitIsAlive($0)) {
+        bev::X007_ED2();
+    }
+}
+
+event [12](1, 1, 0) {
+    ev::Talk("MID_X007_OP2");
+}
+
+event [15](8, 8) {
+    ev::Dispos("Reinforce01", 8);
+    ev::DisposWait();
+}
+
+event [18]("PID_クロム", "PID_ブレディ", "evtx001_op1", "ブレディ味方") {
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    if(ev::UnitIsFatherPID(ev::UnitGetByPID("PID_ブレディ"), "PID_クロム")) {
+        ev::Talk("MID_X007_TK1_クロムマリアベル結婚");
+        goto L0;
+    }
+    ev::Talk("MID_X007_TK1");
+    label L0;
+    $0 = ev::UnitGetByPID("PID_ブレディ");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("ブレディ味方");
+    ev::BGMStop(1000);
+}
+
+event [18]("PID_マリアベル", "PID_ブレディ", "evtx001_op1", "ブレディ味方") {
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    ev::Talk("MID_X007_TK2");
+    $0 = ev::UnitGetByPID("PID_ブレディ");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("ブレディ味方");
+    ev::BGMStop(1000);
+}
+
+event [19]("PID_X007_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X007_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X007_ボス", 1, "") {
+    ev::Talk("MID_X007_BOSS_DIE1");
+}
+
+event [21]("PID_ブレディ", 2, "") {
+    ev::Talk("MID_X007_DIE_ブレディ");
+}

@@ -1,0 +1,120 @@
+func bev::X021_OP1() {
+    bev::開始("evtx001_op1", "古墳遺跡");
+    bev::フェードイン(2000);
+    ev::LSEPlay("SE_ENV_FALL_SMALL1", 2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X021");
+    bev::全体待ち(2000);
+    bev::会話("MID_X021_OP1");
+    ev::LSEStop("SE_ENV_FALL_SMALL1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X021_ED1() {
+    bev::開始("evtx001_op1", "古墳遺跡");
+    bev::フェードイン(1000);
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1_2", 50);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X021");
+    bev::全体待ち(1000);
+    bev::会話("MID_X021_ED1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X021_ED1B() {
+    bev::開始("evtx001_op1", "古墳遺跡");
+    bev::フェードイン(1000);
+    ev::LSEPlay("SE_ENV_FALL_SMALL1", 1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X021");
+    bev::全体待ち(1000);
+    bev::会話("MID_X021_ED1B");
+    ev::LSEStop("SE_ENV_FALL_SMALL1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X021_ED1C() {
+    bev::開始("evtx001_op1", "古墳遺跡");
+    bev::フェードイン(1000);
+    ev::LSEPlay("SE_ENV_FALL_SMALL1", 1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X021");
+    bev::全体待ち(1000);
+    bev::会話("MID_X021_ED1C");
+    ev::LSEStop("SE_ENV_FALL_SMALL1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("レンハ味方");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X021_OP1();
+}
+
+event [10]() {}
+
+event [11]() {
+    if(ev::FlagGet("レンハ味方")) {
+        $0 = ev::UnitGetByPID("PID_レンハ");
+        if($0 && ev::UnitIsAlive($0)) {
+            bev::X021_ED1();
+            goto L0;
+        }
+        bev::X021_ED1B();
+        label L0;
+        goto L1;
+    }
+    bev::X021_ED1C();
+    label L1;
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_レンハ");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X021_OP2");
+}
+
+event [18]("PID_サイリ", "PID_レンハ", "evtx001_op1", "レンハ味方") {
+    ev::Talk("MID_X021_TK1");
+    $0 = ev::UnitGetByPID("PID_レンハ");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("レンハ味方");
+}
+
+event [19]("PID_X021_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X021_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X021_ボス", 1, "") {
+    ev::Talk("MID_X021_BOSS_DIE1");
+}
+
+event [21]("PID_レンハ", 2, "") {
+    ev::Talk("MID_X021_REN_DIE1");
+}

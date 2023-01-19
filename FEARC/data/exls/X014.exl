@@ -1,0 +1,162 @@
+func bev::X014_OP1() {
+    bev::開始("evtx001_op1", "ペレジアのオアシス");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X014");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1_2", 300);
+    bev::全体待ち(2000);
+    bev::会話("MID_X014_OP1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X014_ED1() {
+    bev::開始("evtx001_op1", "ペレジアのオアシス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X014");
+    ev::LSEPlay("SE_ENV_WIND1", 1000);
+    bev::全体待ち(1000);
+    bev::会話("MID_X014_EV1");
+    bev::会話("MID_X014_ED1");
+    ev::LSEStop("SE_ENV_WIND1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X014_ED2() {
+    bev::開始("evtx001_op1", "ペレジアのオアシス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X014");
+    ev::LSEPlay("SE_ENV_WIND1", 1000);
+    bev::全体待ち(1000);
+    bev::会話("MID_X014_EV1");
+    bev::会話("MID_X014_ED2");
+    ev::LSEStop("SE_ENV_WIND1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X014_ED3() {
+    bev::開始("evtx001_op1", "ペレジアのオアシス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X014");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X014_ED3");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("村増援１");
+    ev::FlagEntry("村増援２");
+    ev::FlagEntry("村増援３");
+    ev::FlagEntry("幻の村訪問可能");
+    ev::FlagEntry("幻の村訪問済み");
+    ev::FlagEntry("敵突撃");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+    ev::TrickSet(3, 7, 8, 2);
+    ev::TrickSet(16, 16, 8, 2);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X014_OP1();
+}
+
+event [10]() {}
+
+event [11]() {
+    if(ev::FlagGet("幻の村訪問済み")) {
+        bev::X014_ED1();
+        goto L0;
+    }
+    bev::X014_ED2();
+    label L0;
+    $0 = ev::UnitGetByPID("PID_ロラン");
+    if($0 && ev::UnitIsAlive($0)) {
+        bev::X014_ED3();
+    }
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_X014_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X014_OP2");
+}
+
+event [15](-1, -1) {
+    if(ev::FlagGet("村増援１")) {
+        ev::CameraSetPosition(3, 7);
+        ev::CameraWait();
+        ev::TrickSet(3, 7, 8, 1);
+        ev::Dispos("Reinforce01", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce02", 8);
+        ev::DisposWait();
+        ev::FlagClr("村増援１");
+    }
+    if(ev::FlagGet("村増援２")) {
+        ev::CameraSetPosition(16, 16);
+        ev::CameraWait();
+        ev::TrickSet(16, 16, 8, 1);
+        ev::Dispos("Reinforce03", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce04", 8);
+        ev::DisposWait();
+        ev::FlagClr("村増援２");
+    }
+    if(ev::FlagGet("村増援３")) {
+        ev::Dispos("Reinforce05", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce06", 8);
+        ev::DisposWait();
+        ev::FlagClr("村増援３");
+    }
+}
+
+func ev::IsVisitMerageVillage() {
+    if(ev::FlagGet("幻の村訪問済み")) {
+        return;
+    }
+    if(ev::FlagGet("幻の村訪問可能")) {
+        return 1;
+    }
+    return;
+}
+
+event [16](9, 3, 9, 3, 0, "IsVisitMerageVillage") {
+    ev::Talk("MID_X014_VIL1");
+    ev::ItemGain(ev::MindGetUnit(), "IID_女神の杖");
+    ev::FlagSet("幻の村訪問済み");
+}
+
+event [19]("PID_X014_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X014_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X014_ボス", 1, "") {
+    ev::Talk("MID_X014_BOSS_DIE1");
+}

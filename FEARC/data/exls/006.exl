@@ -1,0 +1,380 @@
+func bev::B006_OP1() {
+    bev::開始("evt006_op1", "イーリス城_夜の中庭");
+    bev::フェードイン(2000);
+    bev::場面("MCID_T_006");
+    ev::LSEPlay("SE_ENV_NIGHT1", 2000);
+    bev::カメラ("op1_01cam");
+    $0 = bev::番号取得("PID_プレイヤー");
+    $1 = bev::番号取得("PID_クロム");
+    bev::位置と向き($0, "D", "A");
+    bev::位置と向き($1, "A", "C");
+    bev::全体待ち(3000);
+    bev::歩く($0, "B");
+    bev::向き($0, "A");
+    bev::全体待ち(1000);
+    bev::会話("MID_006_OP1");
+    bev::会話("MID_006_OP1_01");
+    bev::全体待ち(500);
+    $2 = bev::番号取得("PID_仮面マルス");
+    bev::位置と向き($2, "E", "C");
+    bev::カメラ("op1_02cam");
+    bev::会話("MID_006_OP1_02");
+    ev::LSEVolume("SE_ENV_NIGHT1", 10, 3000);
+    ev::BGMPlay("STRM_BGM_EVT_MARTH1", 0);
+    bev::向き($0, "C");
+    bev::動作($0, "WalkTurn");
+    bev::注目($1, $2);
+    bev::注目($0, $2);
+    bev::歩く($2, "C");
+    bev::向き($2, "A");
+    bev::動作($2, "MarRe");
+    ev::LSEStop("SE_ENV_NIGHT1", 2000);
+    bev::全体待ち(2000);
+    bev::カメラ("op1_03cam");
+    bev::会話("MID_006_OP1_03");
+    bev::会話("MID_006_OP1_04");
+    bev::会話("MID_006_OP1_05");
+    bev::動作($2, "MarRe");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B006_OP2_06() {
+    bev::フェードアウト(1000);
+    bev::マップ停止();
+    bev::開始("evt006_op2_06", "暗闇_何もなし");
+    bev::フェードイン(1000);
+    bev::テロップ再生("Tlp_Ev_006_OP2_06");
+    bev::全体待ち(4000);
+    ev::LSEPlay("SE_EVT_FALCHION1", 0);
+    bev::テロップ再生("Tlp_Ev_Falchion");
+    bev::会話("MID_006_OP2_06");
+    bev::全体待ち(1000);
+    ev::LSEStop("SE_EVT_FALCHION1", 1000);
+    bev::フェードアウト(1000);
+    bev::テロップ終了();
+    bev::終了();
+    bev::フェードイン(2000);
+    bev::マップ再開();
+}
+
+func bev::B006_ED2() {
+    bev::開始("evt006_ed2", "イーリス城_床");
+    bev::フェードイン(1000);
+    bev::カメラ("ed1_01cam");
+    bev::場面("MCID_T_006");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_プレイヤー");
+    $2 = bev::番号取得("PID_エメリナ");
+    $3 = bev::番号取得("PID_フィレイン");
+    bev::位置と向き($1, "D", "A");
+    bev::位置と向き($0, "B", "A");
+    bev::位置と向き($2, "A", "B");
+    bev::位置と向き($3, "E", "C");
+    bev::動作($2, "EmeRe");
+    bev::全体待ち(2000);
+    bev::会話("MID_006_ED2");
+    bev::会話("MID_006_ED2_1");
+    bev::会話("MID_006_ED2_2");
+    bev::走る($0, "F");
+    bev::待つ($1, 400);
+    bev::注目($1, $0);
+    bev::注目($2, $0);
+    bev::注目($3, $0);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B006_ED2_03() {
+    bev::開始("evt006_ed2_03", "イーリス城_夜の中庭");
+    ev::BGMPlay("STRM_BGM_EVT_MARTH1", 0);
+    bev::フェードイン(1000);
+    bev::カメラ("ed1_01cam");
+    bev::場面("MCID_T_006");
+    $0 = bev::番号取得("PID_マルス");
+    $1 = bev::番号取得("PID_クロム");
+    bev::位置と向き($0, "E", "F");
+    bev::位置と向き($1, "D", "C");
+    bev::歩く($0, "B");
+    bev::全体待ち(2000);
+    bev::向き($0, "E");
+    bev::動作($0, "WalkTurn");
+    bev::全体待ち(500);
+    bev::会話("MID_006_ED2_02");
+    bev::カメラ("ed1_02cam");
+    bev::向き($0, "F");
+    bev::動作($0, "WalkTurn");
+    bev::全体待ち(1000);
+    bev::歩く($0, "A");
+    bev::向き($0, "C");
+    bev::待つ($1, 500);
+    bev::歩く($1, "C");
+    bev::向き($1, "A");
+    bev::動作($1, "WalkTurn");
+    bev::全体待ち(500);
+    bev::会話("MID_006_ED2_03");
+    bev::歩く($0, "F");
+    bev::待つ($1, 2500);
+    bev::注目($1, $0);
+    bev::向き($1, "F");
+    bev::動作($1, "WalkTurn");
+    bev::待つ($1, 500);
+    bev::全体待ち(20);
+    bev::会話("MID_006_ED2_04");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B006_ED3() {
+    bev::開始("evt006_ed3", "イーリス城_床");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1_2", 100);
+    bev::フェードイン(1000);
+    bev::カメラ("ed1_01cam");
+    bev::場面("MCID_T_006");
+    $0 = bev::番号取得("PID_ベルベット");
+    $1 = bev::番号取得("PID_プレイヤー");
+    $2 = bev::番号取得("PID_エメリナ");
+    $3 = bev::番号取得("PID_フィレイン");
+    bev::位置と向き($1, "D", "F");
+    bev::位置と向き($0, "F", "A");
+    bev::位置と向き($2, "A", "B");
+    bev::位置と向き($3, "E", "C");
+    bev::動作($2, "EmeRe");
+    bev::動作($0, "BelRe");
+    bev::全体待ち(3000);
+    bev::会話("MID_006_ED3");
+    bev::会話("MID_006_ED3_2");
+    bev::会話("MID_006_ED3_3");
+    bev::会話("MID_006_ED3_4");
+    bev::会話("MID_006_ED3_5");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B006_ED5() {
+    bev::開始("evt006_ed5", "暗闇_薄い床つき");
+    bev::フェードイン(1000);
+    ev::BGMPlay("STRM_BGM_EVT_BUKIMI1", 0);
+    bev::カメラ("ed1_01cam");
+    bev::場面("MCID_T_N002");
+    $0 = bev::番号取得("PID_ファウダー");
+    $1 = bev::番号取得("PID_ファウダーの影");
+    bev::位置と向き($0, "B", "A");
+    bev::位置と向き($1, "D", "C");
+    bev::動作($0, "FauTired");
+    bev::全体待ち(2000);
+    bev::動作($0, "FauTiredWalk");
+    bev::動作($0, "FauTired");
+    bev::全体待ち(1000);
+    bev::会話("MID_006_ED5");
+    bev::全体待ち(2000);
+    bev::カメラ("ed1_02cam");
+    bev::歩く($1, "C");
+    bev::注目($0, $1);
+    bev::全体待ち(100);
+    bev::会話("MID_006_ED6");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B006_ED7() {
+    bev::開始("evt006_ed7", "イーリス城_床");
+    bev::フェードイン(1000);
+    ev::BGMPlay("STRM_BGM_EVT_BRAVE1", 0);
+    bev::カメラ("ed1_00cam");
+    bev::場面("MCID_T_006");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_フレデリク");
+    $2 = bev::番号取得("PID_エメリナ");
+    $3 = bev::番号取得("PID_フィレイン");
+    bev::位置と向き($1, "C", "A");
+    bev::位置と向き($0, "B", "A");
+    bev::位置と向き($2, "A", "C");
+    bev::位置と向き($3, "D", "A");
+    bev::動作($2, "EmeRe");
+    bev::動作($1, "FreRe");
+    bev::全体待ち(7000);
+    bev::カメラ("ed1_01cam");
+    bev::会話("MID_006_ED7");
+    ev::BGMStop(2000);
+    bev::フェードアウト(2000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("ガイア味方");
+    ev::FlagEntry("戦闘会話");
+    ev::FlagEntry("戦闘会話プレイヤー");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::B006_OP1();
+    ev::PlayMovieReturnFadeOut("Movie07.moflex");
+}
+
+event [10]() {}
+
+event [11]() {
+    bev::B006_ED2();
+    bev::B006_ED2_03();
+    $0 = ev::UnitGetByPID("PID_ベルベット");
+    if($0 && ev::UnitIsAlive($0)) {
+        bev::B006_ED3();
+    }
+    bev::B006_ED5();
+    bev::B006_ED7();
+    ev::ChapterSetNextIncrement();
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPosition(14, 20);
+    ev::UnitMovePosition($0, 12, 20, 0);
+    $1 = ev::UnitGetByPID("PID_006_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($1), ev::UnitGetY($1));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_BOURYAKU1", 0);
+    ev::Talk("MID_006_OP2");
+    ev::UnitMovePosition($0, 14, 20, 0);
+    ev::FadeWait();
+    ev::UnitMoveWait();
+    $2 = ev::UnitGetByPID("PID_ガイア");
+    ev::CameraSetPosition(ev::UnitGetX($2), ev::UnitGetY($2));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", ev::UnitGetX($2), ev::UnitGetY($2));
+    ev::EffectWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_006_EVガイア");
+    $3 = ev::UnitGetByPID("PID_006_エメリナ");
+    ev::CameraSetPosition(ev::UnitGetX($3), ev::UnitGetY($3));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", ev::UnitGetX($3), ev::UnitGetY($3));
+    ev::EffectWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_006_OP2_03");
+    $4 = ev::UnitGetPlayer();
+    if(!$4 || ev::UnitGetForce($4) >= 3) {
+        $4 = ev::UnitGetByPID("PID_クロム");
+        ev::CameraSetPosition(ev::UnitGetX($4), ev::UnitGetY($4));
+        ev::CameraWait();
+        ev::TimeWait(500);
+        goto L0;
+    }
+    ev::CameraSetPosition(ev::UnitGetX($4), ev::UnitGetY($4));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    label L0;
+    ev::Talk("MID_006_OP2_03_2");
+    $5 = ev::UnitGetByPID("PID_006_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($5), ev::UnitGetY($5));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_006_OP2_04");
+    $6 = ev::UnitGetPlayer();
+    if(!$6 || ev::UnitGetForce($6) >= 3) {
+        $6 = ev::UnitGetByPID("PID_クロム");
+        ev::CameraSetPosition(ev::UnitGetX($6), ev::UnitGetY($6));
+        ev::CameraWait();
+        ev::TimeWait(1000);
+        goto L1;
+    }
+    ev::CameraSetPosition(ev::UnitGetX($6), ev::UnitGetY($6));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", ev::UnitGetX($6), ev::UnitGetY($6));
+    ev::EffectWait();
+    ev::TimeWait(500);
+    label L1;
+    $7 = ev::UnitGetByPID("PID_006_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($7), ev::UnitGetY($7));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_006_OP2_05");
+    $8 = ev::UnitGetByPID("PID_006_マルス");
+    ev::CameraSetPosition(ev::UnitGetX($8), ev::UnitGetY($8));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    bev::B006_OP2_06();
+    ev::BGMStop(1000);
+}
+
+event [14](1, 1, "evt006_op1") {
+    ev::Talk("MID_006_TUT_ユニットのロスト");
+}
+
+event [12](2, 2, 0) {
+    ev::Dispos("Support01", 8);
+    ev::DisposWait();
+    ev::Talk("MID_006_EV1");
+    ev::BGMPlay("STRM_BGM_EVT_BRAVE1_2", 100);
+    ev::Talk("MID_006_EV1_02");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_ベルベット");
+    ev::UnitMovePosition($0, 10, 2, 1);
+    ev::UnitMoveWait();
+}
+
+event [18]("PID_クロム", "PID_ガイア", "evt006_op1", "ガイア味方") {
+    ev::BGMStop(1000);
+    ev::Talk("MID_006_TK1");
+    ev::BGMStop(1000);
+    ev::FlagSet("ガイア味方");
+    $0 = ev::UnitGetByPID("PID_ガイア");
+    ev::UnitTransferByIndex($0, 0);
+}
+
+event [19]("PID_006_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_006_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [19]("PID_006_ボス", "PID_プレイヤー男", 1, "戦闘会話プレイヤー") {
+    ev::Talk("MID_006_BT2");
+    ev::FlagSet("戦闘会話プレイヤー");
+}
+
+event [19]("PID_006_ボス", "PID_プレイヤー女", 1, "戦闘会話プレイヤー") {
+    ev::Talk("MID_006_BT2");
+    ev::FlagSet("戦闘会話プレイヤー");
+}
+
+event [21]("PID_006_ボス", 1, "") {
+    ev::Talk("MID_006_BOSS_DIE1");
+}
+
+event [21]("PID_ガイア", 1, "") {
+    ev::Talk("MID_006_DIE_ガイア");
+}
+
+event [21]("PID_ベルベット", 0, "") {
+    ev::Talk("MID_006_DIE_ベルベット");
+}
+
+event [21]("PID_006_マルス", 2, "") {
+    ev::Talk("MID_006_DIE_006_マルス");
+}
+
+event [21]("PID_006_エメリナ", 2, "") {
+    ev::Talk("MID_006_DIE_006_エメリナ");
+}

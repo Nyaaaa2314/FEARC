@@ -1,0 +1,231 @@
+func bev::X010_OP1() {
+    bev::開始("evtx001_op1", "緑の街道_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X010");
+    ev::LSEPlay("SE_ENV_GLASS1", 2000);
+    bev::全体待ち(2000);
+    bev::会話("MID_X010_OP1");
+    ev::LSEStop("SE_ENV_GLASS1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X010_OP2() {
+    bev::開始("evtx001_op1", "ペレジアの砦_床");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X010");
+    ev::BGMPlay("STRM_BGM_EVT_BOURYAKU1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X010_OP2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X010_ED2() {
+    bev::開始("evtx001_op1", "ペレジアの砦_床");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X010");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X010_ED2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X010_ED4() {
+    bev::開始("evtx001_op1", "ペレジアの砦_床");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X010");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X010_ED2");
+    bev::全体待ち(500);
+    bev::会話("MID_X010_ED4");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("敵突撃");
+    ev::FlagEntry("敵増援");
+    ev::FlagEntry("セレナ会話");
+    ev::FlagEntry("ホラント会話");
+    ev::FlagEntry("セレナ敵対");
+    ev::FlagEntry("クロム戦闘会話");
+    ev::FlagEntry("セレナ戦闘会話");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X010_OP1();
+    bev::X010_OP2();
+}
+
+event [10]() {
+    ev::Talk("MID_X010_ED3");
+}
+
+event [11]() {
+    if(ev::FlagGet("ホラント会話")) {
+        $0 = ev::UnitGetByPID("PID_セレナ");
+        if($0 && ev::UnitIsAlive($0)) {
+            bev::X010_ED4();
+        }
+    }
+}
+
+event [12](1, 1, 0) {
+    ev::Talk("MID_X010_OP3");
+    $0 = ev::UnitGetByPID("PID_セレナ");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X010_OP4");
+}
+
+event [15](2, 2) {
+    ev::Dispos("Reinforce01", 8);
+    ev::DisposWait();
+    if(ev::DifficultyGet() >= 1) {
+        ev::Dispos("Reinforce04", 8);
+        ev::DisposWait();
+    }
+}
+
+event [15](3, 3) {
+    if(ev::DifficultyGet() >= 2) {
+        ev::Dispos("Reinforce06", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce07", 8);
+        ev::DisposWait();
+    }
+}
+
+event [15](4, 4) {
+    ev::Dispos("Reinforce02", 8);
+    ev::DisposWait();
+    if(ev::DifficultyGet() >= 1) {
+        ev::Dispos("Reinforce05", 8);
+        ev::DisposWait();
+    }
+}
+
+event [15](-1, -1) {
+    if(ev::FlagGet("敵突撃") && !ev::FlagGet("敵増援")) {
+        ev::Dispos("Reinforce03", 8);
+        ev::DisposWait();
+        ev::FlagSet("敵増援");
+        if(ev::DifficultyGet() >= 2) {
+            ev::Dispos("Reinforce05", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce07", 8);
+            ev::DisposWait();
+        }
+    }
+}
+
+func ev::IsSerenaTransferEnemy() {
+    if(ev::FlagGet("ホラント会話")) {
+        return;
+    }
+    if(ev::FlagGet("セレナ敵対")) {
+        return;
+    }
+    if(ev::UnitGetByPID("PID_X010_ホラント")) {
+        return;
+    }
+    return 1;
+}
+
+event [16](-1, -1, -1, -1, -1, "IsSerenaTransferEnemy") {
+    $0 = ev::UnitGetByPID("PID_セレナ");
+    if($0 && ev::UnitIsAlive($0)) {
+        ev::Talk("MID_X010_EV1");
+        ev::UnitTransferByIndex($0, 1);
+    }
+    ev::FlagSet("セレナ敵対");
+    ev::FlagSet("敵突撃");
+    ev::FlagSet("セレナ会話");
+}
+
+event [18]("PID_クロム", "PID_セレナ", "evtx001_op1", "セレナ会話") {
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    ev::Talk("MID_X010_TK1");
+    ev::BGMStop(1000);
+    ev::FlagSet("セレナ会話");
+}
+
+event [18]("PID_ティアモ", "PID_セレナ", "evtx001_op1", "セレナ会話") {
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    ev::Talk("MID_X010_TK2");
+    ev::BGMStop(1000);
+    ev::FlagSet("セレナ会話");
+}
+
+event [18]("PID_セレナ", "PID_X010_ホラント", "evtx001_op1", "ホラント会話") {
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_BRAVE1", 0);
+    ev::Talk("MID_X010_TK5");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_X010_ホラント");
+    ev::UnitDeleteByIndex($0);
+    $1 = ev::UnitGetByPID("PID_セレナ");
+    ev::UnitTransferByIndex($1, 0);
+    ev::FlagSet("ホラント会話");
+    ev::FlagSet("敵突撃");
+    ev::FlagSet("セレナ会話");
+}
+
+event [19]("PID_X010_ボス", "PID_クロム", 1, "クロム戦闘会話") {
+    ev::Talk("MID_X010_BT1");
+    ev::FlagSet("クロム戦闘会話");
+}
+
+event [19]("PID_X010_ボス", "PID_セレナ", 1, "セレナ戦闘会話") {
+    ev::Talk("MID_X010_BT2");
+    ev::FlagSet("セレナ戦闘会話");
+}
+
+event [19]("PID_X010_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X010_BT3");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X010_ボス", 1, "") {
+    ev::Talk("MID_X010_BOSS_DIE1");
+}
+
+event [21]("PID_セレナ", 1, "") {
+    ev::Talk("MID_X010_DIE_セレナ");
+}
+
+event [21]("PID_セレナ", 2, "") {
+    ev::Talk("MID_X010_DIE_セレナ");
+}

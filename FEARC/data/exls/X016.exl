@@ -1,0 +1,399 @@
+func bev::X016_OP1() {
+    bev::開始("evtx001_op1", "スリラーハウス");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X016");
+    ev::BGMPlay("STRM_BGM_EVT_HUON1", 0);
+    bev::全体待ち(2000);
+    bev::会話("MID_X016_OP1");
+    ev::SEPlay("SE_EVT_RUNAWAY1");
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X016_OP1_02() {
+    bev::開始("evtx001_op1", "スリラーハウス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::全体待ち(1000);
+    bev::会話("MID_X016_OP1_02");
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X016_OP2() {
+    bev::開始("evtx001_op1", "スリラーハウス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X016");
+    bev::全体待ち(1000);
+    bev::会話("MID_X016_OP2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X016_ED1() {
+    bev::開始("evtx001_op1", "スリラーハウス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X016");
+    ev::BGMPlay("STRM_BGM_EVT_YASASHISA1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X016_ED1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X016_ED2() {
+    bev::開始("evtx001_op1", "スリラーハウス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X016");
+    ev::BGMPlay("STRM_BGM_EVT_YASASHISA1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X016_ED1");
+    bev::フェードアウト(1000);
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X016");
+    bev::全体待ち(1000);
+    bev::会話("MID_X016_ED2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X016_ED1B() {
+    bev::開始("evtx001_op1", "スリラーハウス");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X016");
+    bev::全体待ち(1000);
+    bev::会話("MID_X016_ED1B");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("変化壁１");
+    ev::FlagEntry("変化壁１開");
+    ev::FlagEntry("変化壁１扉");
+    ev::FlagEntry("変化壁２");
+    ev::FlagEntry("変化壁２開");
+    ev::FlagEntry("変化壁２扉");
+    ev::FlagEntry("変化壁３");
+    ev::FlagEntry("変化壁挟撃開");
+    ev::FlagEntry("変化壁挟撃閉");
+    ev::FlagEntry("変化壁ンン");
+    ev::FlagEntry("変化壁ンン閉");
+    ev::FlagEntry("ンン味方");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X016_OP1();
+    bev::X016_OP1_02();
+    bev::X016_OP2();
+}
+
+event [10]() {
+    if(!ev::FlagGet("ンン味方")) {
+        $0 = ev::UnitGetByPID("PID_ンン");
+        if($0 && ev::UnitIsAlive($0)) {
+            ev::UnitTransferByIndex($0, 0);
+        }
+    }
+}
+
+event [11]() {
+    $0 = ev::UnitGetByPID("PID_ンン");
+    if($0 && ev::UnitIsAlive($0)) {
+        bev::X016_ED2();
+        goto L0;
+    }
+    bev::X016_ED1B();
+    label L0;
+}
+
+event [18]("PID_クロム", "PID_ンン", "evtx001_op1", "ンン味方") {
+    ev::BGMStop(1000);
+    ev::Talk("MID_X016_TK1");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_ンン");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("ンン味方");
+}
+
+event [18]("PID_ノノ", "PID_ンン", "evtx001_op1", "ンン味方") {
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_TENNEN1", 0);
+    ev::Talk("MID_X016_TK2");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_ンン");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("ンン味方");
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_ンン");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X016_OP3");
+}
+
+func fn15(v0, v1) {
+    if(ev::TrickTst(v0, v1, 22, 1)) {
+        ev::CameraSetPosition(v0, v1);
+        ev::CameraWait();
+        ev::TrickSet(v0, v1, 22, 2);
+    }
+}
+
+func fn16(v0, v1) {
+    if(ev::TrickTst(v0, v1, 22, 2)) {
+        ev::CameraSetPosition(v0, v1);
+        ev::CameraWait();
+        ev::TrickSet(v0, v1, 22, 1);
+    }
+}
+
+event [15](-1, -1) {
+    $0 = ev::TurnGet();
+    if($0 == 3 && !ev::FlagGet("変化壁ンン")) {
+        ev::FlagSet("変化壁ンン");
+    }
+    if(ev::FlagGet("変化壁３")) {
+        fn15(8, 6);
+        fn15(14, 6);
+    }
+    if(ev::FlagGet("変化壁２扉")) {
+        fn15(2, 11);
+        fn15(6, 11);
+        fn15(10, 11);
+        fn15(14, 11);
+        ev::FlagSet("変化壁２開");
+        goto L6;
+    }
+    if(ev::FlagGet("変化壁２")) {
+        $1 = 0;
+        $2 = 0;
+        $3 = 0;
+        $4 = 0;
+        $5 = 7;
+        $6 = 15;
+        $7 = 1;
+        $8 = 4;
+        $1[0] += ev::ForceUnitGetCountArea(0, $7, $5, $8, $6);
+        $1[0] -= ev::ForceUnitGetCountArea(1, $7, $5, $8, $6);
+        $1[0] += ($0 + 3) % 4;
+        $9 = 5;
+        $10 = 8;
+        $1[1] += ev::ForceUnitGetCountArea(0, $9, $5, $10, $6);
+        $1[1] -= ev::ForceUnitGetCountArea(1, $9, $5, $10, $6);
+        $1[1] += ($0 + 0) % 4;
+        $11 = 9;
+        $12 = 12;
+        $1[2] += ev::ForceUnitGetCountArea(0, $11, $5, $12, $6);
+        $1[2] -= ev::ForceUnitGetCountArea(1, $11, $5, $12, $6);
+        $1[2] += ($0 + 1) % 4;
+        $13 = 13;
+        $14 = 16;
+        $1[3] += ev::ForceUnitGetCountArea(0, $13, $5, $14, $6);
+        $1[3] -= ev::ForceUnitGetCountArea(1, $13, $5, $14, $6);
+        $1[3] += ($0 + 2) % 4;
+        $15 = 0;
+        $16 = 1;
+        goto L1;
+        label L0;
+        $16++;
+        label L1;
+        if($16 < 4) {
+            if($1[$15] > $1[$16]) {
+                $15 = $16;
+            }
+            goto L0;
+        }
+        if($15 == 0) {
+            fn15(2, 11);
+            goto L2;
+        }
+        fn16(2, 11);
+        label L2;
+        if($15 == 1) {
+            fn15(6, 11);
+            goto L3;
+        }
+        fn16(6, 11);
+        label L3;
+        if($15 == 2) {
+            fn15(10, 11);
+            goto L4;
+        }
+        fn16(10, 11);
+        label L4;
+        if($15 == 3) {
+            fn15(14, 11);
+            goto L5;
+        }
+        fn16(14, 11);
+        label L5;
+        ev::FlagSet("変化壁２開");
+    }
+    label L6;
+    if(ev::FlagGet("変化壁１扉")) {
+        fn15(6, 16);
+        fn15(10, 16);
+        fn15(14, 16);
+        fn15(18, 16);
+        ev::FlagSet("変化壁１開");
+        goto L13;
+    }
+    if(ev::FlagGet("変化壁１")) {
+        $17 = 0;
+        $18 = 0;
+        $19 = 0;
+        $20 = 0;
+        $21 = 12;
+        $22 = 20;
+        $23 = 5;
+        $24 = 8;
+        $17[0] += ev::ForceUnitGetCountArea(0, $23, $21, $24, $22);
+        $17[0] -= ev::ForceUnitGetCountArea(1, $23, $21, $24, $22);
+        $17[0] += ($0 + 1) % 4;
+        $25 = 9;
+        $26 = 12;
+        $17[1] += ev::ForceUnitGetCountArea(0, $25, $21, $26, $22);
+        $17[1] -= ev::ForceUnitGetCountArea(1, $25, $21, $26, $22);
+        $17[1] += ($0 + 2) % 4;
+        $27 = 13;
+        $28 = 16;
+        $17[2] += ev::ForceUnitGetCountArea(0, $27, $21, $28, $22);
+        $17[2] -= ev::ForceUnitGetCountArea(1, $27, $21, $28, $22);
+        $17[2] += ($0 + 3) % 4;
+        $29 = 17;
+        $30 = 20;
+        $17[3] += ev::ForceUnitGetCountArea(0, $29, $21, $30, $22);
+        $17[3] -= ev::ForceUnitGetCountArea(1, $29, $21, $30, $22);
+        $17[3] += ($0 + 0) % 4;
+        $31 = 0;
+        $32 = 1;
+        goto L8;
+        label L7;
+        $32++;
+        label L8;
+        if($32 < 4) {
+            if($17[$31] > $17[$32]) {
+                $31 = $32;
+            }
+            goto L7;
+        }
+        if($31 == 0) {
+            fn15(6, 16);
+            goto L9;
+        }
+        fn16(6, 16);
+        label L9;
+        if($31 == 1) {
+            fn15(10, 16);
+            goto L10;
+        }
+        fn16(10, 16);
+        label L10;
+        if($31 == 2) {
+            fn15(14, 16);
+            goto L11;
+        }
+        fn16(14, 16);
+        label L11;
+        if($31 == 3) {
+            fn15(18, 16);
+            goto L12;
+        }
+        fn16(18, 16);
+        label L12;
+        ev::FlagSet("変化壁１開");
+    }
+    label L13;
+    if(ev::FlagGet("変化壁２") && !ev::FlagGet("変化壁挟撃閉")) {
+        $33 = 0;
+        $34 = 11;
+        $35 = 21;
+        $36 = 16;
+        $37 = 25;
+        $33 += ev::ForceUnitGetCountArea(0, $34, $35, $36, $37);
+        $33 += ev::ForceUnitGetCountArea(1, $34, $35, $36, $37);
+        $33 += ev::ForceUnitGetCountArea(2, $34, $35, $36, $37);
+        if($33) {
+            fn15(11, 21);
+            fn15(15, 21);
+            ev::FlagSet("変化壁挟撃開");
+            goto L14;
+        }
+        fn16(11, 21);
+        fn16(15, 21);
+        ev::FlagSet("変化壁挟撃閉");
+    }
+    label L14;
+    if(ev::FlagGet("変化壁ンン") && !ev::FlagGet("変化壁ンン閉")) {
+        $38 = 0;
+        $39 = 17;
+        $40 = 21;
+        $41 = 26;
+        $42 = 25;
+        $38 += ev::ForceUnitGetCountArea(0, $39, $40, $41, $42);
+        $38 += ev::ForceUnitGetCountArea(1, $39, $40, $41, $42);
+        $38 += ev::ForceUnitGetCountArea(2, $39, $40, $41, $42);
+        if($38) {
+            fn15(19, 21);
+            goto L15;
+        }
+        fn16(19, 21);
+        ev::FlagSet("変化壁ンン閉");
+    }
+    label L15;
+}
+
+event [16](1, 17, 20, 20, 0, "変化壁１") {
+    ev::FlagSet("変化壁１");
+}
+
+event [16](1, 12, 20, 15, 0, "変化壁２") {
+    ev::FlagSet("変化壁２");
+}
+
+event [16](-1, 17, -1, 20, 0, "変化壁ンン") {
+    ev::FlagSet("変化壁ンン");
+}
+
+event [19]("PID_X016_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X016_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X016_ボス", 1, "") {
+    ev::Talk("MID_X016_BOSS_DIE1");
+}
+
+event [21]("PID_ンン", 2, "") {
+    ev::Talk("MID_X016_DIE_ンン");
+}

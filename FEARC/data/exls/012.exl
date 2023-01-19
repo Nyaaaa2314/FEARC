@@ -1,0 +1,100 @@
+func bev::GMAP_ED_012() {
+    bev::開始("evt013_op0", "フェリア不凍港_床");
+    bev::場面("MCID_T_012");
+    bev::フェードイン(1000);
+    ev::LSEPlay("SE_ENV_OCEAN2", 1000);
+    bev::カメラ("op1_00cam");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_プレイヤー");
+    $2 = bev::番号取得("PID_フレデリク");
+    bev::位置と向き($1, "E", "A");
+    bev::位置と向き($0, "A", "C");
+    bev::位置と向き($2, "D", "A");
+    bev::歩く($2, "C");
+    bev::向き($2, "A");
+    bev::動作($2, "WalkTurn");
+    bev::動作($2, "FreRe");
+    bev::注目($1, $2);
+    bev::全体待ち(500);
+    bev::カメラ("op1_01cam");
+    bev::会話("MID_013_OP1");
+    bev::全体待ち(200);
+    ev::LSEStop("SE_ENV_OCEAN2", 2000);
+    bev::フェードアウト(2000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("村人戦闘会話EV");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {}
+
+event [10]() {
+    ev::BGMPlay("STRM_BGM_EVT_BRAVE1", 0);
+    ev::Talk("MID_012_ED1");
+    ev::Talk("MID_012_ED1_02");
+    ev::BGMStop(1000);
+}
+
+event [11]() {
+    ev::ChapterSetNextIncrement();
+}
+
+event [12](1, 1, 0) {
+    ev::FlagSet("村人戦闘会話EV");
+    ev::Dispos("Event01", 4);
+    ev::DisposWait();
+    $0 = ev::UnitGetByPID("PID_012_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_BOURYAKU1", 0);
+    ev::Talk("MID_012_OP6_01");
+    ev::Talk("MID_012_OP6_02");
+    ev::DisableBGMCommandPG();
+    $1 = ev::UnitGetByPID("PID_012_ボス");
+    $2 = ev::UnitGetByPID("PID_012_村人EV");
+    $3 = 9;
+    $4 = 21;
+    $5 = 0;
+    $6 = 0;
+    ev::Battle($1, 0, $2, 0, &$3[0], 1);
+    ev::EnableBGMCommandPG();
+    $7 = ev::UnitGetByPID("PID_クロム");
+    ev::CameraSetPosition(ev::UnitGetX($7), ev::UnitGetY($7));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_012_OP6_03");
+    ev::BGMStop(1000);
+    ev::Dispos("Support01", 8);
+    ev::DisposWait();
+    ev::Talk("MID_012_EV1");
+}
+
+event [19]("PID_012_ボス", "PID_012_村人EV", 1, "村人戦闘会話EV") {}
+
+event [19]("PID_012_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_012_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_012_ボス", 1, "") {
+    ev::Talk("MID_012_BOSS_DIE1");
+}

@@ -1,0 +1,119 @@
+func bev::X003_OP1() {
+    bev::開始("evtx001_op1", "北の国から_平地");
+    bev::フェードイン(2000);
+    bev::場面("MCID_T_X003");
+    ev::BGMPlay("STRM_BGM_EVT_TAIJI2", 0);
+    bev::カメラ("op1_01cam");
+    bev::全体待ち(2000);
+    bev::会話("MID_X003_OP1");
+    bev::全体待ち(1000);
+    bev::会話("MID_X003_OP2");
+    bev::全体待ち(1000);
+    bev::会話("MID_X003_OP3");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X003_ED1() {
+    bev::開始("evtx001_op1", "北の国から_平地");
+    bev::フェードイン(1000);
+    bev::場面("MCID_T_X003");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1", 0);
+    bev::カメラ("op1_02cam");
+    bev::全体待ち(1000);
+    bev::会話("MID_X003_ED1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("会話のみ");
+    ev::FlagEntry("戦闘会話");
+    ev::VariableEntry("緑軍生存数", 0);
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X003_OP1();
+}
+
+event [10]() {
+    ev::VariableSet("緑軍生存数", ev::ForceUnitGetCount(2));
+    $0 = ev::ForceUnitGetCountPID(2, "PID_X003_村人");
+    if($0 >= 1) {
+        goto L0;
+    }
+    ev::Talk("MID_X003_ED2");
+    label L0;
+}
+
+event [11]() {
+    ev::TutorialSetFlag("TUTID_村");
+    $0 = ev::VariableGet("緑軍生存数");
+    if($0 >= 1) {
+        ev::BGMPlay("STRM_BGM_EVT_HEIWA1_2", 100);
+        bev::X003_ED1();
+        ev::FadeIn(1, 0, 0);
+        ev::FadeWait();
+        ev::ItemGain(0, "IID_天使の衣");
+        ev::ItemGain(0, "IID_丸太");
+        if($0 >= 3) {
+            ev::ItemGain(0, "IID_おたま");
+        }
+        ev::FadeOut(1, 0, 0);
+        ev::FadeWait();
+    }
+}
+
+event [18]("PID_クロム", "PID_X003_村人", "evtx001_op1", "会話のみ") {
+    ev::Talk("MID_X003_TK1");
+    ev::FlagSet("会話のみ");
+}
+
+event [14](1, 1, "evtx001_op1") {
+    if(ev::TutorialIsEnable()) {
+        $0 = 21;
+        $1 = 6;
+        ev::CameraSetPosition($0, $1);
+        ev::CameraWait();
+        ev::TimeWait(500);
+        ev::EffectPlay3D("強調", $0, $1);
+        ev::EffectWait();
+        ev::TimeWait(500);
+    }
+    if(!ev::TutorialGetFlag("TUTID_村")) {
+        ev::TutorialShow("TUTID_村");
+    }
+    if(ev::TutorialIsEnable()) {
+        $2 = ev::HeroGet();
+        if($2) {
+            ev::CameraSetPosition(ev::UnitGetX($2), ev::UnitGetY($2));
+        }
+        ev::CameraWait();
+    }
+}
+
+event [19]("PID_X003_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X003_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X003_ボス", 1, "") {
+    ev::Talk("MID_X003_BOSS_DIE1");
+}

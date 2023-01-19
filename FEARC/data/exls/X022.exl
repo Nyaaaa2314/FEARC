@@ -1,0 +1,122 @@
+func bev::X022_OP1() {
+    bev::開始("evtx001_op1", "エメラルド遺跡");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X022");
+    ev::BGMPlay("STRM_BGM_EVT_HUON1", 0);
+    bev::全体待ち(2000);
+    bev::会話("MID_X022_OP1");
+    bev::会話("MID_X022_OP1_2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X022_ED2() {
+    bev::開始("evtx001_op1", "エメラルド遺跡");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X022");
+    ev::BGMPlay("STRM_BGM_EVT_HOUSHIN1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X022_ED2");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("クロム戦闘会話");
+    ev::FlagEntry("プレイヤー戦闘会話");
+    ev::FlagEntry("インバース戦闘会話");
+    ev::FlagEntry("X022");
+    ev::FlagSet("X022");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X022_OP1();
+}
+
+event [10]() {
+    $0 = ev::UnitGetByPID("PID_インバース");
+    if($0 && ev::UnitIsAlive($0)) {
+        ev::UnitTransferByIndex($0, 0);
+    }
+    $1 = ev::UnitGetByPID("PID_インバース");
+    if($1 && ev::UnitIsAlive($1)) {
+        goto L0;
+    }
+    ev::Talk("MID_X022_ED1");
+    label L0;
+}
+
+event [11]() {
+    $0 = ev::UnitGetByPID("PID_インバース");
+    if($0 && ev::UnitIsAlive($0)) {
+        bev::X022_ED2();
+    }
+    ev::FadeIn(1, 0, 0);
+    ev::FadeWait();
+    ev::ItemGain(0, "IID_精霊の粉");
+    ev::ItemGain(0, "IID_金塊（大）");
+    ev::FadeOut(1, 0, 0);
+    ev::FadeWait();
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_インバース");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X022_OP2");
+    ev::ForceUnitTransformForX022();
+    ev::BGMPlay("STRM_BGM_EVT_BUKIMI1_2", 200);
+    ev::CameraSetPosition(9, 9);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X022_OP2_2");
+    ev::CameraSetPosition(9, 22);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X022_OP2_3");
+    ev::BGMStop(1000);
+}
+
+event [19]("PID_クロム", "PID_クロム", 1, "クロム戦闘会話") {
+    ev::Talk("MID_X022_BT1");
+    ev::FlagSet("クロム戦闘会話");
+}
+
+event [19]("PID_プレイヤー男", "PID_プレイヤー男", 1, "プレイヤー戦闘会話") {
+    ev::Talk("MID_X022_BT2");
+    ev::FlagSet("プレイヤー戦闘会話");
+}
+
+event [19]("PID_プレイヤー女", "PID_プレイヤー女", 1, "プレイヤー戦闘会話") {
+    ev::Talk("MID_X022_BT2");
+    ev::FlagSet("プレイヤー戦闘会話");
+}
+
+event [19]("PID_インバース", "PID_X022_インバース", 1, "インバース戦闘会話") {
+    ev::Talk("MID_X022_BT3");
+    ev::FlagSet("インバース戦闘会話");
+}
+
+event [21]("PID_インバース", 2, "") {
+    ev::Talk("MID_X022_DIE_インバース");
+}

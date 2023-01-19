@@ -1,0 +1,272 @@
+func bev::X012_OP1_Female() {
+    bev::開始("evtx001_op1", "氷の遺跡");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X012");
+    ev::LSEPlay("SE_ENV_SINPI1", 2000);
+    bev::全体待ち(2000);
+    bev::会話("MID_X012_OP1_Female");
+    ev::LSEStop("SE_ENV_SINPI1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X012_OP1_Male() {
+    bev::開始("evtx001_op1", "氷の遺跡");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X012");
+    ev::LSEPlay("SE_ENV_SINPI1", 2000);
+    bev::全体待ち(2000);
+    bev::会話("MID_X012_OP1_Male");
+    ev::LSEStop("SE_ENV_SINPI1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X012_OP2() {
+    bev::開始("evtx001_op1", "氷の遺跡");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X012");
+    bev::全体待ち(1000);
+    ev::LSEPlay("SE_ENV_FOREST1", 1000);
+    bev::会話("MID_X012_OP2");
+    ev::LSEStop("SE_ENV_FOREST1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X012_ED2_Female() {
+    bev::開始("evtx001_op1", "氷の遺跡");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X012");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1_2", 300);
+    bev::全体待ち(1000);
+    bev::会話("MID_X012_ED2_Female");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X012_ED2_Male() {
+    bev::開始("evtx001_op1", "氷の遺跡");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_02cam");
+    bev::場面("MCID_T_X012");
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1_2", 300);
+    bev::全体待ち(1000);
+    bev::会話("MID_X012_ED2_Male");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("マーク味方");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+    if(ev::UnitGetByPID("PID_プレイヤー女")) {
+        ev::Dispos("Ally02", 4);
+        goto L0;
+    }
+    ev::Dispos("Ally01", 4);
+    label L0;
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    if(ev::UnitGetByPID("PID_プレイヤー女")) {
+        bev::X012_OP1_Male();
+        goto L0;
+    }
+    bev::X012_OP1_Female();
+    label L0;
+    bev::X012_OP2();
+}
+
+event [10]() {
+    if(!ev::FlagGet("マーク味方")) {
+        $0 = ev::UnitGetByPID("PID_マーク男");
+        if($0 && ev::UnitIsAlive($0)) {
+            ev::UnitTransferByIndex($0, 0);
+            ev::Talk("MID_X012_TK1_Male_03");
+        }
+        $1 = ev::UnitGetByPID("PID_マーク女");
+        if($1 && ev::UnitIsAlive($1)) {
+            ev::UnitTransferByIndex($1, 0);
+            ev::Talk("MID_X012_TK1_Female_02");
+        }
+    }
+    ev::LSEPlay("SE_ENV_SINPI1", 1000);
+    ev::Talk("MID_X012_ED1");
+    ev::ItemGain(0, "IID_神竜の涙");
+    ev::LSEStop("SE_ENV_SINPI1", 1000);
+}
+
+event [11]() {
+    if(ev::UnitGetByPID("PID_プレイヤー女")) {
+        $0 = ev::UnitGetByPID("PID_マーク男");
+        if($0 && ev::UnitIsAlive($0)) {
+            bev::X012_ED2_Male();
+        }
+        goto L0;
+    }
+    $1 = ev::UnitGetByPID("PID_マーク女");
+    if($1 && ev::UnitIsAlive($1)) {
+        bev::X012_ED2_Female();
+    }
+    label L0;
+}
+
+event [12](1, 1, 0) {
+    ev::LSEPlay("SE_ENV_SINPI1", 1000);
+    if(ev::UnitGetByPID("PID_プレイヤー女")) {
+        $0 = ev::UnitGetByPID("PID_マーク男");
+        ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+        ev::CameraWait();
+        ev::TimeWait(500);
+        ev::Talk("MID_X012_ZOEN1_Male");
+        goto L0;
+    }
+    $1 = ev::UnitGetByPID("PID_マーク女");
+    ev::CameraSetPosition(ev::UnitGetX($1), ev::UnitGetY($1));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X012_ZOEN1_Female");
+    label L0;
+    ev::LSEStop("SE_ENV_SINPI1", 1000);
+}
+
+event [15](2, 8) {
+    $0 = ev::TurnGet();
+    if(ev::DifficultyGet() == 0) {
+        if($0 == 3) {
+            ev::Dispos("Reinforce01", 8);
+            ev::DisposWait();
+        }
+        if($0 == 5) {
+            ev::Dispos("Reinforce02", 8);
+            ev::DisposWait();
+        }
+        if($0 == 7) {
+            ev::Dispos("Reinforce03", 8);
+            ev::DisposWait();
+        }
+        if($0 == 8) {
+            ev::Dispos("Reinforce04", 8);
+            ev::DisposWait();
+        }
+        goto L0;
+    }
+    if(ev::DifficultyGet() == 1) {
+        if($0 == 3) {
+            ev::Dispos("Reinforce01", 8);
+            ev::DisposWait();
+        }
+        if($0 == 4) {
+            ev::Dispos("Reinforce03", 8);
+            ev::DisposWait();
+        }
+        if($0 == 5) {
+            ev::Dispos("Reinforce02", 8);
+            ev::DisposWait();
+        }
+        if($0 == 6) {
+            ev::Dispos("Reinforce04", 8);
+            ev::DisposWait();
+        }
+        goto L0;
+    }
+    if($0 == 2) {
+        ev::Dispos("Reinforce01", 8);
+        ev::DisposWait();
+    }
+    if($0 == 4) {
+        ev::Dispos("Reinforce03", 8);
+        ev::DisposWait();
+    }
+    if($0 == 5) {
+        ev::Dispos("Reinforce02", 8);
+        ev::DisposWait();
+    }
+    if($0 == 6) {
+        ev::Dispos("Reinforce04", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce02", 8);
+        ev::DisposWait();
+    }
+    label L0;
+}
+
+event [18]("PID_クロム", "PID_マーク男", "evtx001_op1", "マーク味方") {
+    ev::BGMVolume(0, 6000);
+    if(ev::UnitIsFatherPID(ev::UnitGetByPID("PID_マーク男"), "PID_クロム")) {
+        ev::Talk("MID_X012_TK1_Male_02");
+        goto L0;
+    }
+    ev::Talk("MID_X012_TK1_Male");
+    label L0;
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_マーク男");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("マーク味方");
+}
+
+event [18]("PID_クロム", "PID_マーク女", "evtx001_op1", "マーク味方") {
+    ev::BGMVolume(0, 6000);
+    ev::Talk("MID_X012_TK1_Female");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_マーク女");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("マーク味方");
+}
+
+event [18]("PID_プレイヤー女", "PID_マーク男", "evtx001_op1", "マーク味方") {
+    ev::BGMStop(1000);
+    ev::Talk("MID_X012_TK1_Male_03");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_マーク男");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("マーク味方");
+}
+
+event [18]("PID_プレイヤー男", "PID_マーク女", "evtx001_op1", "マーク味方") {
+    ev::BGMStop(1000);
+    ev::Talk("MID_X012_TK1_Female_02");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_マーク女");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("マーク味方");
+}
+
+event [19]("PID_X012_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X012_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X012_ボス", 1, "") {
+    ev::Talk("MID_X012_BOSS_DIE1");
+}
+
+event [21]("PID_マーク男", 2, "") {
+    ev::Talk("MID_X012_DIE_マーク男");
+}
+
+event [21]("PID_マーク女", 2, "") {
+    ev::Talk("MID_X012_DIE_マーク女");
+}

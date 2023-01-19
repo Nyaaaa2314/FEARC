@@ -1,0 +1,240 @@
+func bev::X009_OP1() {
+    bev::開始("evtx009_op1", "襲撃されてない町_橋");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X009");
+    ev::RBGMPlay("STRM_BGM_EVT_HEIWA1_2", 200);
+    bev::全体待ち(2000);
+    bev::会話("MID_X009_OP1");
+    bev::フェードアウト(1000);
+    bev::終了();
+    bev::開始("evtx009_op1", "襲撃されてない町_橋");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_02cam");
+    bev::全体待ち(2000);
+    bev::会話("MID_X009_OP1_2");
+    bev::フェードアウト(1000);
+    bev::終了();
+    bev::開始("evtx009_op1", "襲撃されてない町_橋");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    ev::BGMPlay("STRM_BGM_EVT_HUON1", 0);
+    bev::全体待ち(2000);
+    bev::会話("MID_X009_OP1_3");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X009_OP2A() {
+    bev::開始("evtx001_op1", "緑の街道_林");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X009");
+    ev::BGMPlay("STRM_BGM_EVT_TAIJI2", 0);
+    bev::全体待ち(2000);
+    bev::会話("MID_X009_OP2_クロムスミア結婚");
+    bev::フェードアウト(1000);
+    bev::終了();
+    bev::開始("evtx001_op1", "緑の街道_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    bev::全体待ち(2000);
+    bev::会話("MID_X009_OP3");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X009_OP2B() {
+    bev::開始("evtx001_op1", "緑の街道_林");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X009");
+    ev::BGMPlay("STRM_BGM_EVT_TAIJI2", 0);
+    bev::全体待ち(2000);
+    bev::会話("MID_X009_OP2");
+    bev::フェードアウト(1000);
+    bev::終了();
+    bev::開始("evtx001_op1", "緑の街道_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    bev::全体待ち(2000);
+    bev::会話("MID_X009_OP3");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X009_ED1() {
+    bev::開始("evtx001_op1", "緑の街道_平地");
+    bev::フェードイン(1000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X009");
+    ev::BGMPlay("STRM_BGM_EVT_YASASHISA1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X009_ED1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("敵突撃");
+    ev::FlagEntry("シンシア味方");
+    ev::FlagEntry("戦闘会話");
+    ev::VariableEntry("寝返り数", 0);
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+    ev::ForceUnitSetDontAttackForce(1, 2);
+    ev::ForceUnitSetDontAttackForce(2, 1);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X009_OP1();
+    $0 = ev::UnitGetMarrigeUnit(ev::UnitGetByPID("PID_クロム"));
+    if($0 && ev::UnitIsPID($0, "PID_スミア")) {
+        bev::X009_OP2A();
+        goto L0;
+    }
+    bev::X009_OP2B();
+    label L0;
+}
+
+event [10]() {
+    ev::Talk("MID_X009_ED0");
+}
+
+event [11]() {
+    $0 = ev::UnitGetByPID("PID_シンシア");
+    if($0 && ev::UnitIsAlive($0)) {
+        bev::X009_ED1();
+    }
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_X009_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_X009_EV1");
+}
+
+event [12](-1, -1, 1) {
+    if(!ev::FlagGet("敵突撃") && ev::VariableGet("寝返り数") >= 10) {
+        ev::Talk("MID_X009_EV3");
+        ev::FlagSet("敵突撃");
+    }
+}
+
+event [16](-1, 1, -1, 10, 0, "敵突撃") {
+    ev::FlagSet("敵突撃");
+}
+
+event [18]("PID_クロム", "PID_シンシア", "evtx009_op1", "シンシア味方") {
+    $0 = ev::UnitGetByPID("PID_シンシア");
+    if($0 && ev::UnitIsFatherPID($0, "PID_クロム")) {
+        ev::BGMStop(1000);
+        ev::TimeWait(500);
+        ev::BGMPlay("STRM_BGM_EVT_TENNEN1", 0);
+        ev::Talk("MID_X009_TK2_クロムスミア結婚");
+        ev::BGMStop(1000);
+        goto L0;
+    }
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    ev::Talk("MID_X009_TK2");
+    ev::BGMStop(1000);
+    label L0;
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("シンシア味方");
+}
+
+event [18]("PID_スミア", "PID_シンシア", "evtx009_op1", "シンシア味方") {
+    ev::BGMStop(1000);
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_TENNEN1", 0);
+    ev::Talk("MID_X009_TK1");
+    ev::BGMStop(1000);
+    $0 = ev::UnitGetByPID("PID_シンシア");
+    ev::UnitTransferByIndex($0, 0);
+    ev::FlagSet("シンシア味方");
+}
+
+func fn15(v0) {
+    ev::Talk("MID_X009_EV2");
+    $1 = ev::UnitGetByPID(v0);
+    ev::UnitTransferByIndex($1, 1);
+    ev::UnitSetDontAttackForce($1, 2);
+    if(ev::VariableGet("寝返り数") == 0) {
+        ev::Talk("MID_X009_EV4");
+    }
+    ev::VariableInc("寝返り数");
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り１", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り２", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り３", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り４", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り５", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り６", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り７", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り８", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り９", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [18]("PID_X009_ボス", "PID_X009_寝返り１０", "evtx009_op1", "") {
+    fn15(ev::ArgsGetString(1));
+}
+
+event [19]("PID_X009_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X009_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X009_ボス", 1, "") {
+    ev::Talk("MID_X009_BOSS_DIE1");
+}
+
+event [21]("PID_シンシア", 1, "") {
+    ev::Talk("MID_X009_DIE_シンシア");
+}

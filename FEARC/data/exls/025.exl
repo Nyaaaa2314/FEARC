@@ -1,0 +1,234 @@
+func bev::B025_OP1() {
+    bev::フェードイン(2000);
+    bev::場面("MCID_T_025");
+    ev::LSEPlay("SE_ENV_GIMLEE_25_ED1", 2000);
+    bev::テロップ再生("Tlp_Ev_025_OP1");
+    bev::全体待ち(5000);
+    bev::会話("MID_025_OP1");
+    ev::DialogYesNo("MID_025_OP1_02YN");
+    if(ev::DialogGetResult() == 0) {
+        bev::会話("MID_025_OP1_02Y");
+        goto L0;
+    }
+    bev::会話("MID_025_OP1_02N");
+    label L0;
+    bev::会話("MID_025_OP1_03");
+    ev::LSEStop("SE_ENV_GIMLEE_25_ED1", 1000);
+    bev::フェードアウト(1000);
+    bev::テロップ終了();
+    bev::終了();
+}
+
+func bev::B025_ED2() {
+    bev::フェードイン(1000);
+    bev::場面("MCID_T_025");
+    ev::LSEPlay("SE_ENV_GIMLEE_25_ED1", 2000);
+    bev::テロップ再生("Tlp_Ev_025_ED2");
+    bev::全体待ち(15000);
+    bev::会話("MID_025_ED2");
+    ev::LSEStop("SE_ENV_GIMLEE_25_ED1", 2000);
+    bev::フェードアウト(2000);
+    bev::テロップ終了();
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::B025_OP1();
+}
+
+event [10]() {
+    ev::Talk("MID_025_ED1");
+}
+
+event [11]() {
+    bev::B025_ED2();
+    ev::ChapterSetNextIncrement();
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_025_ボス");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_025_EV0");
+    $1 = ev::UnitGetByPID("PID_クロム");
+    ev::CameraSetPosition(ev::UnitGetX($1), ev::UnitGetY($1));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_025_EV1");
+}
+
+event [15](3, 16) {
+    $0 = ev::TurnGet();
+    if(ev::DifficultyGet() == 0) {
+        if($0 == 5) {
+            ev::Dispos("Reinforce01", 8);
+            ev::DisposWait();
+        }
+        if($0 == 7) {
+            ev::Dispos("Reinforce02", 8);
+            ev::DisposWait();
+        }
+        if($0 == 8) {
+            ev::Dispos("Reinforce03", 8);
+            ev::DisposWait();
+        }
+        if($0 == 9) {
+            ev::Dispos("Reinforce04", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce05", 8);
+            ev::DisposWait();
+        }
+        if($0 == 10) {
+            ev::Dispos("Reinforce06", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce07", 8);
+            ev::DisposWait();
+        }
+        if($0 == 11) {
+            ev::Dispos("Reinforce08", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce09", 8);
+            ev::DisposWait();
+        }
+        if($0 == 12) {
+            ev::Dispos("Reinforce10", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce11", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce12", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce13", 8);
+            ev::DisposWait();
+        }
+        if($0 == 14) {
+            ev::Dispos("Reinforce14", 8);
+            ev::DisposWait();
+        }
+        if($0 == 16) {
+            ev::Dispos("Reinforce15", 8);
+            ev::DisposWait();
+        }
+        goto L0;
+    }
+    if(ev::DifficultyGet() == 1) {
+        if($0 == 4) {
+            ev::Dispos("Reinforce01", 8);
+            ev::DisposWait();
+        }
+        if($0 == 5) {
+            ev::Dispos("Reinforce02", 8);
+            ev::DisposWait();
+        }
+        if($0 == 6) {
+            ev::Dispos("Reinforce03", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce04", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce05", 8);
+            ev::DisposWait();
+        }
+        if($0 == 7) {
+            ev::Dispos("Reinforce06", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce07", 8);
+            ev::DisposWait();
+        }
+        if($0 == 8) {
+            ev::Dispos("Reinforce08", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce09", 8);
+            ev::DisposWait();
+        }
+        if($0 == 9) {
+            ev::Dispos("Reinforce10", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce11", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce12", 8);
+            ev::DisposWait();
+            ev::Dispos("Reinforce13", 8);
+            ev::DisposWait();
+        }
+        if($0 == 10) {
+            ev::Dispos("Reinforce14", 8);
+            ev::DisposWait();
+        }
+        if($0 == 12) {
+            ev::Dispos("Reinforce15", 8);
+            ev::DisposWait();
+        }
+        goto L0;
+    }
+    if($0 == 3) {
+        ev::Dispos("Reinforce01", 8);
+        ev::DisposWait();
+    }
+    if($0 == 4) {
+        ev::Dispos("Reinforce02", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce04", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce05", 8);
+        ev::DisposWait();
+    }
+    if($0 == 5) {
+        ev::Dispos("Reinforce03", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce06", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce07", 8);
+        ev::DisposWait();
+    }
+    if($0 == 6) {
+        ev::Dispos("Reinforce08", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce09", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce10", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce11", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce12", 8);
+        ev::DisposWait();
+        ev::Dispos("Reinforce13", 8);
+        ev::DisposWait();
+    }
+    if($0 == 7) {
+        ev::Dispos("Reinforce14", 8);
+        ev::DisposWait();
+    }
+    if($0 == 8) {
+        ev::Dispos("Reinforce15", 8);
+        ev::DisposWait();
+    }
+    label L0;
+}
+
+event [19]("PID_025_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_025_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_025_ボス", 1, "") {
+    ev::Talk("MID_025_BOSS_DIE1");
+}

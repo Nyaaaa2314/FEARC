@@ -1,0 +1,65 @@
+func bev::X023_OP1() {
+    bev::開始("evtx001_op1", "緑の街道_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X023");
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    bev::全体待ち(2000);
+    bev::会話("MID_X023_OP1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::X023_ED1() {
+    bev::開始("evtx001_op1", "緑の街道_平地");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_X023");
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    bev::全体待ち(1000);
+    bev::会話("MID_X023_ED1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::X023_OP1();
+}
+
+event [10]() {
+    ev::Dispos("Support01", 4);
+}
+
+event [11]() {
+    bev::X023_ED1();
+}
+
+event [19]("PID_X023_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_X023_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_X023_ボス", 1, "") {
+    ev::Talk("MID_X023_BOSS_DIE1");
+}

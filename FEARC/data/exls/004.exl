@@ -1,0 +1,345 @@
+func bev::B004_OP1() {
+    bev::開始("evt004_op1", "フェリア城_イベント大広間");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_00cam");
+    bev::場面("MCID_T_N001");
+    $0 = bev::番号取得("PID_プレイヤー");
+    $1 = bev::番号取得("PID_クロム");
+    $2 = bev::番号取得("PID_フレデリク");
+    $3 = bev::番号取得("PID_リズ");
+    $4 = bev::番号取得("PID_003_ボス");
+    bev::位置と向き($4, "A", "C");
+    bev::位置と向き($3, "E", "A");
+    bev::位置と向き($0, "D", "A");
+    bev::位置と向き($2, "F", "A");
+    bev::位置と向き($1, "C", "A");
+    bev::動作($3, "RizRe");
+    bev::動作($2, "FreRe");
+    bev::全体待ち(4000);
+    bev::カメラ("op1_01cam");
+    bev::注目($4, $1);
+    bev::全体待ち(0);
+    bev::会話("MID_004_OP1");
+    bev::歩く($4, "B");
+    bev::全体待ち(2000);
+    bev::退場($4);
+    $4 = 0;
+    $5 = bev::番号取得("PID_フラヴィア");
+    bev::位置と向き($5, "H", "A");
+    bev::待つ($1, 50);
+    bev::待つ($0, 150);
+    bev::待つ($2, 100);
+    bev::向き($0, "I");
+    bev::動作($0, "WalkTurn");
+    bev::向き($3, "I");
+    bev::動作($3, "WalkTurn");
+    bev::動作($3, "RizRe");
+    bev::向き($2, "I");
+    bev::向き($1, "I");
+    bev::動作($1, "WalkTurn");
+    bev::全体待ち(0);
+    bev::会話("MID_004_OP1_01");
+    bev::カメラ("op1_02cam");
+    bev::向き($0, "A");
+    bev::向き($3, "A");
+    bev::向き($2, "A");
+    bev::向き($1, "A");
+    bev::全体待ち(200);
+    bev::歩く($5, "J");
+    bev::向き($5, "C");
+    bev::動作($5, "WalkTurn");
+    bev::動作($5, "FraRe");
+    bev::全体待ち(1000);
+    bev::カメラ("op1_03cam");
+    bev::退場($3);
+    $3 = 0;
+    bev::退場($2);
+    $2 = 0;
+    bev::会話("MID_004_OP1_02");
+    bev::動作($5, "FraRe");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::B004_ED1() {
+    bev::開始("evt004_ed1", "闘技場_床_無人");
+    bev::フェードイン(1000);
+    ev::BGMPlay("STRM_BGM_EVT_HEIWA1", 0);
+    bev::カメラ("ed1_00cam");
+    bev::場面("MCID_T_004");
+    $0 = bev::番号取得("PID_フラヴィア");
+    $1 = bev::番号取得("PID_クロム");
+    $2 = bev::番号取得("PID_フレデリク");
+    $3 = bev::番号取得("PID_リズ");
+    $4 = bev::番号取得("PID_プレイヤー");
+    bev::位置と向き($0, "B", "A");
+    bev::位置と向き($4, "I", "B");
+    bev::位置と向き($3, "C", "B");
+    bev::位置と向き($2, "D", "B");
+    bev::位置と向き($1, "A", "B");
+    bev::動作($3, "RizRe");
+    bev::動作($0, "FraRe");
+    bev::動作($2, "FreRe");
+    bev::全体待ち(4500);
+    bev::カメラ("ed1_01cam");
+    bev::全体待ち(0);
+    bev::会話("MID_004_ED1");
+    bev::動作($0, "FraRe");
+    bev::走る($0, "G");
+    bev::注目($1, $0);
+    bev::注目($4, $0);
+    bev::注目($3, $0);
+    bev::注目($2, $0);
+    bev::全体待ち(500);
+    bev::退場($0);
+    $0 = 0;
+    bev::カメラ("ed1_02cam");
+    $5 = bev::番号取得("PID_バジーリオ");
+    bev::位置と向き($5, "H", "B");
+    bev::歩く($5, "E");
+    bev::向き($5, "B");
+    bev::動作($5, "WalkTurn");
+    bev::動作($5, "BajRe");
+    bev::全体待ち(300);
+    bev::待つ($1, 100);
+    bev::待つ($4, 200);
+    bev::待つ($2, 500);
+    bev::向き($1, "E");
+    bev::動作($1, "WalkTurn");
+    bev::向き($4, "E");
+    bev::動作($4, "WalkTurn");
+    bev::向き($3, "E");
+    bev::動作($3, "WalkTurn");
+    bev::動作($3, "RizRe");
+    bev::向き($2, "E");
+    bev::動作($2, "WalkTurn");
+    bev::動作($2, "FreRe");
+    bev::全体待ち(500);
+    bev::会話("MID_004_ED1_02");
+    bev::会話("MID_004_ED1_02_2");
+    bev::会話("MID_004_ED1_02_3");
+    ev::BGMStop(2000);
+    bev::全体待ち(500);
+    bev::会話("MID_004_ED1_03");
+    bev::カメラ("ed1_03cam");
+    ev::BGMPlay("STRM_BGM_EVT_NAKAMA1", 0);
+    bev::退場($4);
+    $4 = 0;
+    bev::退場($2);
+    $2 = 0;
+    $6 = bev::番号取得("PID_ロンクー");
+    bev::位置と向き($6, "H", "B");
+    bev::歩く($6, "F");
+    bev::向き($6, "B");
+    bev::動作($6, "RonWalkTurn");
+    bev::動作($6, "RonRe");
+    bev::注目($6, $1);
+    bev::注目($1, $6);
+    bev::注目($3, $6);
+    bev::全体待ち(1000);
+    bev::会話("MID_004_ED1_04");
+    bev::動作($3, "RizRe");
+    bev::歩く($3, "J");
+    bev::動作($3, "RizRe");
+    bev::全体待ち(20);
+    bev::会話("MID_004_ED1_05");
+    bev::全体待ち(10);
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::GMAP_ED_004() {}
+
+func fn3() {
+    bev::影強制(1);
+    bev::開始("evt005_op1_02", "イーリス城_夜の中庭");
+    bev::フェードイン(1000);
+    bev::場面("MCID_T_006");
+    ev::LSEPlay("SE_ENV_NIGHT1", 1000);
+    bev::カメラ("op1_00cam");
+    $0 = bev::番号取得("PID_プレイヤー");
+    $1 = bev::番号取得("PID_クロム");
+    $2 = bev::番号取得("PID_リズ");
+    $3 = bev::番号取得("PID_リヒト");
+    bev::位置と向き($3, "K", "D");
+    bev::位置と向き($2, "H", "A");
+    bev::位置と向き($0, "I", "A");
+    bev::位置と向き($1, "J", "A");
+    bev::全体待ち(2000);
+    bev::動作($2, "RizRe");
+    bev::歩く($2, "C");
+    bev::待つ($0, 200);
+    bev::歩く($0, "B");
+    bev::待つ($1, 300);
+    bev::歩く($1, "D");
+    bev::向き($1, "C");
+    bev::動作($1, "WalkTurn");
+    bev::向き($0, "D");
+    bev::動作($0, "WalkTurn");
+    bev::向き($2, "D");
+    bev::動作($2, "WalkTurn");
+    bev::動作($2, "RizRe");
+    bev::全体待ち(200);
+    bev::会話("MID_005_OP1");
+    bev::全体待ち(0);
+    bev::走る($3, "A");
+    bev::向き($3, "D");
+    bev::注目($1, $3);
+    bev::向き($0, "A");
+    bev::動作($0, "WalkTurn");
+    bev::注目($2, $3);
+    bev::全体待ち(500);
+    bev::カメラ("op1_02cam");
+    bev::位置と向き($0, "M", "A");
+    bev::位置と向き($1, "L", "A");
+    bev::会話("MID_005_OP1_02");
+    bev::全体待ち(500);
+    bev::歩く($2, "F");
+    bev::待つ($0, 200);
+    bev::歩く($0, "F");
+    bev::待つ($1, 500);
+    bev::歩く($1, "F");
+    bev::待つ($3, 1500);
+    bev::向き($3, "F");
+    bev::動作($3, "WalkTurn");
+    bev::待つ($3, 1000);
+    bev::歩く($3, "G");
+    bev::全体待ち(0);
+    bev::退場($2);
+    $2 = 0;
+    bev::退場($0);
+    $0 = 0;
+    bev::退場($1);
+    $1 = 0;
+    bev::カメラ("op1_03cam");
+    bev::会話("MID_005_OP1_03");
+    ev::LSEStop("SE_ENV_NIGHT1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+func bev::GMAP_ON_004() {
+    bev::黒帯表示();
+    ev::TimeWait(500);
+    ev::GlobalMapMove("CID_004", "CID_003");
+    ev::GlobalMapMove("CID_003", "CID_002");
+    ev::GlobalMapMove("CID_002", "CID_001");
+    bev::黒帯消去();
+    bev::ＧＭＡＰ停止();
+    bev::開始("evt005_op1", "イーリス城_イベント大広間");
+    bev::フェードイン(2000);
+    bev::カメラ("op1_00cam");
+    bev::場面("MCID_T_006");
+    $0 = bev::番号取得("PID_クロム");
+    $1 = bev::番号取得("PID_リズ");
+    $2 = bev::番号取得("PID_エメリナ");
+    $3 = bev::番号取得("PID_フィレイン");
+    bev::位置と向き($2, "A", "F");
+    bev::位置と向き($1, "C", "A");
+    bev::位置と向き($0, "F", "A");
+    bev::位置と向き($3, "G", "B");
+    bev::動作($2, "EmeRe");
+    bev::動作($1, "RizRe");
+    bev::全体待ち(3000);
+    bev::会話("MID_004_ED2");
+    bev::全体待ち(1000);
+    ev::RBGMPlay("STRM_BGM_EVT_HUON1", 0);
+    bev::走る($3, "B");
+    bev::向き($3, "A");
+    bev::待つ($2, 800);
+    bev::向き($2, "B");
+    bev::動作($2, "EmeRe");
+    bev::待つ($1, 600);
+    bev::向き($1, "B");
+    bev::動作($1, "RizRe");
+    bev::注目($0, $3);
+    bev::全体待ち(1000);
+    bev::カメラ("op1_02cam");
+    bev::会話("MID_004_ED3");
+    bev::全体待ち(0);
+    ev::BGMStop(2000);
+    bev::フェードアウト(2000);
+    bev::終了();
+    fn3();
+    bev::ＧＭＡＰ再開();
+}
+
+event [6]() {
+    ev::FlagEntry("戦闘会話");
+    ev::FlagEntry("クロム戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::B004_OP1();
+}
+
+event [10]() {
+    ev::Dispos("Support01", 4);
+}
+
+event [11]() {
+    bev::B004_ED1();
+    ev::TutorialSetFlag("TUTID_全体危険範囲");
+    ev::ChapterSetNextIncrement();
+}
+
+event [12](1, 1, 0) {
+    $0 = ev::UnitGetByPID("PID_004_マルス");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::EffectWait();
+    ev::Talk("MID_004_OP2");
+    ev::EnvSEOff(1000);
+    ev::PlayMovieReturnFadeOut("Movie06.moflex");
+    ev::FadeIn(3, 0, 1000);
+    ev::EnvSEOn(1000);
+}
+
+event [14](1, 1, "evt004_op1") {
+    if(ev::TutorialIsEnable()) {
+        ev::TimeWait(500);
+        ev::UnitShowWholeDanger(1);
+        ev::TimeWait(500);
+        ev::UnitShowWholeDanger(0);
+        ev::TimeWait(500);
+        ev::UnitShowWholeDanger(1);
+        ev::TimeWait(500);
+        ev::UnitShowWholeDanger(1);
+        ev::TimeWait(500);
+    }
+    ev::Talk("MID_004_TUT_全体危険範囲");
+    ev::TutorialShow("TUTID_全体危険範囲");
+}
+
+event [19]("PID_004_マルス", "PID_クロム", 1, "クロム戦闘会話") {
+    ev::Talk("MID_004_BT1");
+    ev::FlagSet("クロム戦闘会話");
+}
+
+event [19]("PID_004_マルス", "", 1, "戦闘会話") {
+    ev::Talk("MID_004_BT2");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_004_マルス", 1, "") {
+    ev::Talk("MID_004_BOSS_DIE1");
+}

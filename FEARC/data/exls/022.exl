@@ -1,0 +1,97 @@
+func bev::B022_OP1() {
+    bev::フェードイン(2000);
+    bev::場面("MCID_T_022");
+    ev::BGMPlay("STRM_BGM_EVT_BUKIMI1_2", 1000);
+    bev::テロップ再生("Tlp_Ev_022_OP1");
+    bev::全体待ち(4000);
+    bev::会話("MID_022_OP1");
+    ev::BGMStop(1000);
+    bev::フェードアウト(1000);
+    bev::テロップ終了();
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("クロム戦闘会話");
+    ev::FlagEntry("プレイヤー戦闘会話");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(262144);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::B022_OP1();
+}
+
+event [12](1, 1, 0) {
+    ev::CameraSetPosition(13, 4);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Dispos("Event02", 8);
+    $0 = ev::UnitGetByPID("PID_022_ボス");
+    ev::UnitMovePosition($0, 14, 3, 0);
+    ev::UnitMoveWait();
+    ev::DisposWait();
+    ev::BGMPlay("STRM_BGM_EVT_KYOUDAN1", 0);
+    ev::Talk("MID_022_OP2");
+    $1 = ev::UnitGetByPID("PID_クロム");
+    ev::CameraSetPosition(ev::UnitGetX($1), ev::UnitGetY($1));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_022_OP2_02");
+    ev::BGMStop(2000);
+    ev::CameraSetPosition(13, 4);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    $2 = ev::UnitGetByPID("PID_022_ファウダーEV");
+    ev::UnitMovePosition($2, 12, 1, 2);
+    ev::UnitMovePosition(ev::UnitGetByPID("PID_022_ボス"), 13, 1, 0);
+    ev::UnitMoveWait();
+    ev::UnitExpulsionByIndex($2);
+    ev::Talk("MID_022_OP3");
+}
+
+event [10]() {
+    ev::Talk("MID_022_ED1");
+}
+
+event [11]() {
+    ev::ChapterSetNextIncrement();
+}
+
+event [19]("PID_022_ボス", "PID_クロム", 1, "クロム戦闘会話") {
+    ev::Talk("MID_022_BT1");
+    ev::FlagSet("クロム戦闘会話");
+}
+
+event [19]("PID_022_ボス", "PID_プレイヤー女", 1, "プレイヤー戦闘会話") {
+    ev::Talk("MID_022_BT2");
+    ev::FlagSet("プレイヤー戦闘会話");
+}
+
+event [19]("PID_022_ボス", "PID_プレイヤー男", 1, "プレイヤー戦闘会話") {
+    ev::Talk("MID_022_BT2");
+    ev::FlagSet("プレイヤー戦闘会話");
+}
+
+event [19]("PID_022_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_022_BT3");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_022_ボス", 1, "") {
+    ev::Talk("MID_022_BOSS_DIE1");
+}

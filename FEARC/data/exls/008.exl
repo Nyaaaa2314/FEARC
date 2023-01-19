@@ -1,0 +1,179 @@
+func bev::B008_OP3() {
+    bev::開始("evt008_op3", "ペレジア灼熱荒野_平地");
+    bev::フェードイン(2000);
+    ev::LSEPlay("SE_ENV_WIND1", 2000);
+    bev::カメラ("op1_01cam");
+    bev::場面("MCID_T_008");
+    $0 = bev::番号取得("PID_プレイヤー");
+    $1 = bev::番号取得("PID_クロム");
+    $2 = bev::番号取得("PID_フレデリク");
+    bev::位置と向き($0, "E", "A");
+    bev::位置と向き($1, "A", "E");
+    bev::位置と向き($2, "D", "A");
+    bev::動作($2, "FreRe");
+    bev::全体待ち(2000);
+    bev::会話("MID_008_OP1");
+    bev::全体待ち(0);
+    bev::歩く($2, "C");
+    bev::向き($2, "A");
+    bev::動作($2, "WalkTurn");
+    bev::動作($2, "FreRe");
+    bev::全体待ち(0);
+    bev::会話("MID_008_OP2");
+    ev::LSEStop("SE_ENV_WIND1", 1000);
+    bev::フェードアウト(1000);
+    bev::終了();
+}
+
+event [6]() {
+    ev::FlagEntry("ノノ戦闘");
+    ev::FlagEntry("ノノ戦闘済");
+    ev::FlagEntry("戦闘会話");
+}
+
+event [7]() {
+    ev::ChapterSetWinRule(131072);
+    ev::PersonLoad(ev::ChapterGetName());
+    ev::TerrainLoad(ev::ChapterGetName());
+    ev::DisposLoad(ev::ChapterGetName());
+    ev::Dispos("Player", 4);
+    ev::Dispos("Enemy", 4);
+}
+
+event [8]() {
+    ev::DisposFree();
+    ev::TerrainFree();
+    ev::PersonFree(ev::ChapterGetName());
+}
+
+event [9]() {
+    bev::B008_OP3();
+}
+
+event [10]() {
+    ev::BGMPlay("STRM_BGM_EVT_SERIOUS1_2", 0);
+    $0 = ev::UnitGetByPID("PID_グレゴ");
+    if($0 && ev::UnitIsAlive($0)) {
+        $1 = ev::UnitGetByPID("PID_ノノ");
+        if($1 && ev::UnitIsAlive($1)) {
+            ev::Talk("MID_008_ED1");
+            goto L0;
+        }
+        ev::Talk("MID_008_ED1ノノ死亡");
+        label L0;
+        goto L1;
+    }
+    $2 = ev::UnitGetByPID("PID_ノノ");
+    if($2 && ev::UnitIsAlive($2)) {
+        ev::Talk("MID_008_ED1グレゴ死亡");
+        goto L1;
+    }
+    ev::Talk("MID_008_ED1グレゴノノ死亡");
+    label L1;
+    ev::Talk("MID_008_ED2");
+    ev::BGMStop(1000);
+}
+
+event [11]() {
+    ev::TutorialSetFlag("TUTID_村");
+    ev::TutorialSetFlag("TUTID_上級クラスチェンジ");
+    ev::TutorialSetFlag("TUTID_二次クラスチェンジ");
+    ev::ChapterSetNextIncrement();
+}
+
+event [12](1, 1, 0) {
+    ev::Dispos("Support01", 16);
+    ev::DisposWait();
+    ev::TimeWait(500);
+    ev::BGMPlay("STRM_BGM_EVT_TENNEN1", 0);
+    ev::Talk("MID_008_OP3_01");
+    ev::Dispos("Support02", 16);
+    ev::DisposWait();
+    ev::Talk("MID_008_OP3_02");
+    $0 = ev::UnitGetByPID("PID_クロム");
+    ev::CameraSetPosition(ev::UnitGetX($0), ev::UnitGetY($0));
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_008_OP3_02_02");
+    $1 = ev::UnitGetByPID("PID_008_ボス");
+    ev::UnitMovePosition($1, 9, 17, 1);
+    ev::UnitMoveWait();
+    ev::Talk("MID_008_OP3_03");
+    ev::BGMStop(1000);
+    $2 = ev::UnitGetByPID("PID_008_ボス");
+    ev::UnitMovePosition($2, 9, 22, 0);
+    $3 = ev::UnitGetByPID("PID_グレゴ");
+    ev::UnitMovePosition($3, 7, 15, 1);
+    ev::TimeWait(200);
+    $4 = ev::UnitGetByPID("PID_ノノ");
+    ev::UnitMovePosition($4, 8, 15, 1);
+    ev::UnitMoveWait();
+}
+
+event [14](1, 1, "evt008_op3") {
+    $0 = 14;
+    $1 = 6;
+    ev::CameraSetPosition($0, $1);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", $0, $1);
+    ev::EffectWait();
+    ev::TimeWait(500);
+    $2 = 2;
+    $3 = 14;
+    ev::CameraSetPosition($2, $3);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", $2, $3);
+    ev::EffectWait();
+    ev::TimeWait(500);
+    $4 = 14;
+    $5 = 20;
+    ev::CameraSetPosition($4, $5);
+    ev::CameraWait();
+    ev::TimeWait(500);
+    ev::EffectPlay3D("強調", $4, $5);
+    ev::EffectWait();
+    ev::TimeWait(500);
+    ev::Talk("MID_008_TUT_村");
+    if(!ev::TutorialGetFlag("TUTID_村")) {
+        ev::TutorialShow("TUTID_村");
+    }
+    $6 = ev::HeroGet();
+    if($6) {
+        ev::CameraSetPosition(ev::UnitGetX($6), ev::UnitGetY($6));
+    }
+    ev::CameraWait();
+}
+
+event [19]("", "PID_ノノ", 1, "ノノ戦闘") {
+    ev::Talk("MID_008_BTノノ");
+    ev::FlagSet("ノノ戦闘");
+}
+
+event [19]("PID_008_ボス", "", 1, "戦闘会話") {
+    ev::Talk("MID_008_BT1");
+    ev::FlagSet("戦闘会話");
+}
+
+event [21]("PID_008_ボス", 1, "") {
+    ev::Talk("MID_008_BOSS_DIE1");
+}
+
+event [21]("PID_ノノ", 0, "") {
+    ev::Talk("MID_008_DIE_ノノ");
+}
+
+func ev::IsNNBattle() {
+    if(ev::FlagGet("ノノ戦闘")) {
+        if(!ev::FlagGet("ノノ戦闘済")) {
+            return 1;
+        }
+    }
+    return;
+}
+
+event [16](-1, -1, -1, -1, -1, "IsNNBattle") {
+    ev::Talk("MID_008_EV1");
+    ev::FlagSet("ノノ戦闘済");
+}
