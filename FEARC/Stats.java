@@ -22,11 +22,13 @@ public class Stats {
 	private static ArrayList<String> LOOKUP_TABLE;
 	private static FileSys f;
 	private static ArrayList<String> Static;
+	private static ArrayList<String> GameData;
 	public static void ensureInitialization() throws IOException {
 		if(f == null) {
 			f = FileSys.getInstance();
 			Data.ensureInstance();
 			Static = f.readFile("/data/bins/static.txt");
+			GameData = f.readFile("/data/bins/GameData.txt");
 		}
 	}
 	
@@ -188,8 +190,24 @@ public class Stats {
 		}
 	}
 	
+	public static void runSkills() throws IOException {
+		ensureInitialization();
+		ArrayList<String> skillsR = new ArrayList<String>(Arrays.asList(Data.Skills));
+		Collections.shuffle(skillsR);
+		
+		
+		//TODO: write the random array to file and log
+		
+		
+		
+	}
+	
+	
+	
+	
 	public static void close() throws IOException {
 		f.writeFile("/output/romfs/data/person/static.txt", Static);
+		f.writeFile("/output/romfs/data/GameData.txt", GameData);
 	}
 	
 	

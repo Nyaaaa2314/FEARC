@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+//import javafx.util.Pair;
 
 public class Class {
 	public String name;
@@ -9,6 +10,9 @@ public class Class {
 	public String JID;
 	public boolean flier;
 	public ArrayList<String> promotions;
+	public ArrayList<String> skills;
+	
+	
 	public Class(String name, boolean promoted, String wa, String wb, String wc, String JID, boolean flier) {
 		this.name = name;
 		this.promoted = promoted;

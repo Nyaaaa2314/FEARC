@@ -7,13 +7,14 @@ public class Ylisse {
 	public static void main(String[] args) throws IOException {
 		debug = true;
 		unix = !System.getProperty("os.name").contains("Windows"); //Linux and Mac both use the same formatting so the edge case is then Windows devices
-		
-		
+		FileSys f = FileSys.getInstance();
+		f.setupDir();
 		if(debug) {
+			
 			Stats.runGrowths();
 			Stats.runModifiers();
 			Stats.close();
-			FileSys f = FileSys.getInstance();
+			
 			ArrayList<String> logs = new ArrayList<String>();
 			for(LogEntry l : Data.log) {
 				logs.add(l.toString());
