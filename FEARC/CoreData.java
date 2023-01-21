@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.*;
 
-public class Stats {
+public class CoreData {
 
 	final static String[] LT = { "59", "89", "D2", "D1", "DE", "C6", "47", "21", "BA", "DB", "C5", "EC", "35", "BD", "9F", "9B",
 			"2D", "7B", "B2", "09", "F7", "53", "99", "8F", "C4", "90", "FA", "34", "F8", "19", "94", "02", "ED",

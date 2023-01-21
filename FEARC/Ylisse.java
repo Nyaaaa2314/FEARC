@@ -8,18 +8,23 @@ public class Ylisse {
 		debug = true;
 		unix = !System.getProperty("os.name").contains("Windows"); //Linux and Mac both use the same formatting so the edge case is then Windows devices
 		FileSys f = FileSys.getInstance();
+		Data.ensureInstance();
 		f.setupDir();
 		if(debug) {
-			
-			Stats.runGrowths();
-			Stats.runModifiers();
-			Stats.close();
-			
-			ArrayList<String> logs = new ArrayList<String>();
-			for(LogEntry l : Data.log) {
-				logs.add(l.toString());
+			for(Class c : Data.classes) {
+				System.out.println(c.toString());
 			}
-			f.writeFile("/output/log.txt", logs);
+			
+			
+//			CoreData.runGrowths();
+//			CoreData.runModifiers();
+//			CoreData.close();
+//			
+//			ArrayList<String> logs = new ArrayList<String>();
+//			for(LogEntry l : Data.log) {
+//				logs.add(l.toString());
+//			}
+//			f.writeFile("/output/log.txt", logs);
 		}
 		
 		

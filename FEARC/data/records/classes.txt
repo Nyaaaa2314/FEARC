@@ -4,6 +4,8 @@ Sword
 none
 none
 JID_ロード
+65348
+65381
 
 
 Great Lord
@@ -12,6 +14,8 @@ Sword
 Lance
 none
 JID_マスターロード
+65415
+65449
 
 
 Tactician
@@ -20,6 +24,8 @@ Tome
 Sword
 none
 JID_戦術師
+65482
+65515
 
 
 Grandmaster
@@ -28,6 +34,8 @@ Tome
 Sword
 none
 JID_神軍師
+65549
+65583
 
 
 Cavalier
@@ -36,6 +44,8 @@ Lance
 Sword
 none
 JID_ソシアルナイト
+65616
+65649
 
 
 Knight
@@ -44,6 +54,8 @@ Lance
 none
 none
 JID_アーマーナイト
+65682
+65715
 
 
 Paladin
@@ -52,6 +64,8 @@ Sword
 Sword
 none
 JID_パラディン
+65749
+65783
 
 
 Great Knight
@@ -68,6 +82,8 @@ Lance
 Axe
 none
 JID_ジェネラル
+65817
+65851
 
 
 Barbarian
@@ -76,6 +92,7 @@ Axe
 none
 none
 JID_蛮族男
+65885
 
 
 Fighter
@@ -84,6 +101,7 @@ Axe
 none
 none
 JID_戦士男
+65919
 
 
 Mercenary
@@ -92,6 +110,8 @@ Sword
 none
 none
 JID_傭兵
+65952
+65985
 
 
 Archer
@@ -100,6 +120,8 @@ Bow
 none
 none
 JID_アーチャー
+66018
+66051
 
 
 Berserker
@@ -108,6 +130,7 @@ Axe
 none
 none
 JID_バーサーカー男
+66084
 
 
 Warrior
@@ -116,6 +139,7 @@ Axe
 Bow
 none
 JID_ウォーリアー男
+66117
 
 
 Hero
@@ -124,6 +148,8 @@ Sword
 Axe
 none
 JID_勇者
+66151
+66185
 
 
 Bow Knight
@@ -132,6 +158,8 @@ Bow
 Sword
 none
 JID_ボウナイト
+66219
+66253
 
 
 Sniper
@@ -140,6 +168,8 @@ Bow
 none
 none
 JID_スナイパー
+66287
+66321
 
 
 Myrmidon
@@ -148,6 +178,8 @@ Sword
 none
 none
 JID_剣士
+66355
+66389
 
 
 Thief
@@ -156,6 +188,8 @@ Sword
 none
 none
 JID_盗賊
+66422
+66455
 
 
 Swordmaster
@@ -164,6 +198,8 @@ Sword
 none
 none
 JID_ソードマスター
+66488
+66521
 
 
 Assassin
@@ -172,6 +208,8 @@ Sword
 Bow
 none
 JID_アサシン
+66555
+66589
 
 
 Trickster
@@ -180,6 +218,8 @@ Sword
 Staff
 none
 JID_トリックスター
+66623
+66657
 
 
 Pegasus Knight
@@ -188,6 +228,7 @@ Lance
 none
 none
 JID_ペガサスナイト女
+66691
 
 
 Falcon Knight
@@ -196,6 +237,7 @@ Lance
 Staff
 none
 JID_ファルコンナイト女
+66725
 
 
 Dark Flier
@@ -204,6 +246,7 @@ Lance
 Tome
 none
 JID_ダークペガサス女
+66758
 
 
 Wyvern Rider
@@ -212,6 +255,8 @@ Axe
 none
 none
 JID_ドラゴンナイト
+66792
+66826
 
 
 Wyvern Lord
@@ -220,6 +265,8 @@ Axe
 Lance
 none
 JID_ドラゴンマスター
+66859
+66892
 
 
 Griffon Rider
@@ -228,6 +275,8 @@ Axe
 none
 none
 JID_グリフォンナイト
+66926
+66960
 
 
 Troubadour
@@ -236,6 +285,7 @@ Staff
 none
 none
 JID_トルバドール女
+66994
 
 
 Priest/Cleric
@@ -243,7 +293,9 @@ base
 Staff
 none
 none
-
+none
+67028
+67061
 
 
 Mage
@@ -252,6 +304,8 @@ Tome
 none
 none
 JID_魔道士
+67094
+67127
 
 
 Dark Mage
@@ -260,6 +314,8 @@ Tome
 none
 none
 JID_ダークマージ
+67160
+67193
 
 
 Valkyrie
@@ -268,6 +324,7 @@ Tome
 Staff
 none
 JID_ヴァルキュリア女
+67226
 
 
 War Monk/ War Cleric
@@ -275,7 +332,9 @@ promoted
 Axe
 Staff
 none
-
+none
+67259
+67293
 
 
 Sage
@@ -284,6 +343,8 @@ Tome
 Staff
 none
 JID_賢者
+67327
+67361
 
 
 Dark Knight
@@ -292,6 +353,8 @@ Tome
 Sword
 none
 JID_ダークナイト
+67395
+67429
 
 
 Sorcerer
@@ -300,6 +363,8 @@ Tome
 none
 none
 JID_ソーサラー
+67463
+67497
 
 
 Dancer
@@ -308,6 +373,7 @@ Sword
 none
 none
 JID_踊り子女
+67531
 
 
 Manakete
@@ -316,6 +382,7 @@ Dragonstone
 none
 none
 JID_マムクート女
+67565
 
 
 Taguel
@@ -324,6 +391,8 @@ Beaststone
 none
 none
 JID_ラグズ
+67598
+67631
 
 
 Villager
@@ -332,5 +401,5 @@ Lance
 none
 none
 JID_村人男
-
+67664
 

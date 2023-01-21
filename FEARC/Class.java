@@ -9,8 +9,25 @@ public class Class {
 	public String wc;
 	public String JID;
 	public boolean flier;
+	public int gender; //to keep track of gender-locked classes, 0 = both, 1 = male, 2 = female
 	public ArrayList<String> promotions;
 	public ArrayList<String> skills;
+	public ArrayList<String> slines;
+	
+	
+	//temporary simple constructor
+	public Class(String name) { 
+		this.name = name;
+		slines = new ArrayList<String>();
+	}
+	
+	@Override
+	public String toString() {
+		String ret = "";
+		
+		
+		return ret;
+	}
 	
 	
 	public Class(String name, boolean promoted, String wa, String wb, String wc, String JID, boolean flier) {
