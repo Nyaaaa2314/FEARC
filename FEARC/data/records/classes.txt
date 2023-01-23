@@ -74,6 +74,8 @@ Axe
 Lance
 Sword
 JID_グレートナイト
+65817
+65851
 
 
 General
@@ -82,8 +84,8 @@ Lance
 Axe
 none
 JID_ジェネラル
-65817
-65851
+65885
+65919
 
 
 Barbarian
@@ -92,7 +94,7 @@ Axe
 none
 none
 JID_蛮族男
-65885
+65952
 
 
 Fighter
@@ -101,7 +103,7 @@ Axe
 none
 none
 JID_戦士男
-65919
+65985
 
 
 Mercenary
@@ -110,8 +112,8 @@ Sword
 none
 none
 JID_傭兵
-65952
-65985
+66018
+66051
 
 
 Archer
@@ -120,8 +122,7 @@ Bow
 none
 none
 JID_アーチャー
-66018
-66051
+66084
 
 
 Berserker
@@ -130,7 +131,7 @@ Axe
 none
 none
 JID_バーサーカー男
-66084
+66117
 
 
 Warrior
@@ -139,7 +140,7 @@ Axe
 Bow
 none
 JID_ウォーリアー男
-66117
+66151
 
 
 Hero
@@ -148,8 +149,8 @@ Sword
 Axe
 none
 JID_勇者
-66151
 66185
+66219
 
 
 Bow Knight
@@ -158,8 +159,8 @@ Bow
 Sword
 none
 JID_ボウナイト
-66219
 66253
+66287
 
 
 Sniper
@@ -168,8 +169,8 @@ Bow
 none
 none
 JID_スナイパー
-66287
 66321
+66355
 
 
 Myrmidon
@@ -178,8 +179,8 @@ Sword
 none
 none
 JID_剣士
-66355
 66389
+66422
 
 
 Thief
@@ -188,8 +189,8 @@ Sword
 none
 none
 JID_盗賊
-66422
 66455
+66488
 
 
 Swordmaster
@@ -198,8 +199,8 @@ Sword
 none
 none
 JID_ソードマスター
-66488
 66521
+66555
 
 
 Assassin
@@ -208,8 +209,8 @@ Sword
 Bow
 none
 JID_アサシン
-66555
 66589
+66623
 
 
 Trickster
@@ -218,8 +219,8 @@ Sword
 Staff
 none
 JID_トリックスター
-66623
 66657
+66691
 
 
 Pegasus Knight
@@ -228,7 +229,7 @@ Lance
 none
 none
 JID_ペガサスナイト女
-66691
+66725
 
 
 Falcon Knight
@@ -237,7 +238,7 @@ Lance
 Staff
 none
 JID_ファルコンナイト女
-66725
+66758
 
 
 Dark Flier
@@ -246,7 +247,7 @@ Lance
 Tome
 none
 JID_ダークペガサス女
-66758
+66792
 
 
 Wyvern Rider
@@ -255,8 +256,8 @@ Axe
 none
 none
 JID_ドラゴンナイト
-66792
 66826
+66859
 
 
 Wyvern Lord
@@ -265,8 +266,8 @@ Axe
 Lance
 none
 JID_ドラゴンマスター
-66859
 66892
+66926
 
 
 Griffon Rider
@@ -275,8 +276,8 @@ Axe
 none
 none
 JID_グリフォンナイト
-66926
 66960
+66994
 
 
 Troubadour
@@ -285,7 +286,7 @@ Staff
 none
 none
 JID_トルバドール女
-66994
+67028
 
 
 Priest/Cleric
@@ -294,8 +295,8 @@ Staff
 none
 none
 none
-67028
 67061
+67094
 
 
 Mage
@@ -304,8 +305,8 @@ Tome
 none
 none
 JID_魔道士
-67094
 67127
+67160
 
 
 Dark Mage
@@ -314,8 +315,8 @@ Tome
 none
 none
 JID_ダークマージ
-67160
 67193
+67226
 
 
 Valkyrie
@@ -324,7 +325,7 @@ Tome
 Staff
 none
 JID_ヴァルキュリア女
-67226
+67259
 
 
 War Monk/ War Cleric
@@ -333,9 +334,8 @@ Axe
 Staff
 none
 none
-67259
 67293
-
+67327
 
 Sage
 promoted
@@ -343,8 +343,8 @@ Tome
 Staff
 none
 JID_賢者
-67327
 67361
+67395
 
 
 Dark Knight
@@ -353,8 +353,8 @@ Tome
 Sword
 none
 JID_ダークナイト
-67395
 67429
+67463
 
 
 Sorcerer
@@ -363,8 +363,8 @@ Tome
 none
 none
 JID_ソーサラー
-67463
 67497
+67531
 
 
 Dancer
@@ -373,7 +373,7 @@ Sword
 none
 none
 JID_踊り子女
-67531
+67565
 
 
 Manakete
@@ -382,7 +382,7 @@ Dragonstone
 none
 none
 JID_マムクート女
-67565
+67598
 
 
 Taguel
@@ -391,8 +391,8 @@ Beaststone
 none
 none
 JID_ラグズ
-67598
 67631
+67664
 
 
 Villager
@@ -401,5 +401,5 @@ Lance
 none
 none
 JID_村人男
-67664
+67697
 
