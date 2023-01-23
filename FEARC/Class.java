@@ -19,17 +19,21 @@ public class Class {
 	public Class(String name) { 
 		this.name = name;
 		slines = new ArrayList<String>();
+		skills = new ArrayList<String>();
 	}
+	
+	
+	
 	
 	@Override
 	public String toString() {
-		String ret = "";
-		
-		
-		return ret;
+		return "Class [name=" + name + ", promoted=" + promoted + ", wa=" + wa + ", wb=" + wb + ", wc=" + wc + ", JID="
+				+ JID + ", skills=" + skills + ", slines=" + slines + "]";
 	}
-	
-	
+
+
+
+
 	public Class(String name, boolean promoted, String wa, String wb, String wc, String JID, boolean flier) {
 		this.name = name;
 		this.promoted = promoted;

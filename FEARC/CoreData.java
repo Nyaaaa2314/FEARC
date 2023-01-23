@@ -194,11 +194,15 @@ public class CoreData {
 		ensureInitialization();
 		ArrayList<String> skillsR = new ArrayList<String>(Arrays.asList(Data.Skills));
 		Collections.shuffle(skillsR);
-		
-		
-		//TODO: write the random array to file and log
-		
-		
+		for(int i = 0, j = 0; i < Data.classes.size(); i++, j+=2) {
+			Data.classes.get(i).skills.add(skillsR.get(j));
+			Data.classes.get(i).skills.add(skillsR.get(j + 1));
+		}
+		for(Class c : Data.classes) {
+			for(String line : c.slines) {
+				GameData.set(Integer.parseInt(line), "0x" + c.skills.get(0) + "00" + c.skills.get(1) + "00");
+			}
+		}
 		
 	}
 	

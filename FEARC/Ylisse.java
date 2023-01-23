@@ -11,10 +11,11 @@ public class Ylisse {
 		Data.ensureInstance();
 		f.setupDir();
 		if(debug) {
+			CoreData.runSkills();
 			for(Class c : Data.classes) {
 				System.out.println(c.toString());
 			}
-			
+			CoreData.close();
 			
 //			CoreData.runGrowths();
 //			CoreData.runModifiers();
