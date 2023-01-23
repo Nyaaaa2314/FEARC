@@ -195,8 +195,11 @@ public class CoreData {
 		ArrayList<String> skillsR = new ArrayList<String>(Arrays.asList(Data.Skills));
 		Collections.shuffle(skillsR);
 		for(int i = 0, j = 0; i < Data.classes.size(); i++, j+=2) {
-			Data.classes.get(i).skills.add(skillsR.get(j));
-			Data.classes.get(i).skills.add(skillsR.get(j + 1));
+			//Data.classes.set
+			Class temp = Data.classes.get(i);
+			temp.skills.add(skillsR.get(j));
+			temp.skills.add(skillsR.get(j + 1));
+			Data.classes.set(i, temp);
 		}
 		for(Class c : Data.classes) {
 			for(String line : c.slines) {
