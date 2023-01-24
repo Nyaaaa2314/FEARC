@@ -13,6 +13,9 @@ public class Class {
 	public ArrayList<String> promotions;
 	public ArrayList<String> skills;
 	public ArrayList<String> slines;
+	public int[] growths;
+	
+	
 	
 	
 	//temporary simple constructor
@@ -35,6 +38,9 @@ public class Class {
 	public String toLog() {
 		//formatting this like logEntry for when i eventually add class growth and stat cap randomization
 		StringBuilder s = new StringBuilder(name + "\n");
+		if(growths != null) {
+			
+		}
 		if(skills.size() > 0) {
 			s.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]");
 		}

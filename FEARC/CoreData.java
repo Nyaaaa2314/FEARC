@@ -29,12 +29,12 @@ public class CoreData {
 			Data.ensureInstance();
 			Static = f.readFile("/data/bins/static.txt");
 			GameData = f.readFile("/data/bins/GameData.txt");
+			LOOKUP_TABLE = new ArrayList<String>(Arrays.asList(LT));
 		}
 	}
 	
 	public static void runGrowths() throws IOException {
 		ensureInitialization();
-		LOOKUP_TABLE = new ArrayList<String>(Arrays.asList(LT));
 		Random rnd = new Random();
 		boolean zero = false; //TODO: actually check for zero growths
 		
@@ -53,19 +53,19 @@ public class CoreData {
 				Random rng = new Random(i + j ^ System.currentTimeMillis()); 
 				switch (j) {
 				case 0:
-					GR = 35 + rng.nextInt(15);
+					GR = 35 + rng.nextInt(16);
 					break;
 				case 3:
-					GR = 30 + rng.nextInt(20);
+					GR = 30 + rng.nextInt(21);
 					break;
 				case 4:
-					GR = 30 + rng.nextInt(20);
+					GR = 30 + rng.nextInt(21);
 					break;
 				case 5:
-					GR = 30 + rng.nextInt(40);
+					GR = 30 + rng.nextInt(41);
 					break;
 				default:
-					GR = 10 + rng.nextInt(40);
+					GR = 10 + rng.nextInt(41);
 					break;
 				}
 				GrowthValues[i][j] = GR;
@@ -209,6 +209,93 @@ public class CoreData {
 		
 	}
 	
+	public static void runClassGrowths() throws IOException{
+		ensureInitialization();
+		Random rnd = new Random(System.currentTimeMillis());
+		boolean zero = false; //TODO: actually check for zero growths
+		
+		
+		//growths are slines -6 and -5, different ids for male/female versions of classes
+		//for enciphering
+		
+		
+		//int[][] GrowthValues = new int[52][8];
+		// int[] Growths = new int[8];
+		//String[] HexG = new String[8];
+		// int[] GRlog = new int[8];
+		//String[] GRLog = new String[8 * 52];
+		//String[][] Growths = new String[52][8];
+		
+		
+		//Class growths for luck are always 0
+		for(int i = 0, ID = 1; i < Data.classes.size(); i++) {
+			int[] growths = new int[8];
+			Class c = Data.classes.get(i);
+			
+			if(c.promoted) {
+				growths[0] = 35 + rnd.nextInt(16);
+				growths[1] = rnd.nextInt(31);
+				growths[2] = rnd.nextInt(21);		
+				growths[3] = 5 + rnd.nextInt(21);
+				growths[4] = 5 + rnd.nextInt(21);
+				growths[5] = 0;
+				growths[6] = 5 + rnd.nextInt(11);
+				growths[7] = 5 + rnd.nextInt(11);
+				
+			}
+			else {
+				growths[0] = 35 + rnd.nextInt(16);
+				growths[1] = 10 + rnd.nextInt(16);
+				growths[2] = rnd.nextInt(16);		
+				growths[3] = 15 + rnd.nextInt(16);
+				growths[4] = 10 + rnd.nextInt(16);
+				growths[5] = 0;
+				growths[6] = 5 + rnd.nextInt(11);
+				growths[7] = 5 + rnd.nextInt(6);
+			}
+			c.growths = growths;
+			Data.classes.set(i, c);
+			
+			String[] hex = new String[7];
+			String[] hex2 = new String[7];
+			for(int j = 0; j < 8; j++) {
+				String h = Integer.toHexString(growths[j]);
+				if(h.length() == 1) {
+					h = "0" + h;
+				}
+				hex[j] = h;
+				if(zero) {
+					hex[j] = "00";
+				}
+				hex2[j] = hex[j];
+				
+			}
+			for(int j = 0; j < 8; j++) {
+				
+				int index = LOOKUP_TABLE.indexOf(hex[j]);
+				hex[j] = Integer.toHexString(((index + (0x23 * ((ID ^ 0x46) - (0xF1 * j)) ^ 0x78)) & 0xFF)).toUpperCase();
+				if(hex[j].length() == 1) {
+					hex[j] = "0" + hex[j];
+				}
+				if(c.slines.size() == 2) {
+					hex2[j] = Integer.toHexString(((index + (0x23 * (((ID  + 1)^ 0x46) - (0xF1 * j)) ^ 0x78)) & 0xFF)).toUpperCase();
+					if(hex2[j].length() == 1) {
+						hex2[j] = "0" + hex2[j];
+					}
+				}			
+			}
+			GameData.set(Integer.parseInt(c.slines.get(0)) - 6, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
+			GameData.set(Integer.parseInt(c.slines.get(0)) - 5, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+			ID++;
+			if(c.slines.size() == 2) {
+				ID++;
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 6, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 5, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+				
+			}
+		}	
+		
+	}
 	
 	
 	
