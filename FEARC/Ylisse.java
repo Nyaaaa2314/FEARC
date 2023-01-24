@@ -46,27 +46,25 @@ public class Ylisse {
 		//logging
 		ArrayList<String> log = new ArrayList<String>();
 		if(CR) {
-			log.add(" ---Classes--- ");
+			log.add(" ---Characters--- ");
 			for(LogEntry l : Data.log) {
 				log.add(l.toString());
 			}
 			if(CS) {
 				log.add("\n ---Classes--- \n");
 				for(Class c : Data.classes) {
-					log.add(c.toString());
+					log.add(c.toLog());
 				}
 			}
 		}
 		else if(CS) {
 			log.add(" ---Classes--- ");
 			for(Class c : Data.classes) {
-				log.add(c.toString());
+				log.add(c.toLog());
 			}
 		}
-		
-		
-		
 		CoreData.close();
+		f.writeFile("/output/log.txt", log);
 		System.out.println("Everything has been randomized. See log.txt in the output folder for all the randomized data.");
 	}
 	public static boolean getResponse(Scanner in) {

@@ -34,12 +34,14 @@ public class Class {
 
 	public String toLog() {
 		//formatting this like logEntry for when i eventually add class growth and stat cap randomization
-		StringBuilder s = new StringBuilder();
+		StringBuilder s = new StringBuilder(name + "\n");
+		if(skills.size() > 0) {
+			s.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]");
+		}
 		
-		
-		return s.toString();
+		return s.append("\n").toString();
 	}
-
+	
 	public Class(String name, boolean promoted, String wa, String wb, String wc, String JID, boolean flier) {
 		this.name = name;
 		this.promoted = promoted;
