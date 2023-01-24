@@ -32,7 +32,13 @@ public class Class {
 	}
 
 
-
+	public String toLog() {
+		//formatting this like logEntry for when i eventually add class growth and stat cap randomization
+		StringBuilder s = new StringBuilder();
+		
+		
+		return s.toString();
+	}
 
 	public Class(String name, boolean promoted, String wa, String wb, String wc, String JID, boolean flier) {
 		this.name = name;

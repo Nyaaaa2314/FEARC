@@ -123,6 +123,7 @@ none
 none
 JID_アーチャー
 66084
+66117
 
 
 Berserker
@@ -131,7 +132,7 @@ Axe
 none
 none
 JID_バーサーカー男
-66117
+66151
 
 
 Warrior
@@ -140,7 +141,7 @@ Axe
 Bow
 none
 JID_ウォーリアー男
-66151
+66185
 
 
 Hero
@@ -149,8 +150,8 @@ Sword
 Axe
 none
 JID_勇者
-66185
 66219
+66253
 
 
 Bow Knight
@@ -159,8 +160,8 @@ Bow
 Sword
 none
 JID_ボウナイト
-66253
 66287
+66321
 
 
 Sniper
@@ -169,8 +170,8 @@ Bow
 none
 none
 JID_スナイパー
-66321
 66355
+66389
 
 
 Myrmidon
@@ -179,8 +180,8 @@ Sword
 none
 none
 JID_剣士
-66389
 66422
+66455
 
 
 Thief
@@ -189,8 +190,8 @@ Sword
 none
 none
 JID_盗賊
-66455
 66488
+66521
 
 
 Swordmaster
@@ -199,8 +200,8 @@ Sword
 none
 none
 JID_ソードマスター
-66521
 66555
+66589
 
 
 Assassin
@@ -209,8 +210,8 @@ Sword
 Bow
 none
 JID_アサシン
-66589
 66623
+66657
 
 
 Trickster
@@ -219,8 +220,8 @@ Sword
 Staff
 none
 JID_トリックスター
-66657
 66691
+66725
 
 
 Pegasus Knight
@@ -229,7 +230,7 @@ Lance
 none
 none
 JID_ペガサスナイト女
-66725
+66758
 
 
 Falcon Knight
@@ -238,7 +239,7 @@ Lance
 Staff
 none
 JID_ファルコンナイト女
-66758
+66792
 
 
 Dark Flier
@@ -247,7 +248,7 @@ Lance
 Tome
 none
 JID_ダークペガサス女
-66792
+66826
 
 
 Wyvern Rider
@@ -256,8 +257,8 @@ Axe
 none
 none
 JID_ドラゴンナイト
-66826
 66859
+66892
 
 
 Wyvern Lord
@@ -266,8 +267,8 @@ Axe
 Lance
 none
 JID_ドラゴンマスター
-66892
 66926
+66960
 
 
 Griffon Rider
@@ -276,8 +277,8 @@ Axe
 none
 none
 JID_グリフォンナイト
-66960
 66994
+67028
 
 
 Troubadour
@@ -286,7 +287,7 @@ Staff
 none
 none
 JID_トルバドール女
-67028
+67061
 
 
 Priest/Cleric
@@ -295,8 +296,8 @@ Staff
 none
 none
 none
-67061
 67094
+67127
 
 
 Mage
@@ -305,8 +306,8 @@ Tome
 none
 none
 JID_魔道士
-67127
 67160
+67193
 
 
 Dark Mage
@@ -315,8 +316,8 @@ Tome
 none
 none
 JID_ダークマージ
-67193
 67226
+67259
 
 
 Valkyrie
@@ -325,7 +326,7 @@ Tome
 Staff
 none
 JID_ヴァルキュリア女
-67259
+67293
 
 
 War Monk/ War Cleric
@@ -334,8 +335,8 @@ Axe
 Staff
 none
 none
-67293
 67327
+67361
 
 Sage
 promoted
@@ -343,8 +344,8 @@ Tome
 Staff
 none
 JID_賢者
-67361
 67395
+67429
 
 
 Dark Knight
@@ -353,8 +354,8 @@ Tome
 Sword
 none
 JID_ダークナイト
-67429
 67463
+67497
 
 
 Sorcerer
@@ -363,8 +364,8 @@ Tome
 none
 none
 JID_ソーサラー
-67497
 67531
+67565
 
 
 Dancer
@@ -373,7 +374,7 @@ Sword
 none
 none
 JID_踊り子女
-67565
+67598
 
 
 Manakete
@@ -382,7 +383,7 @@ Dragonstone
 none
 none
 JID_マムクート女
-67598
+67631
 
 
 Taguel
@@ -391,8 +392,8 @@ Beaststone
 none
 none
 JID_ラグズ
-67631
 67664
+67697
 
 
 Villager
@@ -401,5 +402,5 @@ Lance
 none
 none
 JID_村人男
-67697
+67763
 
