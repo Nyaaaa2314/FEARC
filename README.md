@@ -8,6 +8,8 @@ Stat Cap Modifier Randomization
 
 Growth Randomization
 
+Class Skills Randomization
+
 ----------------------------
 
 
@@ -17,9 +19,11 @@ Characater Join Order Randomization
 
 Class Set Randomization
 
-Class Skills Randomization
+Class Growths Randomization
 
-0% Growths
+Class Stat Caps Randomization
+
+0% Growths option
 
 GUI
 
@@ -27,4 +31,4 @@ GUI
 ------------------------------
 Tentative Partial Rollout: Late Jan or Early Feb 2023
 
-Anticapted Full Release Date: April 2023
+Expected Full Release Date: April 2023
