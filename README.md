@@ -19,6 +19,8 @@ Characater Join Order Randomization
 
 Class Set Randomization
 
+Class Promotions Randomization
+
 Class Growths Randomization
 
 Class Stat Caps Randomization
