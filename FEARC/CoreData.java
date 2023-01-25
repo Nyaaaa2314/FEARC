@@ -50,7 +50,7 @@ public class CoreData {
 			String GRHex = "";
 			int index = 0;
 			for (int j = 0; j < 8; j++) {
-				Random rng = new Random(i + j ^ System.currentTimeMillis()); 
+				Random rng = new Random(i * j * System.currentTimeMillis()); 
 				switch (j) {
 				case 0:
 					GR = 35 + rng.nextInt(16);
@@ -228,7 +228,7 @@ public class CoreData {
 		
 		
 		//Class growths for luck are always 0
-		for(int i = 0, ID = 1; i < Data.classes.size(); i++) {
+		for(int i = 0, ID = 0; i < Data.classes.size(); i++) {
 			int[] growths = new int[8];
 			Class c = Data.classes.get(i);
 			
@@ -278,6 +278,7 @@ public class CoreData {
 					hex[j] = "0" + hex[j];
 				}
 				if(c.slines.size() == 2) {
+					//index = LOOKUP_TABLE.indexOf(hex2[j]);
 					hex2[j] = Integer.toHexString(((index + (0x23 * (((ID  + 1)^ 0x46) - (0xF1 * j)) ^ 0x78)) & 0xFF)).toUpperCase();
 					if(hex2[j].length() == 1) {
 						hex2[j] = "0" + hex2[j];
@@ -287,17 +288,19 @@ public class CoreData {
 			if(c.gender == 0) {
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
-				GameData.set(Integer.parseInt(c.slines.get(1)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
-				GameData.set(Integer.parseInt(c.slines.get(1)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 8, "0x" + hex2[0] + hex2[1] + hex2[2] + hex2[3]);
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 7, "0x" + hex2[4] + hex2[5] + hex2[6] + hex2[7]);
 				ID+=2;
 			}
 			else if(c.gender == 1) {
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+				ID++;
 			}
 			else {
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+				ID++;
 			}
 			
 		}	

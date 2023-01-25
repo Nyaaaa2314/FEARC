@@ -40,7 +40,7 @@ public class Class {
 		StringBuilder ret = new StringBuilder(name + "\n");
 		if(growths != null) {
 			ret.append("Growths [ HP: " + growths[0] + " | Str: " + growths[1] +
-					" | Mag: " + growths[2] + " | Spd: " + growths[3] + " | Skl: " + 
+					" | Mag: " + growths[2] + " | Skl: " + growths[3] + " | Spd: " + 
 					growths[4] + " | Lck: " + growths[5] + " | Def: " + growths[6] +
 					" | Res: " + growths[7] + " ]\n");
 		}
