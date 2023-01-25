@@ -44,13 +44,15 @@ public class CoreData {
 		// int[] GRlog = new int[8];
 		String[] GRLog = new String[8 * 52];
 		String[][] Growths = new String[52][8];
+		Random rng = new Random(); 
 		for (int i = 0; i < 52; i++) {
 			int ID = i;
 			int GR = 0;
 			String GRHex = "";
 			int index = 0;
+			
 			for (int j = 0; j < 8; j++) {
-				Random rng = new Random(i * j * System.currentTimeMillis()); 
+				
 				switch (j) {
 				case 0:
 					GR = 35 + rng.nextInt(16);
@@ -68,6 +70,7 @@ public class CoreData {
 					GR = 10 + rng.nextInt(41);
 					break;
 				}
+				
 				GrowthValues[i][j] = GR;
 				GRHex = Integer.toHexString(GR).toUpperCase();
 				if (GRHex.length() == 1) {
@@ -84,6 +87,8 @@ public class CoreData {
 				if(Growths[i][j].length() == 1) {
 					Growths[i][j] = "0" + Growths[i][j];
 				}
+				//String deciphered = debugGrowths(ID, j, true, Integer.parseInt(Growths[i][j], 16));
+				//System.out.println();
 
 			}
 
@@ -271,11 +276,15 @@ public class CoreData {
 				
 			}
 			for(int j = 0; j < 8; j++) {
-				
-				int index = LOOKUP_TABLE.indexOf(hex[j]);
+				String deciphered2;
+				int index = LOOKUP_TABLE.indexOf(hex[j].toUpperCase());
 				hex[j] = Integer.toHexString(((index + (0x23 * ((ID ^ 0x46) - (0xF1 * j)) ^ 0x78)) & 0xFF)).toUpperCase();
 				if(hex[j].length() == 1) {
 					hex[j] = "0" + hex[j];
+				}
+				String deciphered = debugGrowths(ID, j, false, Integer.parseInt(hex[j], 16));
+				if(Integer.parseInt(deciphered, 16) == 58) {
+					System.out.println("Gottem");
 				}
 				if(c.slines.size() == 2) {
 					//index = LOOKUP_TABLE.indexOf(hex2[j]);
@@ -283,7 +292,18 @@ public class CoreData {
 					if(hex2[j].length() == 1) {
 						hex2[j] = "0" + hex2[j];
 					}
-				}			
+					deciphered2 = debugGrowths(ID + 1, j, false, Integer.parseInt(hex2[j], 16));
+					if(Integer.parseInt(deciphered2, 16) == 58) {
+						System.out.println("Gottem");
+					}
+				}
+				
+				
+				
+				
+				
+				
+				
 			}
 			if(c.gender == 0) {
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
@@ -306,6 +326,18 @@ public class CoreData {
 		}	
 		
 	}
+	
+	public static String debugGrowths(int ID, int N, boolean Char, int enc) {
+		int index;
+		if(Char) {
+			index = (enc - (0x63 * ((ID ^ 0xA7) - 0x21 * N) ^ 0xD9)) & 0xFF;
+		}
+		else {
+			index = (enc - (0x23 * ((ID ^ 0x46) - 0xF1 * N) ^ 0x78)) & 0xFF;
+		}
+		return LOOKUP_TABLE.get(index);
+	}
+	
 	
 	
 	
