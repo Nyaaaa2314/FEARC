@@ -29,6 +29,7 @@ public class Data {
 			temp.wb = ClassData.get(i++);
 			temp.wc = ClassData.get(i++);
 			temp.JID = ClassData.get(i++);
+			temp.gender = Integer.parseInt(ClassData.get(i++));
 			temp.slines.add(ClassData.get(i));
 			if(ClassData.get(i + 1).length() == 5) {
 				temp.slines.add(ClassData.get(++i));

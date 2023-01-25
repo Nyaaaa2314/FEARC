@@ -4,6 +4,7 @@ Sword
 none
 none
 JID_ロード
+0
 65348
 65381
 
@@ -14,6 +15,7 @@ Sword
 Lance
 none
 JID_マスターロード
+0
 65415
 65449
 
@@ -24,6 +26,7 @@ Tome
 Sword
 none
 JID_戦術師
+0
 65482
 65515
 
@@ -34,6 +37,7 @@ Tome
 Sword
 none
 JID_神軍師
+0
 65549
 65583
 
@@ -44,6 +48,7 @@ Lance
 Sword
 none
 JID_ソシアルナイト
+0
 65616
 65649
 
@@ -54,6 +59,7 @@ Lance
 none
 none
 JID_アーマーナイト
+0
 65682
 65715
 
@@ -64,6 +70,7 @@ Sword
 Sword
 none
 JID_パラディン
+0
 65749
 65783
 
@@ -74,6 +81,7 @@ Axe
 Lance
 Sword
 JID_グレートナイト
+0
 65817
 65851
 
@@ -84,6 +92,7 @@ Lance
 Axe
 none
 JID_ジェネラル
+0
 65885
 65919
 
@@ -94,6 +103,7 @@ Axe
 none
 none
 JID_蛮族男
+1
 65952
 
 
@@ -103,6 +113,7 @@ Axe
 none
 none
 JID_戦士男
+1
 65985
 
 
@@ -112,6 +123,7 @@ Sword
 none
 none
 JID_傭兵
+0
 66018
 66051
 
@@ -122,6 +134,7 @@ Bow
 none
 none
 JID_アーチャー
+0
 66084
 66117
 
@@ -132,6 +145,7 @@ Axe
 none
 none
 JID_バーサーカー男
+1
 66151
 
 
@@ -141,6 +155,7 @@ Axe
 Bow
 none
 JID_ウォーリアー男
+1
 66185
 
 
@@ -150,6 +165,7 @@ Sword
 Axe
 none
 JID_勇者
+0
 66219
 66253
 
@@ -160,6 +176,7 @@ Bow
 Sword
 none
 JID_ボウナイト
+0
 66287
 66321
 
@@ -170,6 +187,7 @@ Bow
 none
 none
 JID_スナイパー
+0
 66355
 66389
 
@@ -180,6 +198,7 @@ Sword
 none
 none
 JID_剣士
+0
 66422
 66455
 
@@ -190,6 +209,7 @@ Sword
 none
 none
 JID_盗賊
+0
 66488
 66521
 
@@ -200,6 +220,7 @@ Sword
 none
 none
 JID_ソードマスター
+0
 66555
 66589
 
@@ -210,6 +231,7 @@ Sword
 Bow
 none
 JID_アサシン
+0
 66623
 66657
 
@@ -220,6 +242,7 @@ Sword
 Staff
 none
 JID_トリックスター
+0
 66691
 66725
 
@@ -230,6 +253,7 @@ Lance
 none
 none
 JID_ペガサスナイト女
+2
 66758
 
 
@@ -239,6 +263,7 @@ Lance
 Staff
 none
 JID_ファルコンナイト女
+2
 66792
 
 
@@ -248,6 +273,7 @@ Lance
 Tome
 none
 JID_ダークペガサス女
+2
 66826
 
 
@@ -257,6 +283,7 @@ Axe
 none
 none
 JID_ドラゴンナイト
+0
 66859
 66892
 
@@ -267,6 +294,7 @@ Axe
 Lance
 none
 JID_ドラゴンマスター
+0
 66926
 66960
 
@@ -277,6 +305,7 @@ Axe
 none
 none
 JID_グリフォンナイト
+0
 66994
 67028
 
@@ -287,6 +316,7 @@ Staff
 none
 none
 JID_トルバドール女
+1
 67061
 
 
@@ -296,6 +326,7 @@ Staff
 none
 none
 none
+0
 67094
 67127
 
@@ -306,6 +337,7 @@ Tome
 none
 none
 JID_魔道士
+0
 67160
 67193
 
@@ -316,6 +348,7 @@ Tome
 none
 none
 JID_ダークマージ
+0
 67226
 67259
 
@@ -326,6 +359,7 @@ Tome
 Staff
 none
 JID_ヴァルキュリア女
+2
 67293
 
 
@@ -335,6 +369,7 @@ Axe
 Staff
 none
 none
+0
 67327
 67361
 
@@ -344,6 +379,7 @@ Tome
 Staff
 none
 JID_賢者
+0
 67395
 67429
 
@@ -354,6 +390,7 @@ Tome
 Sword
 none
 JID_ダークナイト
+0
 67463
 67497
 
@@ -364,6 +401,7 @@ Tome
 none
 none
 JID_ソーサラー
+0
 67531
 67565
 
@@ -374,6 +412,7 @@ Sword
 none
 none
 JID_踊り子女
+2
 67598
 
 
@@ -383,6 +422,7 @@ Dragonstone
 none
 none
 JID_マムクート女
+2
 67631
 
 
@@ -392,6 +432,7 @@ Beaststone
 none
 none
 JID_ラグズ
+0
 67664
 67697
 
@@ -402,5 +443,6 @@ Lance
 none
 none
 JID_村人男
+1
 67763
 

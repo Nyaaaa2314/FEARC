@@ -284,15 +284,22 @@ public class CoreData {
 					}
 				}			
 			}
-			GameData.set(Integer.parseInt(c.slines.get(0)) - 6, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
-			GameData.set(Integer.parseInt(c.slines.get(0)) - 5, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
-			ID++;
-			if(c.slines.size() == 2) {
-				ID++;
-				GameData.set(Integer.parseInt(c.slines.get(1)) - 6, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
-				GameData.set(Integer.parseInt(c.slines.get(1)) - 5, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
-				
+			if(c.gender == 0) {
+				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
+				GameData.set(Integer.parseInt(c.slines.get(0)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+				ID+=2;
 			}
+			else if(c.gender == 1) {
+				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
+				GameData.set(Integer.parseInt(c.slines.get(0)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+			}
+			else {
+				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
+				GameData.set(Integer.parseInt(c.slines.get(0)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
+			}
+			
 		}	
 		
 	}
