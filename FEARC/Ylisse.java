@@ -39,9 +39,12 @@ public class Ylisse {
 			CS = true;
 			CoreData.runSkills();
 		}
-		
-		
-		
+		System.out.println("Would you like to randomize Class Growths?");
+		option = getResponse(in);
+		if(option) {
+			CS = true;
+			CoreData.runClassGrowths();
+		}
 		
 		//logging
 		ArrayList<String> log = new ArrayList<String>();

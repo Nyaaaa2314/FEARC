@@ -256,8 +256,8 @@ public class CoreData {
 			c.growths = growths;
 			Data.classes.set(i, c);
 			
-			String[] hex = new String[7];
-			String[] hex2 = new String[7];
+			String[] hex = new String[8];
+			String[] hex2 = new String[8];
 			for(int j = 0; j < 8; j++) {
 				String h = Integer.toHexString(growths[j]);
 				if(h.length() == 1) {

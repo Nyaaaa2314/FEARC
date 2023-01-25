@@ -37,15 +37,18 @@ public class Class {
 
 	public String toLog() {
 		//formatting this like logEntry for when i eventually add class growth and stat cap randomization
-		StringBuilder s = new StringBuilder(name + "\n");
+		StringBuilder ret = new StringBuilder(name + "\n");
 		if(growths != null) {
-			
+			ret.append("Growths [ HP: " + growths[0] + " | Str: " + growths[1] +
+					" | Mag: " + growths[2] + " | Spd: " + growths[3] + " | Skl: " + 
+					growths[4] + " | Lck: " + growths[5] + " | Def: " + growths[6] +
+					" | Res: " + growths[7] + " ]\n");
 		}
 		if(skills.size() > 0) {
-			s.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]");
+			ret.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]");
 		}
 		
-		return s.append("\n").toString();
+		return ret.append("\n").toString();
 	}
 	
 	public Class(String name, boolean promoted, String wa, String wb, String wc, String JID, boolean flier) {
