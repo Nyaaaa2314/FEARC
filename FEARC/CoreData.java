@@ -108,12 +108,11 @@ public class CoreData {
 	public static void runModifiers() throws IOException {
 		ensureInitialization();
 		Random rng = new Random();
-		int seed = rng.nextInt();
+		//int seed = rng.nextInt();
 		FileSys f = FileSys.getInstance();
 		ArrayList<ArrayList<String>> a = new ArrayList<ArrayList<String>>();
 		for(int i = 0; i < 52; i++) {
 			ArrayList<String> m = new ArrayList<String>();
-			rng = new Random(seed + i);
 			for(int j = 0; j < 7; j++) {
 				if(j == 0 || j == 1) {
 					int r = -1 * rng.nextInt(4);
@@ -220,16 +219,8 @@ public class CoreData {
 		boolean zero = false; //TODO: actually check for zero growths
 		
 		
-		//growths are slines -6 and -5, different ids for male/female versions of classes
+		//growths are slines -8 and -7, different ids for male/female versions of classes
 		//for enciphering
-		
-		
-		//int[][] GrowthValues = new int[52][8];
-		// int[] Growths = new int[8];
-		//String[] HexG = new String[8];
-		// int[] GRlog = new int[8];
-		//String[] GRLog = new String[8 * 52];
-		//String[][] Growths = new String[52][8];
 		
 		
 		//Class growths for luck are always 0
@@ -276,15 +267,13 @@ public class CoreData {
 				
 			}
 			for(int j = 0; j < 8; j++) {
-				String deciphered2;
+				if(c.name.equals("Villager")) {
+					ID++;
+				}
 				int index = LOOKUP_TABLE.indexOf(hex[j].toUpperCase());
 				hex[j] = Integer.toHexString(((index + (0x23 * ((ID ^ 0x46) - (0xF1 * j)) ^ 0x78)) & 0xFF)).toUpperCase();
 				if(hex[j].length() == 1) {
 					hex[j] = "0" + hex[j];
-				}
-				String deciphered = debugGrowths(ID, j, false, Integer.parseInt(hex[j], 16));
-				if(Integer.parseInt(deciphered, 16) == 58) {
-					System.out.println("Gottem");
 				}
 				if(c.slines.size() == 2) {
 					//index = LOOKUP_TABLE.indexOf(hex2[j]);
@@ -292,18 +281,7 @@ public class CoreData {
 					if(hex2[j].length() == 1) {
 						hex2[j] = "0" + hex2[j];
 					}
-					deciphered2 = debugGrowths(ID + 1, j, false, Integer.parseInt(hex2[j], 16));
-					if(Integer.parseInt(deciphered2, 16) == 58) {
-						System.out.println("Gottem");
-					}
 				}
-				
-				
-				
-				
-				
-				
-				
 			}
 			if(c.gender == 0) {
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
@@ -311,11 +289,6 @@ public class CoreData {
 				GameData.set(Integer.parseInt(c.slines.get(1)) - 8, "0x" + hex2[0] + hex2[1] + hex2[2] + hex2[3]);
 				GameData.set(Integer.parseInt(c.slines.get(1)) - 7, "0x" + hex2[4] + hex2[5] + hex2[6] + hex2[7]);
 				ID+=2;
-			}
-			else if(c.gender == 1) {
-				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
-				GameData.set(Integer.parseInt(c.slines.get(0)) - 7, "0x" + hex[4] + hex[5] + hex[6] + hex[7]);
-				ID++;
 			}
 			else {
 				GameData.set(Integer.parseInt(c.slines.get(0)) - 8, "0x" + hex[0] + hex[1] + hex[2] + hex[3]);
@@ -327,6 +300,39 @@ public class CoreData {
 		
 	}
 	
+	public static void runClassCaps() {
+		for(int i = 0; i < Data.classes.size(); i++) {
+			Class c = Data.classes.get(i);
+			c.caps = new int[8];
+			Random rng = new Random();
+			if(c.promoted) {
+				c.caps[0] = 80;
+				c.caps[1] = 20 + rng.nextInt(11);
+				c.caps[2] = 20 + rng.nextInt(11);
+				c.caps[3] = 20 + rng.nextInt(11);
+				c.caps[4] = 20 + rng.nextInt(11);
+				c.caps[5] = 20 + rng.nextInt(11);
+				c.caps[6] = 20 + rng.nextInt(11);
+				c.caps[7] = 20 + rng.nextInt(11);
+			}
+			else {
+				c.caps[0] = 60;
+				c.caps[1] = 20 + rng.nextInt(11);
+				c.caps[2] = 20 + rng.nextInt(9);
+				c.caps[3] = 23 + rng.nextInt(8);
+				c.caps[4] = 23 + rng.nextInt(6);
+				c.caps[5] = 30;
+				c.caps[6] = 20 + rng.nextInt(11);
+				c.caps[6] = 20 + rng.nextInt(9);
+			}
+			
+			
+			
+		}
+	}
+	
+	
+	//debug method for double-checking growth conversions
 	public static String debugGrowths(int ID, int N, boolean Char, int enc) {
 		int index;
 		if(Char) {

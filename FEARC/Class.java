@@ -14,7 +14,7 @@ public class Class {
 	public ArrayList<String> skills;
 	public ArrayList<String> slines;
 	public int[] growths;
-	
+	public int[] caps;
 	
 	
 	
@@ -43,6 +43,12 @@ public class Class {
 					" | Mag: " + growths[2] + " | Skl: " + growths[3] + " | Spd: " + 
 					growths[4] + " | Lck: " + growths[5] + " | Def: " + growths[6] +
 					" | Res: " + growths[7] + " ]\n");
+		}
+		if(caps != null) {
+			ret.append("Growths [ HP: " + caps[0] + " | Str: " + caps[1] +
+					" | Mag: " + caps[2] + " | Skl: " + caps[3] + " | Spd: " + 
+					caps[4] + " | Lck: " + caps[5] + " | Def: " + caps[6] +
+					" | Res: " + caps[7] + " ]\n");
 		}
 		if(skills.size() > 0) {
 			ret.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]");

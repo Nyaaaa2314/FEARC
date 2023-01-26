@@ -7,7 +7,7 @@ public class Ylisse {
 	public static boolean CS;
 	
 	public static void main(String[] args) throws IOException {
-		debug = false;
+		debug = true;
 		CS = false;
 		CR = false;
 		unix = !System.getProperty("os.name").contains("Windows"); //Linux and Mac both use the same formatting so the edge case is then Windows devices
@@ -15,7 +15,9 @@ public class Ylisse {
 		Data.ensureInstance();
 		f.setupDir();
 		if(debug) {
-			
+			System.out.println(Data.classes.size());
+			System.out.println(Data.Skills.length);
+			System.out.println(Data.skillNames.length);
 			return;
 		}
 		Scanner in = new Scanner(System.in);
