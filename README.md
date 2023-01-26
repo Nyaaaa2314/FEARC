@@ -10,6 +10,8 @@ Growth Randomization
 
 Class Skills Randomization
 
+Class Growths Randomization
+
 ----------------------------
 
 
@@ -19,9 +21,7 @@ Characater Join Order Randomization
 
 Class Set Randomization
 
-Class Promotions Randomization
-
-Class Growths Randomization
+Class Promotions Randomization=
 
 Class Stat Caps Randomization
 
