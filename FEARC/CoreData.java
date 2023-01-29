@@ -305,6 +305,7 @@ public class CoreData {
 			Class c = Data.classes.get(i);
 			c.caps = new int[8];
 			Random rng = new Random();
+			//TODO: bounded promoted caps
 			if(c.promoted) {
 				c.caps[0] = 80;
 				c.caps[1] = 20 + rng.nextInt(11);
@@ -325,7 +326,15 @@ public class CoreData {
 				c.caps[6] = 20 + rng.nextInt(11);
 				c.caps[6] = 20 + rng.nextInt(9);
 			}
-			
+			String[] chex = new String[8];
+			for(int id : c.caps) {
+				chex[id] = Integer.toHexString(c.caps[id]);
+				if(chex[id].length() == 1) {
+					chex[id] = "0" + chex[id];
+				}
+			}
+			GameData.set(Integer.parseInt(c.slines.get(0)) - 4, "0x" + chex[0] + chex[1] + chex[2] + chex[3]);
+			GameData.set(Integer.parseInt(c.slines.get(0)) - 3, "0x" + chex[4] + chex[5] + chex[6] + chex[7]);
 			
 			
 		}
