@@ -14,10 +14,14 @@ public class Ylisse {
 		FileSys f = FileSys.getInstance();
 		Data.ensureInstance();
 		f.setupDir();
+		//CoreData.ensureInitialization();
 		if(debug) {
-			System.out.println(Data.classes.size());
-			System.out.println(Data.Skills.length);
-			System.out.println(Data.skillNames.length);
+			//CoreData.runShufflePromotes();
+			for(Class c : Data.classes) {
+				System.out.println(c.name);
+				System.out.println(c.pointers == null ? "Promoted" : c.pointers[0] + " " );
+				System.out.println();
+			}
 			return;
 		}
 		Scanner in = new Scanner(System.in);

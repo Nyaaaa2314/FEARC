@@ -15,6 +15,7 @@ public class Class {
 	public ArrayList<String> slines;
 	public int[] growths;
 	public int[] caps;
+	public int[] pointers;
 	
 	
 	
@@ -25,7 +26,12 @@ public class Class {
 		skills = new ArrayList<String>();
 	}
 	
-	
+	public void setGender(int gender) {
+		this.gender = gender;
+		if(promoted) {
+			pointers = (gender == 0) ? new int[2] : new int[1];
+		}
+	}
 	
 	
 	@Override
@@ -45,7 +51,7 @@ public class Class {
 					" | Res: " + growths[7] + " ]\n");
 		}
 		if(caps != null) {
-			ret.append("Growths [ HP: " + caps[0] + " | Str: " + caps[1] +
+			ret.append("Caps [ HP: " + caps[0] + " | Str: " + caps[1] +
 					" | Mag: " + caps[2] + " | Skl: " + caps[3] + " | Spd: " + 
 					caps[4] + " | Lck: " + caps[5] + " | Def: " + caps[6] +
 					" | Res: " + caps[7] + " ]\n");

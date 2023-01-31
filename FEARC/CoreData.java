@@ -22,7 +22,7 @@ public class CoreData {
 	private static ArrayList<String> LOOKUP_TABLE;
 	private static FileSys f;
 	private static ArrayList<String> Static;
-	private static ArrayList<String> GameData;
+	public static ArrayList<String> GameData;
 	public static void ensureInitialization() throws IOException {
 		if(f == null) {
 			f = FileSys.getInstance();
@@ -32,6 +32,12 @@ public class CoreData {
 			LOOKUP_TABLE = new ArrayList<String>(Arrays.asList(LT));
 		}
 	}
+	
+	public static ArrayList<String> getGameData(){
+		return GameData;
+		
+	}
+	
 	
 	public static void runGrowths() throws IOException {
 		ensureInitialization();
@@ -308,13 +314,13 @@ public class CoreData {
 			//TODO: bounded promoted caps
 			if(c.promoted) {
 				c.caps[0] = 80;
-				c.caps[1] = 20 + rng.nextInt(11);
-				c.caps[2] = 20 + rng.nextInt(11);
-				c.caps[3] = 20 + rng.nextInt(11);
-				c.caps[4] = 20 + rng.nextInt(11);
-				c.caps[5] = 20 + rng.nextInt(11);
-				c.caps[6] = 20 + rng.nextInt(11);
-				c.caps[7] = 20 + rng.nextInt(11);
+				c.caps[1] = 30 + rng.nextInt(21);
+				c.caps[2] = 25 + rng.nextInt(22);
+				c.caps[3] = 34 + rng.nextInt(15);
+				c.caps[4] = 35 + rng.nextInt(12);
+				c.caps[5] = 45;
+				c.caps[6] = 30 + rng.nextInt(21);
+				c.caps[7] = 30 + rng.nextInt(16);
 			}
 			else {
 				c.caps[0] = 60;
@@ -335,9 +341,41 @@ public class CoreData {
 			}
 			GameData.set(Integer.parseInt(c.slines.get(0)) - 4, "0x" + chex[0] + chex[1] + chex[2] + chex[3]);
 			GameData.set(Integer.parseInt(c.slines.get(0)) - 3, "0x" + chex[4] + chex[5] + chex[6] + chex[7]);
-			
-			
 		}
+	}
+	
+	
+	public static void runPairUps() {
+		
+		
+		
+	}
+	
+	
+	public static void runShufflePromotes() {
+		
+		ArrayList<String> all = new ArrayList<String>();
+		
+		
+		for(Class c : Data.classes) {
+			if(c.promotions != null) {
+				all.addAll(c.promotions);
+			}
+		}
+		all = Util.ensureShuffle(all);
+		
+		int index = 0;
+		for(Class c : Data.classes) {
+			if(c.promotions != null) {
+				c.promotions = new ArrayList<String>();
+				c.promotions.add(all.get(index++));
+				c.promotions.add(all.get(index++));
+			}
+		}
+		
+		
+		
+		
 	}
 	
 	

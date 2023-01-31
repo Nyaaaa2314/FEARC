@@ -1,4 +1,6 @@
 Lord
+Great Lord
+Paladin
 base
 Sword
 none
@@ -43,6 +45,8 @@ JID_神軍師
 
 
 Cavalier
+Paladin
+Great Knight
 base
 Lance
 Sword
@@ -54,6 +58,8 @@ JID_ソシアルナイト
 
 
 Knight
+Great Knight
+General
 base
 Lance
 none
@@ -98,6 +104,8 @@ JID_ジェネラル
 
 
 Barbarian
+Berserker
+Warrior
 base
 Axe
 none
@@ -108,6 +116,8 @@ JID_蛮族男
 
 
 Fighter
+Warrior
+Hero
 base
 Axe
 none
@@ -118,6 +128,8 @@ JID_戦士男
 
 
 Mercenary
+Hero
+Bow Knight
 base
 Sword
 none
@@ -129,6 +141,8 @@ JID_傭兵
 
 
 Archer
+Bow Knight
+Sniper
 base
 Bow
 none
@@ -193,6 +207,8 @@ JID_スナイパー
 
 
 Myrmidon
+Swordmaster
+Assassin
 base
 Sword
 none
@@ -204,6 +220,8 @@ JID_剣士
 
 
 Thief
+Assassin
+Trickster
 base
 Sword
 none
@@ -248,6 +266,8 @@ JID_トリックスター
 
 
 Pegasus Knight
+Falcon Knight
+Dark Flier
 base
 Lance
 none
@@ -278,6 +298,8 @@ JID_ダークペガサス女
 
 
 Wyvern Rider
+Wyvern Lord
+Griffon Rider
 base
 Axe
 none
@@ -311,6 +333,8 @@ JID_グリフォンナイト
 
 
 Troubadour
+War Monk / War Cleric
+Valkyrie
 base
 Staff
 none
@@ -321,6 +345,8 @@ JID_トルバドール女
 
 
 Priest/Cleric
+War Monk / War Cleric
+Sage
 base
 Staff
 none
@@ -332,6 +358,8 @@ none
 
 
 Mage
+Sage
+Dark Knight
 base
 Tome
 none
@@ -343,6 +371,8 @@ JID_魔道士
 
 
 Dark Mage
+Dark Knight
+Sorcerer
 base
 Tome
 none
@@ -407,7 +437,7 @@ JID_ソーサラー
 
 
 Dancer
-base
+promoted
 Sword
 none
 none
@@ -417,7 +447,7 @@ JID_踊り子女
 
 
 Manakete
-base
+promoted
 Dragonstone
 none
 none
@@ -427,7 +457,7 @@ JID_マムクート女
 
 
 Taguel
-base
+promoted
 Beaststone
 none
 none
