@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class Util<T> {
 	public static <T>int indexOf(T[] arr, T input) {
@@ -13,7 +15,20 @@ public class Util<T> {
 		
 	}
 	
-	
+	public static char[] manageInput(String s) {
+		StringBuilder str = new StringBuilder(s);
+		for(int i = 0; i < s.length(); i++) {
+			String c = "" + str.charAt(0);
+			str.deleteCharAt(0);
+			if(str.indexOf(c) == -1) {
+				str.append(c);
+			}
+		}
+		char[] ret = str.toString().toCharArray();
+		Arrays.sort(ret);
+		
+		return ret;
+	}
 	
 	
 	

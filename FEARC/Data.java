@@ -51,7 +51,7 @@ public class Data {
 					throw new NullPointerException("Error encountered with loading GameData from CoreData into Data");
 				}
 				for(int j = 0; j < temp.slines.size(); j++) {
-					temp.pointers[j] = Integer.parseInt(GameData.get(Integer.parseInt(temp.slines.get(j)) - 19).substring(6));
+					temp.pointers[j] = Integer.parseInt(GameData.get(Integer.parseInt(temp.slines.get(j)) - 18).substring(6));
 				}
 				
 			}
