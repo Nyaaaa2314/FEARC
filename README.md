@@ -12,6 +12,8 @@ Class Skills Randomization
 
 Class Growths Randomization
 
+Class Stat Caps Randomization
+
 ----------------------------
 
 
@@ -21,9 +23,9 @@ Characater Join Order Randomization
 
 Class Set Randomization
 
-Class Promotions Randomization=
+Class Promotions Randomization
 
-Class Stat Caps Randomization
+Chest drops
 
 0% Growths option
 
@@ -31,6 +33,6 @@ GUI
 
 
 ------------------------------
-Tentative Partial Rollout: Late Jan or Early Feb 2023
+Tentative Partial Rollout: Early or Mid Feb 2023
 
 Expected Full Release Date: April 2023
