@@ -377,16 +377,17 @@ public class CoreData {
 				int[][] pointers = {Util.searchPointers(c.promotions.get(0)), Util.searchPointers(c.promotions.get(0))};
 				for(int i = 0; i < pointers.length; i++) {
 					if(pointers[i].length == 1) {
-						GameData.set(Integer.parseInt(c.slines.get(0)) + (i * 2) + 7, "POINTER1: " + pointers[i][0]);
+						GameData.set(Integer.parseInt(c.slines.get(0)) + i + 7, "POINTER1: " + pointers[i][0]);
 						if(c.slines.size() > 1) {
-							GameData.set(Integer.parseInt(c.slines.get(1))+ (i * 2) + 7, "POINTER1: " + pointers[i][0]);
+							GameData.set(Integer.parseInt(c.slines.get(1))+ (i) + 7, "POINTER1: " + pointers[i][0]);
 						}
 					}
 					else {
-						GameData.set(Integer.parseInt(c.slines.get(0))+ (i * 2) + 7, "POINTER1: " + pointers[i][0]);
+						GameData.set(Integer.parseInt(c.slines.get(0))+ (i) + 7, "POINTER1: " + pointers[i][0]);
 						if(c.slines.size() > 1) {
-							GameData.set(Integer.parseInt(c.slines.get(1))+ (i * 2) + 7, "POINTER1: " + pointers[i][1]);
+							GameData.set(Integer.parseInt(c.slines.get(1))+ (i) + 7, "POINTER1: " + pointers[i][1]);
 						}
+						
 						
 					}
 				}
