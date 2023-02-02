@@ -16,6 +16,7 @@ public class Class {
 	public int[] growths;
 	public int[] caps;
 	public int[] pointers;
+	public boolean sp;
 	
 	
 	
@@ -24,6 +25,7 @@ public class Class {
 		this.name = name;
 		slines = new ArrayList<String>();
 		skills = new ArrayList<String>();
+		sp = false;
 	}
 	
 	public void setGender(int gender) {
@@ -57,7 +59,10 @@ public class Class {
 					" | Res: " + caps[7] + " ]\n");
 		}
 		if(skills.size() > 0) {
-			ret.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]");
+			ret.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]\n");
+		}
+		if(sp) {
+			ret.append("Promotions [ " + promotions.get(0) + " | " + promotions.get(1) + " ]");
 		}
 		
 		return ret.append("\n").toString();

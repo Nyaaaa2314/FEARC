@@ -15,6 +15,17 @@ public class Util<T> {
 		
 	}
 	
+	public static int[] searchPointers(String name){
+		for(Class c : Data.classes) {
+			if(c.name.equals(name)) {
+				return c.pointers;
+			}
+		}
+		
+		
+		return null;
+	}
+	
 	public static char[] manageInput(String s) {
 		StringBuilder str = new StringBuilder(s);
 		for(int i = 0; i < s.length(); i++) {

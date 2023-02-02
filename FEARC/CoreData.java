@@ -333,10 +333,10 @@ public class CoreData {
 				c.caps[6] = 20 + rng.nextInt(9);
 			}
 			String[] chex = new String[8];
-			for(int id : c.caps) {
-				chex[id] = Integer.toHexString(c.caps[id]);
-				if(chex[id].length() == 1) {
-					chex[id] = "0" + chex[id];
+			for(int j = 0; j < c.caps.length; j++) {
+				chex[j] = Integer.toHexString(c.caps[j]);
+				if(chex[j].length() == 1) {
+					chex[j] = "0" + chex[j];
 				}
 			}
 			GameData.set(Integer.parseInt(c.slines.get(0)) - 4, "0x" + chex[0] + chex[1] + chex[2] + chex[3]);
@@ -367,12 +367,31 @@ public class CoreData {
 		int index = 0;
 		for(Class c : Data.classes) {
 			if(c.promotions != null) {
+				c.sp = true;
 				c.promotions = new ArrayList<String>();
 				c.promotions.add(all.get(index++));
 				c.promotions.add(all.get(index++));
+				
+				//int[] ptr1 = Util.searchPointers(c.promotions.get(0));
+				//int[] ptr2 = Util.searchPointers(c.promotions.get(1));
+				int[][] pointers = {Util.searchPointers(c.promotions.get(0)), Util.searchPointers(c.promotions.get(0))};
+				for(int i = 0; i < pointers.length; i++) {
+					if(pointers[i].length == 1) {
+						GameData.set(Integer.parseInt(c.slines.get(0)) + (i * 2) + 7, "POINTER1: " + pointers[i][0]);
+						if(c.slines.size() > 1) {
+							GameData.set(Integer.parseInt(c.slines.get(1))+ (i * 2) + 7, "POINTER1: " + pointers[i][0]);
+						}
+					}
+					else {
+						GameData.set(Integer.parseInt(c.slines.get(0))+ (i * 2) + 7, "POINTER1: " + pointers[i][0]);
+						if(c.slines.size() > 1) {
+							GameData.set(Integer.parseInt(c.slines.get(1))+ (i * 2) + 7, "POINTER1: " + pointers[i][1]);
+						}
+						
+					}
+				}
 			}
 		}
-		
 		
 		
 		
