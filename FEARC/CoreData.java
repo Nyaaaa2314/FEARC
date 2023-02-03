@@ -374,7 +374,7 @@ public class CoreData {
 				
 				//int[] ptr1 = Util.searchPointers(c.promotions.get(0));
 				//int[] ptr2 = Util.searchPointers(c.promotions.get(1));
-				int[][] pointers = {Util.searchPointers(c.promotions.get(0)), Util.searchPointers(c.promotions.get(0))};
+				int[][] pointers = {Util.searchPointers(c.promotions.get(0)), Util.searchPointers(c.promotions.get(1))};
 				for(int i = 0; i < pointers.length; i++) {
 					if(pointers[i].length == 1) {
 						GameData.set(Integer.parseInt(c.slines.get(0)) + i + 7, "POINTER1: " + pointers[i][0]);
