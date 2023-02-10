@@ -346,6 +346,24 @@ public class CoreData {
 	
 	
 	public static void runPairUps() {
+		for(Class c : Data.classes) {
+			Random rng = new Random();
+			int[] indices = new int[4];
+			c.pairups = new int[8];
+			indices[0] = rng.nextInt(1,8);
+			indices[1] = rng.nextInt(1,8);
+			indices[2] = rng.nextInt(1,8);
+			indices[3] = rng.nextInt(0,100) < 5 ? 0 : rng.nextInt(1,8);
+			for(int i : indices) {
+				if(i == 0) {
+					c.pairups[i] = 1;
+				}
+				else {
+					c.pairups[i] = rng.nextInt(1, c.promoted ? 6 : 4);
+				}
+			}
+			
+		}
 		
 		
 		
@@ -362,8 +380,9 @@ public class CoreData {
 				all.addAll(c.promotions);
 			}
 		}
-		all = Util.ensureShuffle(all);
-		
+		//all = Util.ensureShuffle(all);
+		//all = Util.shufflePromotes(all);
+		Util.shufflePromotes(all);
 		int index = 0;
 		for(Class c : Data.classes) {
 			if(c.promotions != null) {

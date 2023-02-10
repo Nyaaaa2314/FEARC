@@ -16,7 +16,9 @@ public class Class {
 	public int[] growths;
 	public int[] caps;
 	public int[] pointers;
-	public boolean sp;
+	public int[] pairups;
+	public boolean sp; // == if promotions were modified
+	public int pa; // # of possible answers for shuffling promotes
 	
 	
 	
@@ -57,6 +59,12 @@ public class Class {
 					" | Mag: " + caps[2] + " | Skl: " + caps[3] + " | Spd: " + 
 					caps[4] + " | Lck: " + caps[5] + " | Def: " + caps[6] +
 					" | Res: " + caps[7] + " ]\n");
+		}
+		if(pairups != null) {
+			ret.append("Pair Up Bonuses [ Mov: " + pairups[0] + " | Str: " + pairups[1] +
+					" | Mag: " + pairups[2] + " | Skl: " + pairups[3] + " | Spd: " + 
+					pairups[4] + " | Lck: " + pairups[5] + " | Def: " + pairups[6] +
+					" | Res: " + pairups[7] + " ]\n");
 		}
 		if(skills.size() > 0) {
 			ret.append("Skills [ " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(0))] + " | " + Data.skillNames[Util.indexOf(Data.Skills, skills.get(1))] + " ]\n");

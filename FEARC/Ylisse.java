@@ -32,12 +32,13 @@ public class Ylisse {
 		System.out.println("|\tOption d: Class Growths     \t|");
 		System.out.println("|\tOption e: Class Stat Caps   \t|");
 		System.out.println("|\tOption f: Class Promotions  \t|");
+		System.out.println("|\tOption g: Pair Up Bonsues   \t|");
 		System.out.println("-----------------------------------------");
 		System.out.println("Enter here: ");
 		//System.out.println("\tOption a: Stat Cap Modifiers | ");
 		String s;
 		if(debug) {
-			s = "abcdef";
+			s = "abcdefg";
 			
 		}
 		else{
@@ -71,11 +72,18 @@ public class Ylisse {
 					CS = true;
 					CoreData.runShufflePromotes();
 					break;
+				case 'g':
+					CS = true;
+					CoreData.runPairUps();
+					break;
 				default:
 					System.out.println(c + " is an illegal character. Ignoring.");
 			
 			}
-		}		
+		}	
+		if(debug) {
+			return;
+		}
 		//logging
 		ArrayList<String> log = new ArrayList<String>();
 		if(CR) {
