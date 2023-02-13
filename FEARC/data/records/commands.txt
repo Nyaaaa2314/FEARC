@@ -1,0 +1,16 @@
+#	Command file for the exec function for CJOR 
+#	comments must be on their own line are denoted by a # at the beginning of the line
+#
+#	list of commands:
+#
+#
+#	load [filename] | loads the respective file into the method
+#	save [filename] | saves the current open file
+#	replace [String a] [String b] [int c] | replaces a with b on line c
+#	breplace [String a] [String b] | replaces all occurences of a with b
+#	append [int a] [String b] | appends String b to the file at line a
+#
+#
+#
+
+load 

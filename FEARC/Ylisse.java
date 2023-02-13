@@ -16,8 +16,9 @@ public class Ylisse {
 		f.setupDir();
 		if(debug) {
 			Data.initCJR();
+			//System.out.println(Data.units.size)
 			for(Unit u : Data.units) {
-				u.basicToString();
+				System.out.println(u.basicToString());
 			}
 			return;
 		}
@@ -87,8 +88,7 @@ public class Ylisse {
 					CoreData.runPairUps();
 					break;
 				case 'h':
-					CR = true;
-					CS = true;
+					CR = CS = true;
 					//run character join order kek
 					break;
 				default:

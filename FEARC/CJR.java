@@ -10,7 +10,11 @@ public class CJR {
 		f = FileSys.getInstance();
 		Data.ensureInstance();
 		ArrayList<String> cmds = f.readFile("/data/records/commands.txt");
+		Data.initCJR();
 		for(String s : cmds) {
+			if(s.startsWith("#")) {
+				continue;
+			}
 			exec(s);
 		}
 		
@@ -30,6 +34,9 @@ public class CJR {
 				
 				break;
 			case "breplace": //bulk replace
+				
+				break;
+			case "append":
 				
 				break;
 			case "save":

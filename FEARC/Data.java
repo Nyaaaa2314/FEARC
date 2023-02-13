@@ -12,6 +12,7 @@ public class Data {
 	public final static String[] skillNames = {"HP +5", "Strength +2", "Magic +2", "Skill +2", "Speed +2", "Defense +2", "Resistance +2", "Hit Rate +20", "Avoid +10", "Movement +1", "Locktouch", "Veteran", "Aptitude", "Discipline", "Armsthrift", "Dual Support+", "Dual Strike+", "Dual Guard+", "Rightful King", "Odd Rhythm", "Even Rhythm", "Quick Burn", "Slow Burn", "Lucky Seven", "Gamble", "Outdoor Fighter", "Indoor Fighter", "Tantivy", "Focus", "Zeal", "Wrath", "Prescience", "Patience", "Underdog", "Charm", "Solidarity", "Demoiselle", "Hex", "Anathema", "Healtouch", "Relief", "Renewal", "Deliverer", "Defender", "Acrobat", "Pass", "Swordfaire", "Lancefaire", "Axefaire", "Bowfaire", "Tomefaire", "Luck +4", "Special Dance", "Rally Strength", "Rally Magic", "Rally Skill", "Rally Speed", "Rally Luck", "Rally Defense", "Rally Resistance", "Rally Movement", "Rally Spectrum", "Swordbreaker", "Lancebreaker", "Axebreaker", "Bowbreaker", "Tomebreaker", "Wyrmsbane", "Beastbane", "Lethality", "Aether", "Astra", "Sol", "Luna", "Ignis", "Vengeance", "Vantage", "Pavise", "Aegis", "Counter", "Miracle", "Despoil", "Galeforce", "Lifetaker", "Conquest", "Shadowgift","All Stats +2","Iote's Shield","Resistance +10","Aggressor","Rally Heart","Bond"};
 	public final static String[] sClasses = {"Villager", "Dancer", "Taguel", "Manakete", "Lodestar", "Dread Fighter", "Bride", "Conqueror"};
 	public final static String[] fliers = {"Dark Flier", "Pegasus Knight", "Falcon Knight", "Wyvern Knight", "Wyvern Lord", "Griffon Rider"};
+	public final static String[] gen2 = {"Lucina","Owain", "Inigo", "Severa", "Brady", "Kjelle", "Noire","F!Morgan","M!Morgan", "Gerome", "Cynthia", "Yarne", "Laurent", "Nah"};
 	public static ArrayList<ArrayList<String>> classSets;
 	public static ArrayList<Unit> rUnits;
 //	public final static char m;
@@ -87,9 +88,10 @@ public class Data {
 			classSets.add(temp);
 		}
 		
-		ArrayList<Unit> temp = (ArrayList<Unit>) units.subList(2, units.size());
-		Collections.shuffle(temp);
-		ArrayList<Unit> temp2 = (ArrayList<Unit>) units.subList(0,2);
+		ArrayList<Unit> temp = new ArrayList<Unit>(units.subList(2, units.size()));
+		
+		temp = Util.shuffleGens(temp);
+		ArrayList<Unit> temp2 = new ArrayList<Unit>(units.subList(0,2));
 		units = new ArrayList<Unit>();
 		units.addAll(temp2);
 		units.addAll(temp);
@@ -98,9 +100,11 @@ public class Data {
 			if(u.isRobin) {
 				continue;
 			}
+			u.cjr = true;
 			u.replacementChar = CharacterNames[i];
 			u.classset = classSets.get(i++);
 		}
+		rUnits = new ArrayList<Unit>(units.subList(2, units.size()));
 	}
 	
 	

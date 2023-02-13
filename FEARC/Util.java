@@ -24,6 +24,19 @@ public class Util<T> {
 		}
 		return null;
 	}
+	public static int indexOfChar(String name) {
+		int i = 0;
+		for(Class c : Data.classes) {
+			if(c.name.equals(name)) {
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}
+	
+	
+	
 	public static <T>boolean contains(T[] arr, T input){
 		for(T t : arr) {
 			if(t.equals(input)) {
@@ -102,6 +115,40 @@ public class Util<T> {
 	
 	
 	
+	
+	public static ArrayList<Unit> shuffleGens(ArrayList<Unit> shuffle){
+		Stack<Unit> gen1 = new Stack<Unit>();
+		Stack<Unit> gen2 = new Stack<Unit>();
+		for(Unit u : Data.units) {
+			if(u.isRobin) {
+				continue;
+			}
+			if(!contains(Data.gen2, u.name)) {
+				gen1.push(u);
+			}
+			else {
+				gen2.push(u);
+			}
+		}
+		Collections.shuffle(gen2);
+		Collections.shuffle(gen1);
+		shuffle = new ArrayList<Unit>();
+		
+		for(Unit u : Data.units) {
+			if(u.isRobin) {
+				continue;
+			}
+			if(!contains(Data.gen2, u.name)) {
+				shuffle.add(gen1.pop());
+			}
+			else {
+				shuffle.add(gen2.pop());
+			}
+		}
+		
+		
+		return shuffle;
+	}
 	
 	
 	public static <T>ArrayList<T> ensureShuffle(ArrayList<T> all){
