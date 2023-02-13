@@ -22,12 +22,16 @@ public class Util<T> {
 				return c.pointers;
 			}
 		}
-
-		
-		
 		return null;
 	}
-	
+	public static <T>boolean contains(T[] arr, T input){
+		for(T t : arr) {
+			if(t.equals(input)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public static char[] manageInput(String s) {
 		StringBuilder str = new StringBuilder(s);
 		for(int i = 0; i < s.length(); i++) {
@@ -45,7 +49,7 @@ public class Util<T> {
 	
 	public static void shufflePromotes(ArrayList<String> all) {
 		
-		Stack<String> A = new Stack<String>();
+		//Stack<String> A = new Stack<String>();
 		//double start = System.currentTimeMillis();
 		ArrayList<ArrayList<String>> shuffle = new ArrayList<ArrayList<String>>();
 		//int runs = 0;
@@ -59,6 +63,16 @@ public class Util<T> {
 				shuffle.add(temp);
 			}
 			//runs++;
+		}
+		int i = 0;
+		for(Class c : Data.classes) {
+			if(c.promotions == null) {
+				continue;
+			}
+			else {
+				c.sp = true;
+				c.promotions = shuffle.get(i++);
+			}
 		}
 		//double end = System.currentTimeMillis();
 		//System.out.println("Took " + (end - start) / 1000 + " seconds and took " + runs + " permutations");

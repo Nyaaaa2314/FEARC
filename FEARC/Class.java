@@ -28,6 +28,7 @@ public class Class {
 		slines = new ArrayList<String>();
 		skills = new ArrayList<String>();
 		sp = false;
+		flier = Util.contains(Data.fliers, name);
 	}
 	
 	public void setGender(int gender) {

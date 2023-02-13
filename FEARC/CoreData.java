@@ -105,7 +105,7 @@ public class CoreData {
 				continue;
 			}
 			//int lindex = i < 2 ? i : i - 1;
-			Data.log.get(i < 2 ? i : i - 1).growths = GrowthValues[i];
+			Data.units.get(i < 2 ? i : i - 1).growths = GrowthValues[i];
 			Static.set(k + (143 * i), "0x" + Growths[i][0] + Growths[i][1] + Growths[i][2] + Growths[i][3]);
 			Static.set(k + (143 * i) + 1, "0x" + Growths[i][4] + Growths[i][5] + Growths[i][6] + Growths[i][7]);
 		}
@@ -187,7 +187,7 @@ public class CoreData {
 					break;
 				}
 			}
-			Data.log.get(i < 2 ? i : i - 1).caps = caps;
+			Data.units.get(i < 2 ? i : i - 1).caps = caps;
 		}
 		for(int i = 0, k = 16; i < 52; i++) {
 			if(i == 2) {
@@ -341,6 +341,11 @@ public class CoreData {
 			}
 			GameData.set(Integer.parseInt(c.slines.get(0)) - 4, "0x" + chex[0] + chex[1] + chex[2] + chex[3]);
 			GameData.set(Integer.parseInt(c.slines.get(0)) - 3, "0x" + chex[4] + chex[5] + chex[6] + chex[7]);
+			if(c.slines.size() > 1) {
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 4, "0x" + chex[0] + chex[1] + chex[2] + chex[3]);
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 3, "0x" + chex[4] + chex[5] + chex[6] + chex[7]);
+			}
+			
 		}
 	}
 	
@@ -362,9 +367,15 @@ public class CoreData {
 					c.pairups[i] = rng.nextInt(1, c.promoted ? 6 : 4);
 				}
 			}
-			
 		}
-		
+		for(Class c : Data.classes) {
+			GameData.set(Integer.parseInt(c.slines.get(0)) - 2, "0x" + "0" + c.pairups[0] + "0"  + c.pairups[1]+ "0" + c.pairups[2]+ "0" + c.pairups[3]);
+			GameData.set(Integer.parseInt(c.slines.get(0)) - 1, "0x" + "0"+  c.pairups[4]+ "0" + c.pairups[5]+ "0" + c.pairups[6]+ "0" + c.pairups[7]);
+			if(c.slines.size() > 1) {
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 2, "0x"+  "0" + c.pairups[0]+ "0" + c.pairups[1]+ "0" + c.pairups[2]+ "0" + c.pairups[3]);
+				GameData.set(Integer.parseInt(c.slines.get(1)) - 1, "0x" + "0" + c.pairups[4]+ "0" + c.pairups[5]+ "0" + c.pairups[6]+ "0" + c.pairups[7]);
+			}
+		}
 		
 		
 	}

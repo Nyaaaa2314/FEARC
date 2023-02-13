@@ -14,6 +14,13 @@ public class Ylisse {
 		FileSys f = FileSys.getInstance();
 		Data.ensureInstance();
 		f.setupDir();
+		if(debug) {
+			Data.initCJR();
+			for(Unit u : Data.units) {
+				u.basicToString();
+			}
+			return;
+		}
 		//CoreData.ensureInitialization();
 		Scanner in = new Scanner(System.in);
 		/* New UI system
@@ -33,6 +40,9 @@ public class Ylisse {
 		System.out.println("|\tOption e: Class Stat Caps   \t|");
 		System.out.println("|\tOption f: Class Promotions  \t|");
 		System.out.println("|\tOption g: Pair Up Bonsues   \t|");
+		System.out.println("|\tOption h: Join Order &      \t|");
+		System.out.println("|\t	  Class sets      \t|"); //looks weird here but when printed is formatted properly
+		
 		System.out.println("-----------------------------------------");
 		System.out.println("Enter here: ");
 		//System.out.println("\tOption a: Stat Cap Modifiers | ");
@@ -76,19 +86,21 @@ public class Ylisse {
 					CS = true;
 					CoreData.runPairUps();
 					break;
+				case 'h':
+					CR = true;
+					CS = true;
+					//run character join order kek
+					break;
 				default:
 					System.out.println(c + " is an illegal character. Ignoring.");
 			
 			}
 		}	
-		if(debug) {
-			return;
-		}
 		//logging
 		ArrayList<String> log = new ArrayList<String>();
 		if(CR) {
 			log.add(" ---Characters--- ");
-			for(LogEntry l : Data.log) {
+			for(Unit l : Data.units) {
 				log.add(l.toString());
 			}
 			if(CS) {

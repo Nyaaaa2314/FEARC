@@ -34,15 +34,21 @@ public class FileSys {
 	
 	//Generic method to read any of the various text files into a list of Strings
 	public ArrayList<String> readFile(String path) throws IOException {
-		buf = new BufferedReader(new FileReader(ensureFormat(userdir + path)));
-		ArrayList<String> ret = new ArrayList<String>();
+		try {
+			buf = new BufferedReader(new FileReader(ensureFormat(userdir + path)));
+			ArrayList<String> ret = new ArrayList<String>();
+			
+			String line = buf.readLine();
+		    while (line != null) {
+		      ret.add(line);
+		      line = buf.readLine();
+		    }
+			return ret;
+		}
+		catch (Exception e) {
+			throw new IOException("Error encountered trying to load " + userdir + path + " please ensure that file is in correct location.");
+		}
 		
-		String line = buf.readLine();
-	    while (line != null) {
-	      ret.add(line);
-	      line = buf.readLine();
-	    }
-		return ret;
 	}
 	
 	public void writeFile(String path, ArrayList<String> content) throws IOException {

@@ -1,19 +1,37 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class LogEntry {
+public class Unit {
 	
 	public String name;
 	public int[] growths;
 	public int[] caps;
+	public ArrayList<String> classset;
+	public String replacementChar;
+	public boolean cjr;
+	public boolean isRobin;
 	
-	
-	
-	public LogEntry (String name) {
+	public Unit (String name) {
 		this.name = name;
+		isRobin = false;
+	}
+	public Unit (String name, boolean isRobin) {
+		this.name = name;
+		this.isRobin = isRobin;
+	}
+	
+	public String basicToString() {
+		return "Unit [name=" + name + ", growths=" + Arrays.toString(growths) + ", caps=" + Arrays.toString(caps)
+				+ ", classset=" + classset + ", replacementChar=" + replacementChar + ", cjr=" + cjr + ", isRobin="
+				+ isRobin + "]";
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder ret = new StringBuilder(name + "\n");
+		if(cjr) {
+			//TODO: add code for logging stuff
+		}
 		if(growths != null) {
 			ret.append("Growths [ HP: " + growths[0] + " | Str: " + growths[1] +
 					" | Mag: " + growths[2] + " | SKl: " + growths[3] + " | Spd: " + 
