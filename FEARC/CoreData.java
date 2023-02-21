@@ -330,7 +330,7 @@ public class CoreData {
 				c.caps[4] = 23 + rng.nextInt(6);
 				c.caps[5] = 30;
 				c.caps[6] = 20 + rng.nextInt(11);
-				c.caps[6] = 20 + rng.nextInt(9);
+				c.caps[7] = 20 + rng.nextInt(9);
 			}
 			String[] chex = new String[8];
 			for(int j = 0; j < c.caps.length; j++) {
@@ -440,7 +440,7 @@ public class CoreData {
 		}
 		return LOOKUP_TABLE.get(index);
 	}
-	
+
 	
 	
 	

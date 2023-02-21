@@ -25,15 +25,32 @@ public class CJR {
 	public static void exec(String s) throws IOException {
 		in = new Scanner(s);
 		String cmd = in.next();
-		
+		String a;
+		String b;
+		int c;
 		switch(cmd) {
 			case "load":
 				cf = f.readFile("/data/" + in.next());
 				break;
 			case "replace":
+				a = in.next();
+				b = in.next();
+				c = in.nextInt();
+				in.nextLine();
 				
+				String d = cf.get(c - 1);
+				d.replace(a, b);
+				cf.set(c - 1, d);
 				break;
 			case "breplace": //bulk replace
+				a = in.next();
+				b = in.next();
+				c = 0;
+				for(String line : cf) {
+					cf.set(c++, line.replace(a,b));
+				}
+				break;
+			case "creplace": //character replace
 				
 				break;
 			case "append":

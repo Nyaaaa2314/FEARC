@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Data {
@@ -15,6 +16,7 @@ public class Data {
 	public final static String[] gen2 = {"Lucina","Owain", "Inigo", "Severa", "Brady", "Kjelle", "Noire","F!Morgan","M!Morgan", "Gerome", "Cynthia", "Yarne", "Laurent", "Nah"};
 	public static ArrayList<ArrayList<String>> classSets;
 	public static ArrayList<Unit> rUnits;
+	public static HashMap<String, ArrayList<String>> bpPromote;
 //	public final static char m;
 //	public final static char f;
 	private Data() throws IOException {
@@ -105,6 +107,7 @@ public class Data {
 			u.classset = classSets.get(i++);
 		}
 		rUnits = new ArrayList<Unit>(units.subList(2, units.size()));
+		
 	}
 	
 	

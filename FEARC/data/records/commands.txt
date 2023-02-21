@@ -9,8 +9,9 @@
 #	replace [String a] [String b] [int c] | replaces a with b on line c
 #	breplace [String a] [String b] | replaces all occurences of a with b
 #	append [int a] [String b] | appends String b to the file at line a
-#
+#	creplace 
 #
 #
 
-load 
+load \dispos\001.txt
+
