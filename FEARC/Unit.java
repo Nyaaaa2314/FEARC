@@ -6,6 +6,7 @@ public class Unit {
 	public String name;
 	public int[] growths;
 	public int[] caps;
+	public String CID;
 	public ArrayList<String> classset;
 	public String replacementChar;
 	public boolean cjr;
@@ -13,6 +14,11 @@ public class Unit {
 	
 	public Unit (String name) {
 		this.name = name;
+		isRobin = false;
+	}
+	public Unit(String name, String CID) {
+		this.name = name;
+		this.CID = CID;
 		isRobin = false;
 	}
 	public Unit (String name, boolean isRobin) {
@@ -30,6 +36,9 @@ public class Unit {
 	public String toString() {
 		StringBuilder ret = new StringBuilder(name + "\n");
 		if(cjr) {
+			ret.append("Original Character: " + replacementChar + "\n");
+			ret.append("CID: " + CID + "\n");
+			ret.append("Class set [ " + classset.get(0) + " " + classset.get(1) + " " + classset.get(2) + " ]");
 			//TODO: add code for logging stuff
 		}
 		if(growths != null) {
@@ -44,6 +53,7 @@ public class Unit {
 					caps[3] + " | Lck: " + caps[4] + " | Def: " + caps[5] +
 					" | Res: " + caps[6] + " ]\n");
 		}
+		
 		return ret.append("\n").toString();
 		
 		

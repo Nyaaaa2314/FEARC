@@ -14,19 +14,36 @@ public class Data {
 	public final static String[] sClasses = {"Villager", "Dancer", "Taguel", "Manakete", "Lodestar", "Dread Fighter", "Bride", "Conqueror"};
 	public final static String[] fliers = {"Dark Flier", "Pegasus Knight", "Falcon Knight", "Wyvern Knight", "Wyvern Lord", "Griffon Rider"};
 	public final static String[] gen2 = {"Lucina","Owain", "Inigo", "Severa", "Brady", "Kjelle", "Noire","F!Morgan","M!Morgan", "Gerome", "Cynthia", "Yarne", "Laurent", "Nah"};
+	public final static String[] CID = { "PID_クロム", "PID_リズ", "PID_フレデリク", "PID_ヴィオール", "PID_ソワレ", "PID_ヴェイク", "PID_ソール", "PID_ミリエル", "PID_カラム", "PID_スミア", "PID_ロンクー", "PID_リヒト", "PID_マリアベル", "PID_ベルベット", "PID_ガイア", "PID_ティアモ", "PID_グレゴ", "PID_ノノ", "PID_リベラ", "PID_サーリャ", "PID_オリヴィエ", "PID_セルジュ", "PID_ヘンリー", "PID_マルス", "PID_サイリ", "PID_バジーリオ", "PID_フラヴィア", "PID_ドニ", "PID_アンナ", "PID_ウード", "PID_アズール", "PID_ブレディ", "PID_デジェル", "PID_シンシア", "PID_セレナ", "PID_ジェローム", "PID_マーク男", "PID_マーク女", "PID_シャンブレー", "PID_ロラン", "PID_ノワール", "PID_ンン", "PID_チキ", "PID_ギャンレル", "PID_ヴァルハルト", "PID_エメリナ", "PID_レンハ", "PID_インバース", "PID_パリス"};
+	
+	
 	public static ArrayList<ArrayList<String>> classSets;
 	public static ArrayList<Unit> rUnits;
 	public static HashMap<String, ArrayList<String>> bpPromote;
+	
+	public final static String[] swords = {"IID_青銅の剣", "IID_鉄の剣", "IID_鋼の剣", "IID_銀の剣", "IID_勇者の剣", "IID_キルソード", "IID_アーマーキラー", "IID_アーマーキラー", "IID_サンダーソード", "IID_太陽", "IID_ラグネル", "IID_メリクル" };
+    public final static String[] lances = { "IID_青銅の槍", "IID_鉄の槍", "IID_鋼の槍", "IID_銀の槍", "IID_勇者の槍", "IID_キラーランス","NA", "IID_ビーストキラー","IID_しびれる槍", "IID_グラディウス", "IID_グングニル", "IID_ゲイボルグ" };
+    public final static String[] axe = { "IID_青銅の斧", "IID_鉄の斧", "IID_鋼の斧", "IID_銀の斧", "IID_勇者の斧", "IID_キラーアクス", "IID_ハンマー","NA", "IID_ボルトアクス", "IID_オートクレール", "IID_スワンチカ", "IID_アルマーズ"};
+    public final static String[] bows = { "IID_青銅の弓", "IID_鉄の弓", "IID_鋼の弓", "IID_銀の弓", "IID_勇者の弓", "IID_キラーボウ","NA","NA","NA", "IID_流星", "IID_パルティア", "IID_イチイバル"};
+    public final static String[][] magic = { { "IID_ファイアー", "IID_ウインド", "IID_サンダー", "IID_ミィル" },{ "IID_エルファイアー", "IID_エルサンダー", "IID_エルウインド", "IID_リザイア" },{ "IID_ギガファイアー", "IID_ギガサンダー", "IID_ギガウインド", "IID_ルイン" },{ "IID_ボルガノン", "IID_トロン", "IID_レクスカリバー", "IID_ゲーティア" },/*skip to ledendary*/ { "IID_トールハンマー", "IID_フォルセティ", "IID_ファラフレイム", "IID_インバースの暗闇" } };
+    public final static String[] staves = { "IID_ライブ", "IID_リライブ", "IID_リブロー", "IID_リカバー", "IID_リザーブ",/*skip to legendary again, omly 1*/ "IID_女神の杖" };
+    public final static String[][] stones = { { "IID_獣石", "IID_竜石" }, { "IID_超獣石", "IID_真竜石" } };
+	
+	
+	
+	
+	
 //	public final static char m;
 //	public final static char f;
 	private Data() throws IOException {
 		units = new ArrayList<Unit>();
 		units.add(new Unit("M!Robin", true));
 		units.add(new Unit("F!Robin", true));
+		int t = 0;
 		for(String s : CharacterNames) {
-			units.add(new Unit(s));
+			Unit temp = new Unit(s, CID[t++]);
+			units.add(temp);
 		}
-		
 		
 		//Class parsing from classes.txt
 		classes = new ArrayList<Class>();
@@ -120,6 +137,167 @@ public class Data {
 		ensureInstance();
 		return d;
 	}
+	
+	
+	
+	
+	/*
+    The way im gonna do this method is that im going to have arrays of the iids of every major weapon type
+    each array will be ordered by the "tier" they are (not all of them are precisely ordered), that way 
+    characters will both get a weapon that they can use that's also fitting for whatever chapter they are on, 
+    the tiers are:
+    0 - bronze
+    1 - iron
+    2 - steel
+    3 - silver
+    4 - brave
+    5 - killer (if applicable)
+    6-7 - special (armor eff, dragon eff; if applicable)
+    8 - magic-physical (levin, shockstick, etc,; if applicable)
+    9-11 - legendary (ragnell, amatsu, etc)
+
+    *non-dark magic has multiple items per tier, for example, tier 0 for magic has fire, wind, and thunder as possible options
+    */
+	
+	public static String weaponSwap(String type, int tier, int btier, boolean canusedarkmagic)
+    {
+        switch (type)
+        {
+            case "Sword":
+                if(tier >= 9)
+                {
+                    Random rnd = new Random();
+                    return swords[9 + rnd.nextInt(3)];
+                }
+                else
+                {
+                   return swords[tier];
+                }
+            case "Lance":
+                if (tier >= 9)
+                {
+                    Random rnd = new Random();
+                    return lances[9 + rnd.nextInt(3)];
+                }
+                if (tier == 6)
+                {
+                    return lances[btier];
+                }
+                else
+                {
+                    return lances[tier];
+                }
+            case "Axe":
+                if (tier >= 9)
+                {
+                    Random rnd = new Random();
+                    return axe[9 + rnd.nextInt(3)];
+                }
+                if (tier == 7)
+                {
+                    return axe[btier];
+                }
+                else
+                {
+                    return axe[tier];
+                }
+            case "Bow":
+                if (tier >= 9)
+                {
+                    Random rnd = new Random();
+                    return bows[9 + rnd.nextInt(3)];
+                }
+                if (tier < 9 && tier > 5)
+                {
+                    return bows[btier];
+                }
+                else
+                {
+                    return bows[tier];
+                }
+            case "Tome":
+                if (btier > 3)
+                {
+                    btier = 3;
+                }
+                if (canusedarkmagic)
+                {
+                    if(tier < 4)
+                    {
+                        return magic[tier][3];
+                    }
+                    else if(tier >= 9)
+                    {
+                        Random rnd = new Random();
+                        return magic[4][3];
+                    }
+                    else
+                    {
+                        return magic[btier][3];
+                    }
+                }
+                else
+                {
+                    Random rnd = new Random();
+                    if (tier < 4)
+                    {
+                        return magic[tier][rnd.nextInt(3)];
+                    }
+                    else if (tier >= 9)
+                    {
+                        
+                        return magic[4][rnd.nextInt(3)];
+                    }
+                    else
+                    {
+                        return magic[btier][rnd.nextInt(3)];
+                    }
+                }
+            case "Staff":
+                if (tier < 5)
+                {
+                    return staves[tier];
+                }
+                else if(tier >= 9)
+                {
+                    return staves[5];
+                }
+                else
+                {
+                    return staves[btier];
+                }
+            case "Dragonstone":
+                if(tier >= 9 || btier == 4)
+                {
+                    return stones[1][0];
+                }
+                else
+                {
+                    return stones[0][1];
+                }
+            case "Beaststone":
+                if (tier >= 9 || btier == 4)
+                {
+                    return stones[1][0];
+                }
+                else
+                {
+                    return stones[0][0];
+                }
+            case "none":
+                return "None";
+
+        }
+        
+        return type;
+    }
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

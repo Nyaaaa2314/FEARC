@@ -73,7 +73,7 @@ JID_アーマーナイト
 Paladin
 promoted
 Sword
-Sword
+Lance
 none
 JID_パラディン
 0

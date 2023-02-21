@@ -19,6 +19,7 @@ public class Class {
 	public int[] pairups;
 	public boolean sp; // == if promotions were modified
 	public int pa; // # of possible answers for shuffling promotes
+	boolean dark; //if it can use dark magic or not
 	
 	
 	
@@ -29,6 +30,7 @@ public class Class {
 		skills = new ArrayList<String>();
 		sp = false;
 		flier = Util.contains(Data.fliers, name);
+		dark = name.equals("Dark Mage") || name.equals("Sorcerer");
 	}
 	
 	public void setGender(int gender) {

@@ -6,12 +6,38 @@
 #
 #	load [filename] | loads the respective file into the method
 #	save [filename] | saves the current open file
-#	replace [String a] [String b] [int c] | replaces a with b on line c
+#	replace [String a] [String b] [int c] | replaces substring a with substring b on line c
 #	breplace [String a] [String b] | replaces all occurences of a with b
 #	append [int a] [String b] | appends String b to the file at line a
+#	lreplace [int a] [String b] | replaces whatever line is at a with b
 #	creplace 
 #
 #
+#	special parameters for various commands
+#
+#	format for a DATA_ACCESS
+#	CHARACTER_ACCESS [Character] [Field]
+#
+#	Runs the weapon swap algorithm for the weapon IID at the given line
+#	WEAPON_SWAP tier btier name promoted W| promoted = T | F, W = [1,2,3]
+#
+#	Runs the falchion swap algorithm for falchion at the given line
+#	FALCHION_SWAP name type | type =[1,2,3] (base, parallel, exalted)
+#
+#
+#
+#
+load /dispos/P002.txt
 
-load \dispos\001.txt
+#replacing their CIDs first
 
+lreplace 17 CHARACTER_ACCESS Chrom CID
+lreplace 75 CHARACTER_ACCESS Lissa CID
+lreplace 104 CHARACTER_ACCESS Frederick CID
+
+#replacing items
+lreplace 26 WEAPON_SWAP 6 1 Chrom F 1
+
+
+
+save /romfs/data/dispos/P002.txt

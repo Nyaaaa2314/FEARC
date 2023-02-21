@@ -15,6 +15,27 @@ public class Util<T> {
 		return -1;
 		
 	}
+	public static Unit search(String name) {
+		Unit temp = null;
+		for(Unit u : Data.rUnits) {
+			if(u.replacementChar.equals(name)) {
+				temp = u;
+				break;
+			}
+		}
+		return temp;
+	}
+	
+	public static Class cSearch(String name) {
+		Class temp = null;
+		for(Class c : Data.classes) {
+			if(c.name.equals(name)) {
+				temp = c;
+				break;
+			}
+		}
+		return temp;
+	}
 	
 	public static int[] searchPointers(String name) {
 		for(Class c : Data.classes) {
@@ -165,4 +186,20 @@ public class Util<T> {
 		}
 		return all;
 	}
+	
+	
+	
+	
+
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
 }

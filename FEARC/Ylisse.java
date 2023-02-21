@@ -14,14 +14,6 @@ public class Ylisse {
 		FileSys f = FileSys.getInstance();
 		Data.ensureInstance();
 		f.setupDir();
-		if(debug) {
-			Data.initCJR();
-			//System.out.println(Data.units.size)
-			for(Unit u : Data.units) {
-				System.out.println(u.basicToString());
-			}
-			return;
-		}
 		//CoreData.ensureInitialization();
 		Scanner in = new Scanner(System.in);
 		/* New UI system
@@ -49,7 +41,7 @@ public class Ylisse {
 		//System.out.println("\tOption a: Stat Cap Modifiers | ");
 		String s;
 		if(debug) {
-			s = "abcdefg";
+			s = "h";
 			
 		}
 		else{
@@ -89,7 +81,8 @@ public class Ylisse {
 					break;
 				case 'h':
 					CR = CS = true;
-					//run character join order kek
+					CoreData.ensureInitialization();
+					CJR.runCJO();
 					break;
 				default:
 					System.out.println(c + " is an illegal character. Ignoring.");
