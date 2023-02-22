@@ -80,7 +80,28 @@ public class Util<T> {
 		
 		return ret;
 	}
-	
+	public static String wepToHex(String wep) {
+		switch(wep) {
+        case "Sword":
+            return "00";
+        case "Lance":
+            return "01";
+        case "Axe":
+            return "02";
+        case "Bow":
+            return "03";
+        case "Tome":
+            return "04";
+        case "Staff":
+            return "05";
+        case "Dragonstone":
+            return "06";
+        case"Beaststone":
+            return "07";
+        default:
+            throw new IllegalStateException("Invalid weapon name: " + wep);
+		}
+	}
 	public static void shufflePromotes(ArrayList<String> all) {
 		
 		//Stack<String> A = new Stack<String>();

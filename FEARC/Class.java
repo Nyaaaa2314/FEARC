@@ -40,7 +40,32 @@ public class Class {
 		}
 	}
 	
-	
+	public String genJID(boolean m) {
+		if(gender != 0) {
+			return JID;
+		}
+		else {
+			if(name.equals("War Monk / War Cleric")) {
+				if(m) {
+					return "JID_バトルモンク男";
+				}
+				else {
+					return "JID_バトルシスター女";
+				}
+			}
+			else if(name.equals("Priest / Cleric")) {
+				if(m) {
+					return "JID_僧侶男";
+				}
+				else {
+					return "JID_シスター女";
+				}
+			}
+			else {
+				return JID + (m ? '男' : '女');
+			}
+		}
+	}
 	@Override
 	public String toString() {
 		return "Class [name=" + name + ", promoted=" + promoted + ", wa=" + wa + ", wb=" + wb + ", wc=" + wc + ", JID="

@@ -11,6 +11,7 @@ public class Unit {
 	public String replacementChar;
 	public boolean cjr;
 	public boolean isRobin;
+	public boolean m;
 	
 	public Unit (String name) {
 		this.name = name;
@@ -37,9 +38,12 @@ public class Unit {
 		StringBuilder ret = new StringBuilder(name + "\n");
 		if(cjr) {
 			ret.append("Original Character: " + replacementChar + "\n");
-			ret.append("CID: " + CID + "\n");
-			ret.append("Class set [ " + classset.get(0) + " " + classset.get(1) + " " + classset.get(2) + " ]");
+			//ret.append("CID: " + CID + " | DEBUG LINE, REMOVE LATER" + "\n"); //TODO: remove line
+			ret.append("Class set [ " + classset.get(0) + ", " + classset.get(1) + ", " + classset.get(2) + " ]\n");
 			//TODO: add code for logging stuff
+		}
+		if(name.contains("Robin")) {
+			ret.append("Note: below are Robin's stats BEFORE boons and banes, so their actual stats may vary from the log");
 		}
 		if(growths != null) {
 			ret.append("Growths [ HP: " + growths[0] + " | Str: " + growths[1] +

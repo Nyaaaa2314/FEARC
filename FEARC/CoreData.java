@@ -21,7 +21,7 @@ public class CoreData {
 			"B0", "3A" };
 	private static ArrayList<String> LOOKUP_TABLE;
 	private static FileSys f;
-	private static ArrayList<String> Static;
+	public static ArrayList<String> Static;
 	public static ArrayList<String> GameData;
 	public static void ensureInitialization() throws IOException {
 		if(f == null) {
