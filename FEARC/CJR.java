@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
 
 public class CJR {
@@ -226,8 +227,8 @@ public class CJR {
 			
 			String[] xp = new String[wep.length];
 			int w = 0;
+			Class d = pc != null ? pc : c;
 			for(String s : wep) {
-				Class d = pc != null ? pc : c;
 				String we = w == 0 ? d.wa : (w ==  1 ? d.wb : d.wc);
 				switch(we) {
 					case "Sword":
@@ -256,6 +257,14 @@ public class CJR {
 			}
 			StaticS.set(n + 6, Static.get(n+6).substring(6, 10) +xp[0] +xp[1]);
 			StaticS.set(n + 7, "0x" + xp[2] +xp[3] + xp[4] +xp[5]);
+			
+			String add1 = Static.get(k - 1).substring(2, 10);
+			String add2 = Static.get(k - 2).substring(2, 10);
+			String[] add = (add1 + add2).split("(?<=\\G.{" + 2 + "})");
+			Random rng = new Random();
+			Arrays.sort(add, (String a, String b) -> rng.nextInt(100) - rng.nextInt(100));
+			StaticS.set(n - 1, "0x" + add[0] + add[1] + add[2] + add[3]);
+			StaticS.set(n - 2, "0x" + add[4] + add[5] + add[6] + add[7]);
 			
 			i++;
 		}

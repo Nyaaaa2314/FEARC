@@ -9,13 +9,17 @@ public class Unit {
 	public String CID;
 	public ArrayList<String> classset;
 	public String replacementChar;
+	public boolean isChild;
 	public boolean cjr;
 	public boolean isRobin;
+	public boolean isMorgan;
 	public boolean m;
 	
 	public Unit (String name) {
 		this.name = name;
 		isRobin = false;
+		isChild = Util.contains(Data.gen2, name);
+		isMorgan = name.contains("Morgan");
 	}
 	public Unit(String name, String CID) {
 		this.name = name;
