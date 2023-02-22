@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class CJR {
@@ -156,14 +158,20 @@ public class CJR {
 		return in;
 	}
 	
-//	for every character
-//
-//	if u consider the first growth line to be 0 then
-//
-//	+9,10,11 are skills
-//
-//	+18,19,20,21,22,23 are reclasses
-	//0x 00 00 00 00
+/*	for every character
+ *
+ *	if u consider the first growth line to be 0 then
+ *
+ *	+9,10,11 are skills
+ *
+ *	+18,19,20,21,22,23 are reclasses
+ *
+ *	+6,7 are weapon exp, starting with the last 2 bytes on +6
+ *
+ *	0x 00 00 00 00
+ *	01 23 45 67 89 10
+ *
+ */
 	public static void CJRStatic() {
 		int i = 0;
 		int acc = 0;
@@ -205,9 +213,49 @@ public class CJR {
 				}
 			}
 			StaticS.set(n + 11, "0x00000000");
+			if(u.replacementChar.equals("Frederick") && c.promotions != null) {
+				pc = Util.cSearch(c.promotions.get(0));
+			}
 			//StaticS.set(, null)
-			StaticS.set(n - 5, pc != null || u.replacementChar.equals("Frederick") ? pc.genJID(u.m) : c.genJID(u.m));
+			StaticS.set(n - 5, pc != null ? pc.genJID(u.m) : c.genJID(u.m));
 			
+			String wep1 = Static.get(k + 6).substring(6,10);
+			String wep2 = Static.get(k + 7).substring(2,10);
+			String[] wep = (wep1 + wep2).split("(?<=\\G.{" + 2 + "})");
+			Arrays.sort(wep, (String a, String b) -> Integer.parseInt(b, 16) - Integer.parseInt(a, 16));
+			
+			String[] xp = new String[wep.length];
+			int w = 0;
+			for(String s : wep) {
+				Class d = pc != null ? pc : c;
+				String we = w == 0 ? d.wa : (w ==  1 ? d.wb : d.wc);
+				switch(we) {
+					case "Sword":
+						xp[0] = s;
+						break;
+					case "Lance":
+						xp[1] = s;
+						break;
+					case "Axe":
+						xp[2] = s;
+						break;
+					case "Bow":
+						xp[3] = s;
+					case "Tome":
+						xp[4] = s;
+					case "Staff":
+						xp[5] = s;
+					default:
+						break;
+				}
+			}
+			for(int j = 0; j < xp.length; j++) {
+				if(xp[j].equals("")) {
+					xp[j] = "00";
+				}
+			}
+			StaticS.set(n + 6, Static.get(n+6).substring(6, 10) +xp[0] +xp[1]);
+			StaticS.set(n + 7, "0x" + xp[2] +xp[3] + xp[4] +xp[5]);
 			
 			i++;
 		}
