@@ -33,7 +33,6 @@ special FALCHION_SWAP 1 Chrom
 load /dispos/P002.txt
 
 #replacing their CIDs first
-
 lreplace 483 CHARACTER_ACCESS Chrom CID
 lreplace 512 CHARACTER_ACCESS Lissa CID
 lreplace 541 CHARACTER_ACCESS Frederick CID
@@ -44,3 +43,18 @@ lreplace 519 WEAPON_SWAP 0 0 Lissa F 1
 lreplace 548 WEAPON_SWAP 3 3 Frederick T 1
 
 save /romfs/data/dispos/P002.txt
+
+load /dispos/001.txt
+
+lreplace 367 CHARACTER_ACCESS Sully CID
+lreplace 374 WEAPON_SWAP 0 0 Sully F 1
+lreplace 397 CHARACTER_ACCESS Virion CID
+lreplace 404 WEAPON_SWAP 0 0 Virion F 1
+
+save /romfs/data/dispos/001.txt
+
+load /dispos/002.txt
+
+
+
+

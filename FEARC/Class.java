@@ -53,7 +53,7 @@ public class Class {
 					return "JID_バトルシスター女";
 				}
 			}
-			else if(name.equals("Priest / Cleric")) {
+			else if(name.equals("Priest/Cleric")) {
 				if(m) {
 					return "JID_僧侶男";
 				}

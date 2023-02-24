@@ -174,16 +174,20 @@ public class CJR {
  *
  */
 	public static void CJRStatic() {
-		int i = 0;
+		int i = 3;
 		int acc = 0;
 		//16 + 143 * i
 		ArrayList<String> Static = CoreData.Static;
 		ArrayList<String> StaticS = (ArrayList<String>) Static.clone();
 		//System.out.println(Data.units.size());
 		for(Unit u : Data.rUnits) {
-			
+			int numSkills =  1;
 			int k = 12 + 143 * i;
 			int n = 12 + 143 * (Util.indexOf(Data.CharacterNames, u.name) + 3);
+			if(i == 3) {
+				StaticS.set(k - 9, "0x00000000");
+				StaticS.set(n - 9, u.m ? "0x22000000" : "0x23000000");
+			}
 //			System.out.println(u.name);
 //			System.out.println(u.replacementChar);
 //			System.out.println("------------------");
@@ -192,6 +196,7 @@ public class CJR {
 			if(!Static.get(k + 9).substring(2, 4).equals("00")) {
 				if(!Static.get(k + 9).substring(6, 8).equals("00")) {
 					StaticS.set(n + 9, "0x" + c.skills.get(0) + "00" + c.skills.get(1) + "00");
+					numSkills += 1;
 					if(Util.contains(Data.sClasses, c.name)) {
 						StaticS.set(n + 10, "0x00000000");
 						StaticS.set(n + 11, "0x00000000");
@@ -201,9 +206,11 @@ public class CJR {
 							pc = Util.cSearch(c.promotions.get(0));
 							if(!Static.get(k + 10).substring(6, 8).equals("00")) {
 								StaticS.set(n + 10, "0x" + pc.skills.get(0) + "00" + pc.skills.get(1) + "00");
+								numSkills += 2;
 							}
 							else {
 								StaticS.set(n + 10, "0x" + pc.skills.get(0) + "000000");
+								numSkills += 1;
 							}
 						}
 					}
@@ -229,7 +236,7 @@ public class CJR {
 			int w = 0;
 			Class d = pc != null ? pc : c;
 			for(String s : wep) {
-				String we = w == 0 ? d.wa : (w ==  1 ? d.wb : d.wc);
+				String we = w == 0 ? d.wa : (w ==  1 ? d.wb : (w == 2 ? d.wc : ""));
 				switch(we) {
 					case "Sword":
 						xp[0] = s;
@@ -242,20 +249,24 @@ public class CJR {
 						break;
 					case "Bow":
 						xp[3] = s;
+						break;
 					case "Tome":
 						xp[4] = s;
+						break;
 					case "Staff":
 						xp[5] = s;
+						break;
 					default:
 						break;
 				}
+				w++;
 			}
 			for(int j = 0; j < xp.length; j++) {
-				if(xp[j].equals("")) {
+				if(xp[j] == null) {
 					xp[j] = "00";
 				}
 			}
-			StaticS.set(n + 6, Static.get(n+6).substring(6, 10) +xp[0] +xp[1]);
+			StaticS.set(n + 6, Static.get(n+6).substring(0,6) +xp[0] +xp[1]);
 			StaticS.set(n + 7, "0x" + xp[2] +xp[3] + xp[4] +xp[5]);
 			
 			String add1 = Static.get(k - 1).substring(2, 10);
@@ -265,7 +276,15 @@ public class CJR {
 			Arrays.sort(add, (String a, String b) -> rng.nextInt(100) - rng.nextInt(100));
 			StaticS.set(n - 1, "0x" + add[0] + add[1] + add[2] + add[3]);
 			StaticS.set(n - 2, "0x" + add[4] + add[5] + add[6] + add[7]);
-			
+			String tempLv = Static.get(n + 8);
+			tempLv = tempLv.substring(4,6);
+			if(Integer.parseInt(tempLv, 16) >= 20 && Util.contains(Data.sClasses, c.name)) {
+				tempLv = Integer.toHexString(Integer.parseInt(tempLv, 16) - 15);
+				if(tempLv.length() == 1) {
+					tempLv = "0" + tempLv;
+				}
+			}
+			StaticS.set(n + 8, Static.get(n+8).substring(0, 4) + tempLv + Static.get(n+8).substring(6, 10));
 			i++;
 		}
 		CoreData.Static = StaticS;
