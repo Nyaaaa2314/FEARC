@@ -6,7 +6,7 @@
 #
 #	load [filename] | loads the respective file into the method
 #	save [filename] | saves the current open file
-#	replace [String a] [String b] [int c] | replaces substring a with substring b on line c
+#	replace [int c] [String a] [String b]  | replaces substring a with substring b on line c
 #	breplace [String a] [String b] | replaces all occurences of a with b
 #	append [int a] [String b] | appends String b to the file at line a
 #	lreplace [int a] [String b] | replaces whatever line is at a with b
@@ -54,6 +54,40 @@ lreplace 404 WEAPON_SWAP 0 0 Virion F 1
 save /romfs/data/dispos/001.txt
 
 load /dispos/002.txt
+
+lreplace 188 CHARACTER_ACCESS Vaike CID
+lreplace 217 CHARACTER_ACCESS Stahl CID
+lreplace 1263 CHARACTER_ACCESS Miriel CID
+
+lreplace 224 WEAPON_SWAP 0 0 Stahl F 1
+lreplace 1270 WEAPON_SWAP 0 0 Miriel F 1
+lreplace 1272 WEAPON_SWAP 1 1 Vaike F 1
+
+save /romfs/data/dispos/002.txt
+
+load /dispos/003.txt
+
+lreplace 1233 CHARACTER_ACCESS Kellam CID
+lreplace 1263 CHARACTER_ACCESS Sumia CID
+
+lreplace 1240 WEAPON_SWAP 1 1 Kellam F 1
+lreplace 1242 WEAPON_SWAP 6 1 Kellam F 1
+lreplace 1270 WEAPON_SWAP 1 1 Sumia F 1
+
+save /romfs/data/dispos/003.txt
+
+load /exls/003.exl
+
+blreplace 80 PID_カラム CHARACTER_ACCESS Kellam CID
+breplace PID_クロム CHARACTER_ACCESS Chrom CID
+breplace PID_スミア CHARACTER_ACCESS Sumia CID
+
+save /romfs/scripts/003.exl
+
+load /dispos/004.txt
+
+
+
 
 
 

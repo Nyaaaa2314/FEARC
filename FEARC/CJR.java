@@ -38,10 +38,11 @@ public class CJR {
 				cf = f.readFile("/data/" + in.next());
 				break;
 			case "replace":
-				a = in.next();
-				b = parseSpecialCommand(in.next());
 				c = in.nextInt();
-				in.nextLine();
+				a = in.next();
+				b = parseSpecialCommand(in.nextLine());
+				
+				//in.nextLine();
 				
 				String d = cf.get(c - 1);
 				d.replace(a, b);
@@ -49,10 +50,20 @@ public class CJR {
 				break;
 			case "breplace": //bulk replace
 				a = in.next();
-				b = parseSpecialCommand(in.next());
+				b = parseSpecialCommand(in.nextLine());
 				c = 0;
 				for(String line : cf) {
 					cf.set(c++, line.replace(a,b));
+				}
+				break;
+			case "blreplace": //bulk-limit replace
+				c = in.nextInt();
+				a = in.next();
+				b = parseSpecialCommand(in.nextLine());
+				for(int i = c; i < cf.size(); i++) {
+					d = cf.get(i - 1);
+					d = d.replace(a, b);
+					cf.set(i - 1, d);
 				}
 				break;
 			case "creplace": //character replace

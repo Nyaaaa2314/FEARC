@@ -51,9 +51,6 @@ public class Data {
 		classes = new ArrayList<Class>();
 		FileSys f = FileSys.getInstance();
 		ArrayList<String> GameData = f.readFile("/data/bins/GameData.txt");
-		if(GameData == null) {
-			throw new NullPointerException("Error encountered with loading GameData from CoreData into Data");
-		}
 		ArrayList<String> ClassData = f.readFile("/data/records/classes.txt");
 		for(int i = 0; i < ClassData.size(); i++) {
 			if(ClassData.get(i).trim().length() == 0) {
