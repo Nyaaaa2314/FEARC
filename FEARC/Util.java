@@ -56,7 +56,16 @@ public class Util<T> {
 		return -1;
 	}
 	
-	
+	public static Class searchByJID(String JID) {
+		Class ret = null;
+		for(Class c : Data.classes) {
+			if(c.genJID(false).equals(JID) || c.genJID(true).equals(JID)) {
+				ret = c;
+				break;
+			}
+		}
+		return ret;
+	}
 	
 	public static <T>boolean contains(T[] arr, T input){
 		for(T t : arr) {

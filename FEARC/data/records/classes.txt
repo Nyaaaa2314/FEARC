@@ -476,3 +476,14 @@ JID_村人男
 1
 67763
 
+Conqueror
+promoted
+Axe
+Sword
+Lance
+JID_オーバーロード男
+1
+67897
+
+
+

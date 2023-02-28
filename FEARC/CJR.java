@@ -287,15 +287,30 @@ public class CJR {
 			Arrays.sort(add, (String a, String b) -> rng.nextInt(100) - rng.nextInt(100));
 			StaticS.set(n - 1, "0x" + add[0] + add[1] + add[2] + add[3]);
 			StaticS.set(n - 2, "0x" + add[4] + add[5] + add[6] + add[7]);
-			String tempLv = Static.get(n + 8);
-			tempLv = tempLv.substring(4,6);
-			if(Integer.parseInt(tempLv, 16) >= 20 && Util.contains(Data.sClasses, c.name)) {
-				tempLv = Integer.toHexString(Integer.parseInt(tempLv, 16) - 15);
-				if(tempLv.length() == 1) {
-					tempLv = "0" + tempLv;
+			
+			
+			
+			String tempLv = Static.get(k + 8).substring(4,6);
+			int lvInt = Integer.parseInt(tempLv, 16);
+			System.out.println(Static.get(k - 5));
+			if(Util.contains(Data.sClasses, c.name) != Util.contains(Data.sClasses, Util.searchByJID(Static.get(k - 5)).name)) {
+				if(Util.contains(Data.sClasses, Util.searchByJID(Static.get(k -5)).name)) {
+					lvInt /= 2;
+				}
+				else {
+					lvInt *= 2;
 				}
 			}
+			tempLv = Integer.toHexString(lvInt);
+			if(tempLv.length() == 1) {
+				tempLv = "0" + tempLv;
+			}
 			StaticS.set(n + 8, Static.get(n+8).substring(0, 4) + tempLv + Static.get(n+8).substring(6, 10));
+			
+			
+			
+			
+			
 			i++;
 		}
 		CoreData.Static = StaticS;

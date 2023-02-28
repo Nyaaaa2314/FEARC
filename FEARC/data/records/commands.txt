@@ -86,7 +86,20 @@ save /romfs/scripts/003.exl
 
 load /dispos/004.txt
 
+lreplace 480 CHARACTER_ACCESS Lon'qu CID
+lreplace 487 WEAPON_SWAP 5 2 Lon'qu F 1
 
+save /romfs/data/dispos/004.txt
+
+load /dispos/005.txt
+
+
+lreplace 1331 CHARACTER_ACCESS Ricken CID
+lreplace 1338 WEAPON_SWAP 1 1 Ricken F 1
+lreplace 1360 CHARACTER_ACCESS Maribelle CID
+lreplace 1367 WEAPON_SWAP 1 1 Maribelle F 1
+
+save /romfs/data/dispos/005.txt
 
 
 
