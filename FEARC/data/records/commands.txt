@@ -79,8 +79,8 @@ save /romfs/data/dispos/003.txt
 load /exls/003.exl
 
 blreplace 80 PID_カラム CHARACTER_ACCESS Kellam CID
-breplace PID_クロム CHARACTER_ACCESS Chrom CID
-breplace PID_スミア CHARACTER_ACCESS Sumia CID
+blreplace 333 PID_クロム CHARACTER_ACCESS Chrom CID
+#breplace PID_スミア CHARACTER_ACCESS Sumia CID
 
 save /romfs/scripts/003.exl
 
