@@ -224,6 +224,9 @@ public class CJR {
 								numSkills += 1;
 							}
 						}
+						else {
+							StaticS.set(n + 10, "0x00000000");
+						}
 					}
 				}
 				else {
@@ -292,7 +295,7 @@ public class CJR {
 			
 			String tempLv = Static.get(k + 8).substring(4,6);
 			int lvInt = Integer.parseInt(tempLv, 16);
-			System.out.println(Static.get(k - 5));
+			//System.out.println(Static.get(k - 5));
 			if(Util.contains(Data.sClasses, c.name) != Util.contains(Data.sClasses, Util.searchByJID(Static.get(k - 5)).name)) {
 				if(Util.contains(Data.sClasses, Util.searchByJID(Static.get(k -5)).name)) {
 					lvInt /= 2;
