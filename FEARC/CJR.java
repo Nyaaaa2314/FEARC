@@ -130,17 +130,21 @@ public class CJR {
 			String name = access.next(); //grab the name of the og character
 			String field = access.next(); //what are we accessing
 			Unit temp = Util.search(name);
-			access.close();
+			
 			if(temp == null) {
+				access.close();
 				throw new IllegalStateException("Name of character is invalid in command: " + in);
 			}
 			switch(field) {
 				case "CID":
+					access.close();
 					return temp.CID;
-			
-			
+				case "CLASS":
+					return access.next().equals("F") ? temp.classset.get(0) : Util.cSearch(temp.classset.get(0)).promotions != null ? Util.cSearch(temp.classset.get(0)).promotions.get(0) : temp.classset.get(0);
+				
 			
 			}
+			access.close();
 		}
 		if(in.contains("WEAPON_SWAP")) {
 			access = new Scanner(in);

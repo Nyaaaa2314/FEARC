@@ -10,10 +10,9 @@
 #	breplace [String a] [String b] | replaces all occurences of a with b
 #	append [int a] [String b] | appends String b to the file at line a
 #	lreplace [int a] [String b] | replaces whatever line is at a with b
-#	creplace 
 #	special [special parameter]
 #
-#	special parameters for various commands
+#	special parameters for various commands:
 #
 #	format for a DATA_ACCESS
 #	CHARACTER_ACCESS [Character] [Field]
@@ -79,7 +78,7 @@ save /romfs/data/dispos/003.txt
 load /exls/003.exl
 
 blreplace 80 PID_カラム CHARACTER_ACCESS Kellam CID
-blreplace 333 PID_クロム CHARACTER_ACCESS Chrom CID
+blreplace 176 PID_クロム CHARACTER_ACCESS Chrom CID
 #breplace PID_スミア CHARACTER_ACCESS Sumia CID
 
 save /romfs/scripts/003.exl
@@ -93,7 +92,6 @@ save /romfs/data/dispos/004.txt
 
 load /dispos/005.txt
 
-
 lreplace 1331 CHARACTER_ACCESS Ricken CID
 lreplace 1338 WEAPON_SWAP 1 1 Ricken F 1
 lreplace 1360 CHARACTER_ACCESS Maribelle CID
@@ -102,6 +100,32 @@ lreplace 1367 WEAPON_SWAP 1 1 Maribelle F 1
 save /romfs/data/dispos/005.txt
 
 
+load /bins/006.txt
+
+lreplace 866 CHARACTER_ACCESS Lucina CLASS F
+
+save /romfs/data/person/006.txt
+
+load /dispos/006.txt
+
+lreplace 1060 CHARACTER_ACCESS Panne CID
+lreplace 1067 WEAPON_SWAP 1 1 Panne F 1
+
+save /romfs/data/dispos/006.txt
+
+load /dispos/007.txt
+
+lreplace 1594 CHARACTER_ACCESS Cordelia CID
+lreplace 1601 WEAPON_SWAP 2 2 Cordelia F 1
+lreplace 1603 WEAPON_SWAP 1 1 Cordelia F 1
+
+lreplace 1621 CHARACTER_ACCESS Cordelia CID
+lreplace 1628 WEAPON_SWAP 2 2 Cordelia F 1
+lreplace 1630 WEAPON_SWAP 1 1 Cordelia F 1
+
+save /romfs/data/dispos/007.txt
+
+load /dispos/008.txt
 
 
 
