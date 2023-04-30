@@ -28,6 +28,8 @@
 #
 
 special FALCHION_SWAP 1 Chrom
+special FALCHION_SWAP 2 Lucina
+special FALCHION_SWAP 3 Chrom
 
 load /dispos/P002.txt
 
@@ -140,8 +142,10 @@ blreplace 28 PID_サーリャ CHARACTER_ACCESS Tharja CID
 blreplace 800 IID_エルサンダー WEAPON_SWAP 1 1 Tharja F 1
 blreplace 800 IID_リザイア WEAPON_SWAP 1 1 Tharja F 2
 
-lreplace [1538,1567] CHARACTER_ACCESS Libra CID
-lreplace [1545,1574] WEAPON_SWAP 5 2 Libra T 1
+lreplace 1538 CHARACTER_ACCESS Libra CID
+lreplace 1567 CHARACTER_ACCESS Libra CID
+lreplace 1545 WEAPON_SWAP 5 2 Libra T 1
+lreplace 1574 WEAPON_SWAP 5 2 Libra T 1
 
 save /romfs/data/dispos/009.txt
 
@@ -168,6 +172,47 @@ lreplace 2317 WEAPON_SWAP 2 2 Cherche F 1
 lreplace 2319 WEAPON_SWAP 6 2 Cherche F 1
 
 save /romfs/data/dispos/012.txt
+
+load /dispos/013.txt
+
+lreplace 1247 CHARACTER_ACCESS Henry CID
+lreplace 1254 WEAPON_SWAP 5 2 Henry F 1
+lreplace 1256 WEAPON_SWAP 1 1 Henry F 1
+
+lreplace 1277 CHARACTER_ACCESS Lucina CID
+lreplace 1286 WEAPON_SWAP 6 2 Lucina F 1
+
+save /romfs/data/dispos/013.txt
+
+load /dispos/015.txt
+
+lreplace 2419 CHARACTER_ACCESS Say'ri CID
+
+save /romfs/data/dispos/015.txt
+
+load /dispos/023.txt
+
+lreplace 1658 CHARACTER_ACCESS Basilio CID
+lreplace 1665 WEAPON_SWAP 3 3 Basilio T 1
+lreplace 1667 WEAPON_SWAP 6 2 Basilio T 1
+lreplace 1669 WEAPON_SWAP 3 3 Basilio T 2
+
+lreplace 1687 CHARACTER_ACCESS Flavia CID
+lreplace 1694 WEAPON_SWAP 3 3 Flavia T 1
+lreplace 1696 WEAPON_SWAP 5 2 Flavia T 2
+
+save /romfs/data/dispos/023.txt
+
+load /exls/015.exl
+
+blreplace 172 PID_サイリ CHARACTER_ACCESS Say'ri CID
+replace 188 PID_クロム CHARACTER_ACCESS Chrom CID
+
+save /romfs/scripts/015.exl
+
+
+
+
 
 
 

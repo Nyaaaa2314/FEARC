@@ -47,7 +47,7 @@ public class Unit {
 			//TODO: add code for logging stuff
 		}
 		if(name.contains("Robin")) {
-			ret.append("Note: below are Robin's stats BEFORE boons and banes, so their actual stats may vary from the log");
+			ret.append("Note: below are Robin's stats BEFORE boons and banes, so their actual stats may vary from the log\n");
 		}
 		if(growths != null) {
 			ret.append("Growths [ HP: " + growths[0] + " | Str: " + growths[1] +

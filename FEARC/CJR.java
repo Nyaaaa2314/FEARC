@@ -100,34 +100,44 @@ public class CJR {
 					Unit temp = Util.search(name);
 					Class cl = Util.cSearch(temp.classset.get(0));
 					ArrayList<String> g = CoreData.GameData;
-					g.set(69311, "0x" + Util.wepToHex(cl.wa) + "000000");
+					int i = type == 1 ? 0 : (type == 2 ? 30 : 15);
+					g.set(i + 69311, "0x" + Util.wepToHex(cl.wa) + "000000");
 					switch(Util.wepToHex(cl.wa)) {
 						case "03":
-							g.set(69313, "0x05500002");
+							g.set(i + 69313, "0x05500002");
 							//no break here on purpose
 						case "04":
-							g.set(69314, "0x02000000");
+							g.set(i + 69314, "0x02000000");
 							break;
 						case "05":
-							g.set(69305, "0x00340040");
-							g.set(69318, "リライブ");
-							g.set(69311, "0x" + Util.wepToHex(cl.wa) + "000101");
+							g.set(i + 69305, "0x00340040");
+							g.set(i + 69311, "0x" + Util.wepToHex(cl.wa) + "000101");
+							g.set(i + 69318, "リライブ");
 						case "06":
-							g.set(69305, "0x00740040");
-							g.set(69314, "0x02000000");
-							g.set(69315, "0x00080503");
-							g.set(69316, "0x02000A07");
-							g.set(69312, "0x00010000");
+							g.set(i + 69305, "0x00740040");
+							g.set(i + 69314, "0x02000000");
+							g.set(i + 69315, "0x00080503");
+							g.set(i + 69316, "0x02000A07");
+							g.set(i + 69312, "0x00010000");
 							break;
 						case "07":
-							g.set(69305, "0x00740040");
-							g.set(69312, "0x00010000");
-							g.set(69316, "0x05040100");
-							g.set(69315, "0x00030005");
+							g.set(i + 69305, "0x00740040");
+							g.set(i + 69312, "0x00010000");
+							g.set(i + 69316, "0x05040100");
+							g.set(i + 69315, "0x00030005");
 							break;
 					}
 					CoreData.GameData = g;
 				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				break;
 			case "save":
 				f.writeFile("/output" + in.nextLine().trim(), cf);
@@ -157,9 +167,11 @@ public class CJR {
 				case "CLASS":
 					String ret = access.next().equals("F") ? temp.classset.get(0) : Util.cSearch(temp.classset.get(0)).promotions != null ? Util.cSearch(temp.classset.get(0)).promotions.get(0) : temp.classset.get(0);
 					access.close();
-					return ret;
+					return Util.cSearch(ret).JID;
+				default:
+					access.close();
+					throw new IllegalStateException("Invalid field at command: " + in);
 			}
-			access.close();
 		}
 		if(in.contains("WEAPON_SWAP")) {
 			access = new Scanner(in);
@@ -180,12 +192,6 @@ public class CJR {
 			
 			in = Data.weaponSwap(w, tier, btier, c.dark);
 		}
-		//class access
-		
-		
-		
-		
-		
 		return in;
 	}
 	
@@ -201,7 +207,7 @@ public class CJR {
  *
  *	0x 00 00 00 00
  *	01 23 45 67 89 10
- *
+ *  string indexing reference
  */
 	public static void CJRStatic() {
 		int i = 3;
@@ -215,8 +221,8 @@ public class CJR {
 			int k = 12 + 143 * i;
 			int n = 12 + 143 * (Util.indexOf(Data.CharacterNames, u.name) + 3);
 			if(i == 3) {
-				StaticS.set(k - 9, "0x00000000");
-				StaticS.set(n - 9, u.m ? "0x22000000" : "0x23000000");
+				StaticS.set(k - 9, "0x00" + Static.get(k -9).substring(4, 10));
+				StaticS.set(n - 9, u.m ? "0x22" + Static.get(n -9).substring(4, 10) : "0x23" + Static.get(n -9).substring(4, 10));
 			}
 //			System.out.println(u.name);
 //			System.out.println(u.replacementChar);
@@ -327,14 +333,22 @@ public class CJR {
 			if(tempLv.length() == 1) {
 				tempLv = "0" + tempLv;
 			}
-			StaticS.set(n + 8, Static.get(n+8).substring(0, 4) + tempLv + Static.get(n+8).substring(6, 10));
-			
-			
-			
-			
-			
 			i++;
+			StaticS.set(n + 8, Static.get(n+8).substring(0, 4) + tempLv + Static.get(n+8).substring(6, 10));
+			if(Util.search(u.name).equals("Lucina")) {
+				if(u.name.equals("Lucina")) {
+					continue;
+				}
+				StaticS.set(3721, Static.get(3721).substring(0,4) + "00" + Static.get(3721).substring(6));
+				StaticS.set(n - 9, Static.get(n - 9).substring(0,4) + "10" + Static.get(n - 9).substring(6));
+			}
+			//i++;
 		}
+//		Unit temp = Util.search("Lucina");
+//		if(!temp.name.equals("Lucina")) {
+//			
+//		}
+		
 		CoreData.Static = StaticS;
 	}
 	
