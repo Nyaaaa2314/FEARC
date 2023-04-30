@@ -41,7 +41,8 @@ public class Ylisse {
 		//System.out.println("\tOption a: Stat Cap Modifiers | ");
 		String s;
 		if(debug) {
-			s = "h";
+			//return;
+			s = "abcdefgh";
 			
 		}
 		else{

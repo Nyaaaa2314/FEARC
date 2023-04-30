@@ -127,5 +127,49 @@ save /romfs/data/dispos/007.txt
 
 load /dispos/008.txt
 
+lreplace 1237 CHARACTER_ACCESS Nowi CID
+lreplace 1244 WEAPON_SWAP 2 2 Nowi F 1
+lreplace 1267 CHARACTER_ACCESS Gregor CID
+lreplace 1274 WEAPON_SWAP 2 2 Gregor F 1
+
+save /romfs/data/dispos/008.txt
+
+load /dispos/009.txt
+
+blreplace 28 PID_サーリャ CHARACTER_ACCESS Tharja CID
+blreplace 800 IID_エルサンダー WEAPON_SWAP 1 1 Tharja F 1
+blreplace 800 IID_リザイア WEAPON_SWAP 1 1 Tharja F 2
+
+lreplace [1538,1567] CHARACTER_ACCESS Libra CID
+lreplace [1545,1574] WEAPON_SWAP 5 2 Libra T 1
+
+save /romfs/data/dispos/009.txt
+
+load /exls/009.exl
+
+replace 366 PID_クロム CHARACTER_ACCESS Chrom CID
+replace 375 PID_クロム CHARACTER_ACCESS Chrom CID
+replace 366 PID_リベラ CHARACTER_ACCESS Libra CID
+replace 375 PID_サーリャ CHARACTER_ACCESS Tharja CID
+
+save /romfs/scripts/009.exl
+
+load /dispos/011.txt
+
+lreplace 1064 CHARACTER_ACCESS Olivia CID
+lreplace 1071 WEAPON_SWAP 1 1 Olivia F 1
+
+save /romfs/data/dispos/011.txt
+
+load /dispos/012.txt
+
+lreplace 2310 CHARACTER_ACCESS Cherche CID
+lreplace 2317 WEAPON_SWAP 2 2 Cherche F 1
+lreplace 2319 WEAPON_SWAP 6 2 Cherche F 1
+
+save /romfs/data/dispos/012.txt
+
+
+
 
 

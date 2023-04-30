@@ -70,6 +70,21 @@ public class CJR {
 				
 				break;
 			case "lreplace":
+				if(!in.hasNextInt()) {
+					String nums = in.next();
+					nums = nums.replace(',', ' ').replace('[', ' ').replace(']', ' ');
+					ArrayList<Integer> lines = new ArrayList<Integer>();
+					Scanner sc = new Scanner(nums);
+					while(sc.hasNextInt()) {
+						lines.add(sc.nextInt());
+					}
+					a = parseSpecialCommand(in.nextLine());
+					for(int l : lines) {
+						cf.set(l--, a);
+					}
+					sc.close();
+					break;
+				}
 				c = in.nextInt();
 				a = parseSpecialCommand(in.nextLine());
 				cf.set(--c, a);
@@ -140,9 +155,9 @@ public class CJR {
 					access.close();
 					return temp.CID;
 				case "CLASS":
-					return access.next().equals("F") ? temp.classset.get(0) : Util.cSearch(temp.classset.get(0)).promotions != null ? Util.cSearch(temp.classset.get(0)).promotions.get(0) : temp.classset.get(0);
-				
-			
+					String ret = access.next().equals("F") ? temp.classset.get(0) : Util.cSearch(temp.classset.get(0)).promotions != null ? Util.cSearch(temp.classset.get(0)).promotions.get(0) : temp.classset.get(0);
+					access.close();
+					return ret;
 			}
 			access.close();
 		}

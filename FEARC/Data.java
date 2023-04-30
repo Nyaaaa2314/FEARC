@@ -174,7 +174,7 @@ public class Data {
     3 - silver
     4 - brave
     5 - killer (if applicable)
-    6-7 - special (armor eff, dragon eff; if applicable)
+    6-7 - special (armor eff, dragon/beast eff; if applicable)
     8 - magic-physical (levin, shockstick, etc,; if applicable)
     9-11 - legendary (ragnell, amatsu, etc)
 
