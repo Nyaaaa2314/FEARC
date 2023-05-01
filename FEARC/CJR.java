@@ -166,8 +166,9 @@ public class CJR {
 					return temp.CID;
 				case "CLASS":
 					String ret = access.next().equals("F") ? temp.classset.get(0) : Util.cSearch(temp.classset.get(0)).promotions != null ? Util.cSearch(temp.classset.get(0)).promotions.get(0) : temp.classset.get(0);
+					boolean m = access.next().equals("M");
 					access.close();
-					return Util.cSearch(ret).JID;
+					return Util.cSearch(ret).genJID(m);
 				default:
 					access.close();
 					throw new IllegalStateException("Invalid field at command: " + in);
@@ -260,11 +261,18 @@ public class CJR {
 				}
 			}
 			StaticS.set(n + 11, "0x00000000");
-			if(u.replacementChar.equals("Frederick") && c.promotions != null) {
+			if(Util.contains(Data.PromotedChars, u.replacementChar) && c.promotions != null ) {
 				pc = Util.cSearch(c.promotions.get(0));
 			}
 			//StaticS.set(, null)
 			StaticS.set(n - 5, pc != null ? pc.genJID(u.m) : c.genJID(u.m));
+			
+			StaticS.set(n + 18, Util.cSearch(u.classset.get(0)).genJID(true));
+			StaticS.set(n + 19, Util.cSearch(u.classset.get(1)).genJID(true));
+			StaticS.set(n + 20, Util.cSearch(u.classset.get(2)).genJID(true));
+			StaticS.set(n + 21, Util.cSearch(u.classset.get(0)).genJID(false));
+			StaticS.set(n + 22, Util.cSearch(u.classset.get(1)).genJID(false));
+			StaticS.set(n + 23, Util.cSearch(u.classset.get(2)).genJID(false));
 			
 			String wep1 = Static.get(k + 6).substring(6,10);
 			String wep2 = Static.get(k + 7).substring(2,10);

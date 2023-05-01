@@ -104,7 +104,7 @@ save /romfs/data/dispos/005.txt
 
 load /bins/006.txt
 
-lreplace 866 CHARACTER_ACCESS Lucina CLASS F
+lreplace 866 CHARACTER_ACCESS Lucina CLASS F F
 
 save /romfs/data/person/006.txt
 
@@ -113,7 +113,18 @@ load /dispos/006.txt
 lreplace 1060 CHARACTER_ACCESS Panne CID
 lreplace 1067 WEAPON_SWAP 1 1 Panne F 1
 
+lreplace 363 CHARACTER_ACCESS Gaius CID
+lreplace 370 WEAPON_SWAP 1 1 Gaius F 1
+
 save /romfs/data/dispos/006.txt
+
+load /scripts/006.exl
+
+replace 338 PID_クロム CHARACTER_ACCESS Chrom CID
+replace 338 PID_ガイア CHARACTER_ACCESS Gaius CID
+replace 343 PID_ガイア CHARACTER_ACCESS Gaius CID
+
+save /romfs/scripts/006.exl
 
 load /dispos/007.txt
 
@@ -136,6 +147,12 @@ lreplace 1274 WEAPON_SWAP 2 2 Gregor F 1
 
 save /romfs/data/dispos/008.txt
 
+load /scripts/008.exl
+
+replace 105 PID_グレゴ CHARACTER_ACCESS Gregor CID
+replace 108 PID_グレゴ CHARACTER_ACCESS Nowi CID
+
+
 load /dispos/009.txt
 
 blreplace 28 PID_サーリャ CHARACTER_ACCESS Tharja CID
@@ -154,7 +171,9 @@ load /exls/009.exl
 replace 366 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 375 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 366 PID_リベラ CHARACTER_ACCESS Libra CID
+replace 329 PID_リベラ CHARACTER_ACCESS Libra CID
 replace 375 PID_サーリャ CHARACTER_ACCESS Tharja CID
+replace 341 PID_サーリャ CHARACTER_ACCESS Tharja CID
 
 save /romfs/scripts/009.exl
 
@@ -183,6 +202,12 @@ lreplace 1277 CHARACTER_ACCESS Lucina CID
 lreplace 1286 WEAPON_SWAP 6 2 Lucina F 1
 
 save /romfs/data/dispos/013.txt
+
+load /scripts/013.exl
+
+replace 937 PID_ヘンリー CHARACTER_ACCESS Henry CID
+
+save /romfs/scripts/013.exl
 
 load /dispos/015.txt
 
