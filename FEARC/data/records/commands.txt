@@ -118,7 +118,7 @@ lreplace 370 WEAPON_SWAP 1 1 Gaius F 1
 
 save /romfs/data/dispos/006.txt
 
-load /scripts/006.exl
+load /exls/006.exl
 
 replace 338 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 338 PID_ガイア CHARACTER_ACCESS Gaius CID
@@ -147,10 +147,12 @@ lreplace 1274 WEAPON_SWAP 2 2 Gregor F 1
 
 save /romfs/data/dispos/008.txt
 
-load /scripts/008.exl
+load /exls/008.exl
 
 replace 105 PID_グレゴ CHARACTER_ACCESS Gregor CID
 replace 108 PID_グレゴ CHARACTER_ACCESS Nowi CID
+
+save /romfs/scripts/008.exl
 
 
 load /dispos/009.txt
@@ -203,7 +205,7 @@ lreplace 1286 WEAPON_SWAP 6 2 Lucina F 1
 
 save /romfs/data/dispos/013.txt
 
-load /scripts/013.exl
+load /exls/013.exl
 
 replace 937 PID_ヘンリー CHARACTER_ACCESS Henry CID
 
