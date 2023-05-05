@@ -56,6 +56,7 @@ save /romfs/data/dispos/001.txt
 
 load /dispos/002.txt
 
+
 lreplace 188 CHARACTER_ACCESS Vaike CID
 lreplace 217 CHARACTER_ACCESS Stahl CID
 lreplace 1263 CHARACTER_ACCESS Miriel CID
@@ -68,6 +69,7 @@ save /romfs/data/dispos/002.txt
 
 load /dispos/003.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1233 CHARACTER_ACCESS Kellam CID
 lreplace 1263 CHARACTER_ACCESS Sumia CID
 
@@ -87,6 +89,7 @@ save /romfs/scripts/003.exl
 
 load /dispos/004.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 480 CHARACTER_ACCESS Lon'qu CID
 lreplace 487 WEAPON_SWAP 5 2 Lon'qu F 1
 
@@ -94,6 +97,7 @@ save /romfs/data/dispos/004.txt
 
 load /dispos/005.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1331 CHARACTER_ACCESS Ricken CID
 lreplace 1338 WEAPON_SWAP 1 1 Ricken F 1
 lreplace 1360 CHARACTER_ACCESS Maribelle CID
@@ -110,6 +114,7 @@ save /romfs/data/person/006.txt
 
 load /dispos/006.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1060 CHARACTER_ACCESS Panne CID
 lreplace 1067 WEAPON_SWAP 1 1 Panne F 1
 
@@ -128,18 +133,20 @@ save /romfs/scripts/006.exl
 
 load /dispos/007.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1594 CHARACTER_ACCESS Cordelia CID
 lreplace 1601 WEAPON_SWAP 2 2 Cordelia F 1
 lreplace 1603 WEAPON_SWAP 1 1 Cordelia F 1
 
-lreplace 1621 CHARACTER_ACCESS Cordelia CID
-lreplace 1628 WEAPON_SWAP 2 2 Cordelia F 1
-lreplace 1630 WEAPON_SWAP 1 1 Cordelia F 1
+lreplace 1624 CHARACTER_ACCESS Cordelia CID
+lreplace 1631 WEAPON_SWAP 2 2 Cordelia F 1
+lreplace 1633 WEAPON_SWAP 1 1 Cordelia F 1
 
 save /romfs/data/dispos/007.txt
 
 load /dispos/008.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1237 CHARACTER_ACCESS Nowi CID
 lreplace 1244 WEAPON_SWAP 2 2 Nowi F 1
 lreplace 1267 CHARACTER_ACCESS Gregor CID
@@ -157,6 +164,7 @@ save /romfs/scripts/008.exl
 
 load /dispos/009.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 blreplace 28 PID_サーリャ CHARACTER_ACCESS Tharja CID
 blreplace 800 IID_エルサンダー WEAPON_SWAP 1 1 Tharja F 1
 blreplace 800 IID_リザイア WEAPON_SWAP 1 1 Tharja F 2
@@ -164,7 +172,11 @@ blreplace 800 IID_リザイア WEAPON_SWAP 1 1 Tharja F 2
 lreplace 1538 CHARACTER_ACCESS Libra CID
 lreplace 1567 CHARACTER_ACCESS Libra CID
 lreplace 1545 WEAPON_SWAP 5 2 Libra T 1
+lreplace 1547 WEAPON_SWAP 1 1 Libra T 1
+lreplace 1549 WEAPON_SWAP 0 0 Libra T 1
 lreplace 1574 WEAPON_SWAP 5 2 Libra T 1
+lreplace 1576 WEAPON_SWAP 1 1 Libra T 1
+lreplace 1578 WEAPON_SWAP 0 0 Libra T 1
 
 save /romfs/data/dispos/009.txt
 
@@ -179,8 +191,13 @@ replace 341 PID_サーリャ CHARACTER_ACCESS Tharja CID
 
 save /romfs/scripts/009.exl
 
+load /dispos/010.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/010.txt
+
 load /dispos/011.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1064 CHARACTER_ACCESS Olivia CID
 lreplace 1071 WEAPON_SWAP 1 1 Olivia F 1
 
@@ -188,6 +205,7 @@ save /romfs/data/dispos/011.txt
 
 load /dispos/012.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 2310 CHARACTER_ACCESS Cherche CID
 lreplace 2317 WEAPON_SWAP 2 2 Cherche F 1
 lreplace 2319 WEAPON_SWAP 6 2 Cherche F 1
@@ -196,6 +214,7 @@ save /romfs/data/dispos/012.txt
 
 load /dispos/013.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1247 CHARACTER_ACCESS Henry CID
 lreplace 1254 WEAPON_SWAP 5 2 Henry F 1
 lreplace 1256 WEAPON_SWAP 1 1 Henry F 1
@@ -211,14 +230,49 @@ replace 937 PID_ヘンリー CHARACTER_ACCESS Henry CID
 
 save /romfs/scripts/013.exl
 
-load /dispos/015.txt
 
+load /dispos/014.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/014.txt
+
+
+load /dispos/015.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 2419 CHARACTER_ACCESS Say'ri CID
 
 save /romfs/data/dispos/015.txt
 
+load /dispos/016.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/016.txt
+
+load /dispos/017.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/017.txt
+
+load /dispos/018.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/018.txt
+
+load /dispos/019.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/019.txt
+
+load /dispos/020.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/020.txt
+
+load /dispos/021.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/021.txt
+
+load /dispos/022.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/022.txt
+
 load /dispos/023.txt
 
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
 lreplace 1658 CHARACTER_ACCESS Basilio CID
 lreplace 1665 WEAPON_SWAP 3 3 Basilio T 1
 lreplace 1667 WEAPON_SWAP 6 2 Basilio T 1
@@ -229,6 +283,14 @@ lreplace 1694 WEAPON_SWAP 3 3 Flavia T 1
 lreplace 1696 WEAPON_SWAP 5 2 Flavia T 2
 
 save /romfs/data/dispos/023.txt
+
+load /dispos/024.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/024.txt
+
+load /dispos/025.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+save /romfs/data/dispos/025.txt
 
 load /exls/015.exl
 

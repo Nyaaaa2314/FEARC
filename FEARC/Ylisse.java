@@ -7,7 +7,7 @@ public class Ylisse {
 	public static boolean CS;
 	
 	public static void main(String[] args) throws IOException {
-		debug = false;
+		debug = true;
 		CS = false;
 		CR = false;
 		unix = !System.getProperty("os.name").contains("Windows"); //Linux and Mac both use the same formatting so the edge case is then Windows devices
@@ -35,7 +35,7 @@ public class Ylisse {
 		System.out.println("|\tOption g: Pair Up Bonsues   \t|");
 		System.out.println("|\tOption h: Join Order &      \t|");
 		System.out.println("|\t	  Class sets      \t|"); //looks weird here but when printed is formatted properly
-		
+		System.out.println("|\tOption i: 0% Growths        \t|");
 		System.out.println("-----------------------------------------");
 		System.out.println("Enter here: ");
 		//System.out.println("\tOption a: Stat Cap Modifiers | ");

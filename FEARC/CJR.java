@@ -33,6 +33,7 @@ public class CJR {
 		String a;
 		String b;
 		int c;
+		String d;
 		switch(cmd) {
 			case "load":
 				cf = f.readFile("/data/" + in.next());
@@ -44,8 +45,8 @@ public class CJR {
 				
 				//in.nextLine();
 				
-				String d = cf.get(c - 1);
-				d.replace(a, b);
+				d = cf.get(c - 1);
+				d = d.replace(a, b);
 				cf.set(c - 1, d);
 				break;
 			case "breplace": //bulk replace
@@ -66,8 +67,17 @@ public class CJR {
 					cf.set(i - 1, d);
 				}
 				break;
-			case "creplace": //character replace
-				
+			case "freplace": //replace first - replaces first instance of substring a with substring b
+				a = in.next();
+				b = parseSpecialCommand(in.nextLine());
+				for(int i = 0; i < cf.size(); i++) {
+					d = cf.get(i);
+					if(d.contains(a)) {
+						d = d.replace(a, b);
+						cf.set(i, d);
+						break;
+					}
+				}
 				break;
 			case "lreplace":
 				if(!in.hasNextInt()) {

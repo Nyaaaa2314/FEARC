@@ -79,6 +79,11 @@ public class Util<T> {
 		StringBuilder str = new StringBuilder(s);
 		for(int i = 0; i < s.length(); i++) {
 			String c = "" + str.charAt(0);
+			if(str.charAt(0) == 'i') {
+				str.deleteCharAt(0);
+				CoreData.zero = true;
+				continue;
+			}
 			str.deleteCharAt(0);
 			if(str.indexOf(c) == -1) {
 				str.append(c);

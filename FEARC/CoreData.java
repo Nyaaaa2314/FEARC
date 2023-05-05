@@ -23,6 +23,7 @@ public class CoreData {
 	private static FileSys f;
 	public static ArrayList<String> Static;
 	public static ArrayList<String> GameData;
+	public static boolean zero;
 	public static void ensureInitialization() throws IOException {
 		if(f == null) {
 			f = FileSys.getInstance();
@@ -30,6 +31,7 @@ public class CoreData {
 			Static = f.readFile("/data/bins/static.txt");
 			GameData = f.readFile("/data/bins/GameData.txt");
 			LOOKUP_TABLE = new ArrayList<String>(Arrays.asList(LT));
+			zero = false;
 		}
 	}
 	
@@ -42,7 +44,7 @@ public class CoreData {
 	public static void runGrowths() throws IOException {
 		ensureInitialization();
 		Random rnd = new Random();
-		boolean zero = false; //TODO: actually check for zero growths
+		//boolean zero = false; //TODO: actually check for zero growths
 		
 		int[][] GrowthValues = new int[52][8];
 		// int[] Growths = new int[8];
@@ -76,7 +78,9 @@ public class CoreData {
 					GR = 10 + rng.nextInt(41);
 					break;
 				}
-				
+				if(zero) {
+					GR = 0;
+				}
 				GrowthValues[i][j] = GR;
 				GRHex = Integer.toHexString(GR).toUpperCase();
 				if (GRHex.length() == 1) {
@@ -255,6 +259,9 @@ public class CoreData {
 				growths[5] = 0;
 				growths[6] = 5 + rnd.nextInt(11);
 				growths[7] = 5 + rnd.nextInt(6);
+			}
+			if(zero) {
+				growths = new int[8];
 			}
 			c.growths = growths;
 			Data.classes.set(i, c);
