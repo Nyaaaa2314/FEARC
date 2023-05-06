@@ -31,7 +31,7 @@ Characater Join Order Randomization (Paralogues)
 
 
 
-Special Thanks to:
+## Special thanks to:
 
 - Dr. Mark Hills
 - Dr. Raghuveer Mohan
