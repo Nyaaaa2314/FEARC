@@ -14,25 +14,30 @@ Class Growths Randomization
 
 Class Stat Caps Randomization
 
+Class Set Randomization
+
+Class Promotions Randomization
+
+Characater Join Order Randomization (Main Story)
+
+Chest drops
+
+0% Growths option
 ----------------------------
 
 
 # WIP Features:
 
-Characater Join Order Randomization
-
-Class Set Randomization
-
-Class Promotions Randomization
-
-Chest drops
-
-0% Growths option
-
-GUI
+Characater Join Order Randomization (Paralogues)
 
 
-------------------------------
-Tentative Partial Rollout: Early or Mid Feb 2023
 
-Expected Full Release Date: April 2023
+
+Special Thanks to:
+
+Dr. Mark Hills
+Dr. Raghuveer Mohan
+Thane98
+VelouriasMoon
+
+Without them this wouldn't have been possible
