@@ -22,9 +22,6 @@ public class CJR {
 			}
 			exec(s);
 		}
-		
-		
-		
 	}
 	
 	public static void exec(String s) throws IOException {
@@ -80,21 +77,21 @@ public class CJR {
 				}
 				break;
 			case "lreplace":
-				if(!in.hasNextInt()) {
-					String nums = in.next();
-					nums = nums.replace(',', ' ').replace('[', ' ').replace(']', ' ');
-					ArrayList<Integer> lines = new ArrayList<Integer>();
-					Scanner sc = new Scanner(nums);
-					while(sc.hasNextInt()) {
-						lines.add(sc.nextInt());
-					}
-					a = parseSpecialCommand(in.nextLine());
-					for(int l : lines) {
-						cf.set(l--, a);
-					}
-					sc.close();
-					break;
-				}
+//				if(!in.hasNextInt()) {
+//					String nums = in.next();
+//					nums = nums.replace(',', ' ').replace('[', ' ').replace(']', ' ');
+//					ArrayList<Integer> lines = new ArrayList<Integer>();
+//					Scanner sc = new Scanner(nums);
+//					while(sc.hasNextInt()) {
+//						lines.add(sc.nextInt());
+//					}
+//					a = parseSpecialCommand(in.nextLine());
+//					for(int l : lines) {
+//						cf.set(l--, a);
+//					}
+//					sc.close();
+//					break;
+//				}
 				c = in.nextInt();
 				a = parseSpecialCommand(in.nextLine());
 				cf.set(--c, a);
@@ -120,9 +117,11 @@ public class CJR {
 							g.set(i + 69314, "0x02000000");
 							break;
 						case "05":
+							g.set(i + 69313, "0x0A500001");
 							g.set(i + 69305, "0x00340040");
 							g.set(i + 69311, "0x" + Util.wepToHex(cl.wa) + "000101");
 							g.set(i + 69318, "リライブ");
+							break;
 						case "06":
 							g.set(i + 69305, "0x00740040");
 							g.set(i + 69314, "0x02000000");
@@ -139,19 +138,12 @@ public class CJR {
 					}
 					CoreData.GameData = g;
 				}
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				break;
 			case "save":
 				f.writeFile("/output" + in.nextLine().trim(), cf);
 				break;
+			default:
+				throw new IllegalArgumentException("Command invalid: " + s);
 		}
 		
 		
@@ -159,6 +151,7 @@ public class CJR {
 	
 	public static String parseSpecialCommand(String in) throws IllegalStateException{
 		Scanner access;
+		
 		if(in.contains("CHARACTER_ACCESS")) {
 			access = new Scanner(in);
 			access.next(); //throw out the access token
@@ -227,6 +220,8 @@ public class CJR {
 		ArrayList<String> Static = CoreData.Static;
 		ArrayList<String> StaticS = (ArrayList<String>) Static.clone();
 		//System.out.println(Data.units.size());
+		StaticS.set(21, "0x" + Util.cSearch("Tactician").skills.get(0) + "000000");
+		StaticS.set(12 + 143 + 9, "0x" + Util.cSearch("Tactician").skills.get(0) + "000000");
 		for(Unit u : Data.rUnits) {
 			int numSkills =  1;
 			int k = 12 + 143 * i;
@@ -251,13 +246,15 @@ public class CJR {
 					else {
 						if(!Static.get(k + 10).substring(2, 4).equals("00")) {
 							pc = Util.cSearch(c.promotions.get(0));
-							if(!Static.get(k + 10).substring(6, 8).equals("00")) {
-								StaticS.set(n + 10, "0x" + pc.skills.get(0) + "00" + pc.skills.get(1) + "00");
-								numSkills += 2;
-							}
-							else {
-								StaticS.set(n + 10, "0x" + pc.skills.get(0) + "000000");
-								numSkills += 1;
+							if(pc != null) {
+								if(!Static.get(k + 10).substring(6, 8).equals("00")) {
+									StaticS.set(n + 10, "0x" + pc.skills.get(0) + "00" + pc.skills.get(1) + "00");
+									numSkills += 2;
+								}
+								else {
+									StaticS.set(n + 10, "0x" + pc.skills.get(0) + "000000");
+									numSkills += 1;
+								}
 							}
 						}
 						else {
@@ -288,7 +285,9 @@ public class CJR {
 			String wep2 = Static.get(k + 7).substring(2,10);
 			String[] wep = (wep1 + wep2).split("(?<=\\G.{" + 2 + "})");
 			Arrays.sort(wep, (String a, String b) -> Integer.parseInt(b, 16) - Integer.parseInt(a, 16));
-			
+			if(wep[0].equals("00") || wep[0].equals("01")) {
+				wep[0] = "24";
+			}
 			String[] xp = new String[wep.length];
 			int w = 0;
 			Class d = pc != null ? pc : c;
@@ -323,6 +322,7 @@ public class CJR {
 					xp[j] = "00";
 				}
 			}
+			
 			StaticS.set(n + 6, Static.get(n+6).substring(0,6) +xp[0] +xp[1]);
 			StaticS.set(n + 7, "0x" + xp[2] +xp[3] + xp[4] +xp[5]);
 			

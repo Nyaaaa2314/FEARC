@@ -7,7 +7,7 @@ public class Ylisse {
 	public static boolean CS;
 	
 	public static void main(String[] args) throws IOException {
-		debug = true;
+		debug = false;
 		CS = false;
 		CR = false;
 		unix = !System.getProperty("os.name").contains("Windows"); //Linux and Mac both use the same formatting so the edge case is then Windows devices
@@ -43,7 +43,6 @@ public class Ylisse {
 		if(debug) {
 			//return;
 			s = "abcdefgh";
-			
 		}
 		else{
 			s = in.nextLine().toLowerCase().trim();
@@ -112,7 +111,7 @@ public class Ylisse {
 		}
 		CoreData.close();
 		f.writeFile("/output/log.txt", log);
-		System.out.println("Everything has been randomized. See log.txt in the output folder for all the randomized data.");
+		System.out.println("Game randomized. See log.txt in the output folder for all the info on the randomized data.");
 	}
 	
 	/*Deprecated methods for getting user input
