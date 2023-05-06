@@ -1,8 +1,8 @@
-# FEARC
+# Galeforce
 Fire Emblem Awakening Randomizer Capstone
 
 
-# Completed Features:
+## Completed Features:
 
 Stat Cap Modifier Randomization
 
@@ -23,10 +23,8 @@ Characater Join Order Randomization (Main Story)
 Chest drops
 
 0% Growths option
-----------------------------
 
-
-# WIP Features:
+## WIP Features:
 
 Characater Join Order Randomization (Paralogues)
 
@@ -35,9 +33,9 @@ Characater Join Order Randomization (Paralogues)
 
 Special Thanks to:
 
-Dr. Mark Hills
-Dr. Raghuveer Mohan
-Thane98
-VelouriasMoon
+- Dr. Mark Hills
+- Dr. Raghuveer Mohan
+- Thane98
+- VelouriasMoon
 
 Without them this wouldn't have been possible
