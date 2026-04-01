@@ -10,7 +10,7 @@ public class FileSys {
 	
 	private static FileSys f;
 	private BufferedReader buf;
-	private String userdir;
+	private final String userdir;
 	
 	private FileSys() {
 		userdir = System.getProperty("user.dir");

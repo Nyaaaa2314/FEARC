@@ -306,7 +306,6 @@ load /exls/015.exl
 
 blreplace 172 PID_サイリ CHARACTER_ACCESS Say'ri CID
 replace 188 PID_クロム CHARACTER_ACCESS Chrom CID
-
 save /romfs/scripts/015.exl
 
 

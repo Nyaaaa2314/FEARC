@@ -32,52 +32,53 @@ public class CJR {
 		int c;
 		String d;
 		switch(cmd) {
-			case "load":
-				cf = f.readFile("/data/" + in.next());
-				break;
-			case "replace":
-				c = in.nextInt();
-				a = in.next();
-				b = parseSpecialCommand(in.nextLine());
-				
-				//in.nextLine();
-				
-				d = cf.get(c - 1);
-				d = d.replace(a, b);
-				cf.set(c - 1, d);
-				break;
-			case "breplace": //bulk replace
-				a = in.next();
-				b = parseSpecialCommand(in.nextLine());
-				c = 0;
-				for(String line : cf) {
-					cf.set(c++, line.replace(a,b));
-				}
-				break;
-			case "blreplace": //bulk-limit replace
-				c = in.nextInt();
-				a = in.next();
-				b = parseSpecialCommand(in.nextLine());
-				for(int i = c; i < cf.size(); i++) {
-					d = cf.get(i - 1);
-					d = d.replace(a, b);
-					cf.set(i - 1, d);
-				}
-				break;
-			case "freplace": //replace first - replaces first instance of substring a with substring b
-				a = in.next();
-				b = parseSpecialCommand(in.nextLine());
-				for(int i = 0; i < cf.size(); i++) {
-					d = cf.get(i);
-					if(d.contains(a)) {
-						d = d.replace(a, b);
-						cf.set(i, d);
-						break;
-					}
-				}
-				break;
-			case "lreplace":
-//				if(!in.hasNextInt()) {
+			case "load" -> cf = f.readFile("/data/" + in.next());
+			case "replace" -> {
+                            c = in.nextInt();
+                            a = in.next();
+                            b = parseSpecialCommand(in.nextLine());
+                            
+                            //in.nextLine();
+                            
+                            d = cf.get(c - 1);
+                            d = d.replace(a, b);
+                            cf.set(c - 1, d);
+                }
+			case "breplace" -> {
+                            //bulk replace
+                            a = in.next();
+                            b = parseSpecialCommand(in.nextLine());
+                            c = 0;
+                            for(String line : cf) {
+                                cf.set(c++, line.replace(a,b));
+                            }
+                }
+			case "blreplace" -> {
+                            //bulk-limit replace
+                            c = in.nextInt();
+                            a = in.next();
+                            b = parseSpecialCommand(in.nextLine());
+                            for(int i = c; i < cf.size(); i++) {
+                                d = cf.get(i - 1);
+                                d = d.replace(a, b);
+                                cf.set(i - 1, d);
+                            }
+                }
+			case "freplace" -> {
+                            //replace first - replaces first instance of substring a with substring b
+                            a = in.next();
+                            b = parseSpecialCommand(in.nextLine());
+                            for(int i = 0; i < cf.size(); i++) {
+                                d = cf.get(i);
+                                if(d.contains(a)) {
+                                    d = d.replace(a, b);
+                                    cf.set(i, d);
+                                    break;
+                                }
+                            }
+                }
+			case "lreplace" -> {
+                            //				if(!in.hasNextInt()) {
 //					String nums = in.next();
 //					nums = nums.replace(',', ' ').replace('[', ' ').replace(']', ' ');
 //					ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -92,58 +93,54 @@ public class CJR {
 //					sc.close();
 //					break;
 //				}
-				c = in.nextInt();
-				a = parseSpecialCommand(in.nextLine());
-				cf.set(--c, a);
-				break;
-			case "append":
-				
-				break;
-			case "special":
-				String sp = in.next();
-				if(sp.trim().equals("FALCHION_SWAP")) {
-					int type = in.nextInt();
-					String name = in.next();
-					Unit temp = Util.search(name);
-					Class cl = Util.cSearch(temp.classset.get(0));
-					ArrayList<String> g = CoreData.GameData;
-					int i = type == 1 ? 0 : (type == 2 ? 30 : 15);
-					g.set(i + 69311, "0x" + Util.wepToHex(cl.wa) + "000000");
-					switch(Util.wepToHex(cl.wa)) {
-						case "03":
-							g.set(i + 69313, "0x05500002");
-							//no break here on purpose
-						case "04":
-							g.set(i + 69314, "0x02000000");
-							break;
-						case "05":
-							g.set(i + 69313, "0x0A500001");
-							g.set(i + 69305, "0x00340040");
-							g.set(i + 69311, "0x" + Util.wepToHex(cl.wa) + "000101");
-							g.set(i + 69318, "リライブ");
-							break;
-						case "06":
-							g.set(i + 69305, "0x00740040");
-							g.set(i + 69314, "0x02000000");
-							g.set(i + 69315, "0x00080503");
-							g.set(i + 69316, "0x02000A07");
-							g.set(i + 69312, "0x00010000");
-							break;
-						case "07":
-							g.set(i + 69305, "0x00740040");
-							g.set(i + 69312, "0x00010000");
-							g.set(i + 69316, "0x05040100");
-							g.set(i + 69315, "0x00030005");
-							break;
-					}
-					CoreData.GameData = g;
-				}
-				break;
-			case "save":
-				f.writeFile("/output" + in.nextLine().trim(), cf);
-				break;
-			default:
-				throw new IllegalArgumentException("Command invalid: " + s);
+c = in.nextInt();
+a = parseSpecialCommand(in.nextLine());
+cf.set(--c, a);
+                }
+			case "append" -> {
+                }
+			case "special" -> {
+                            String sp = in.next();
+                            if(sp.trim().equals("FALCHION_SWAP")) {
+                                int type = in.nextInt();
+                                String name = in.next();
+                                Unit temp = Util.search(name);
+                                Class cl = Util.cSearch(temp.classset.get(0));
+                                ArrayList<String> g = CoreData.GameData;
+                                int i = type == 1 ? 0 : (type == 2 ? 30 : 15);
+                                g.set(i + 69311, "0x" + Util.wepToHex(cl.wa) + "000000");
+                                switch(Util.wepToHex(cl.wa)) {
+                                    case "03":
+                                        g.set(i + 69313, "0x05500002");
+                                        //no break here on purpose
+                                    case "04":
+                                        g.set(i + 69314, "0x02000000");
+                                        break;
+                                    case "05":
+                                        g.set(i + 69313, "0x0A500001");
+                                        g.set(i + 69305, "0x00340040");
+                                        g.set(i + 69311, "0x" + Util.wepToHex(cl.wa) + "000101");
+                                        g.set(i + 69318, "リライブ");
+                                        break;
+                                    case "06":
+                                        g.set(i + 69305, "0x00740040");
+                                        g.set(i + 69314, "0x02000000");
+                                        g.set(i + 69315, "0x00080503");
+                                        g.set(i + 69316, "0x02000A07");
+                                        g.set(i + 69312, "0x00010000");
+                                        break;
+                                    case "07":
+                                        g.set(i + 69305, "0x00740040");
+                                        g.set(i + 69312, "0x00010000");
+                                        g.set(i + 69316, "0x05040100");
+                                        g.set(i + 69315, "0x00030005");
+                                        break;
+                                }
+                                CoreData.GameData = g;
+                            }
+                }
+			case "save" -> f.writeFile("/output" + in.nextLine().trim(), cf);
+			default -> throw new IllegalArgumentException("Command invalid: " + s);
 		}
 		
 		
