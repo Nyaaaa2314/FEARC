@@ -176,7 +176,7 @@ public class Util<T> {
 		Stack<Unit> gen1 = new Stack<Unit>();
 		Stack<Unit> gen2 = new Stack<Unit>();
 		for(Unit u : Data.units) {
-			if(u.isRobin) {
+			if(u.isRobin || u.isMorgan) {
 				continue;
 			}
 			if(!contains(Data.gen2, u.name)) {
@@ -191,7 +191,7 @@ public class Util<T> {
 		shuffle = new ArrayList<Unit>();
 		
 		for(Unit u : Data.units) {
-			if(u.isRobin) {
+			if(u.isRobin || u.isMorgan) {
 				continue;
 			}
 			if(!contains(Data.gen2, u.name)) {

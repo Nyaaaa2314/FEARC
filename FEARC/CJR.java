@@ -64,6 +64,18 @@ public class CJR {
                                 cf.set(i - 1, d);
                             }
                 }
+			case "bbreplace" -> {
+							//bulk-bounded replace
+							c = in.nextInt();
+							int c2 = in.nextInt();
+							a = in.next();
+							b = parseSpecialCommand(in.nextLine());
+							for(int i = c; i <= c2; i++) {
+								d = cf.get(i - 1);
+								d = d.replace(a, b);
+								cf.set(i - 1, d);
+							}
+			}
 			case "freplace" -> {
                             //replace first - replaces first instance of substring a with substring b
                             a = in.next();
@@ -78,6 +90,9 @@ public class CJR {
                             }
                 }
 			case "lreplace" -> {
+							c = in.nextInt();
+							a = parseSpecialCommand(in.nextLine());
+							cf.set(--c, a);
                             //				if(!in.hasNextInt()) {
 //					String nums = in.next();
 //					nums = nums.replace(',', ' ').replace('[', ' ').replace(']', ' ');
@@ -93,9 +108,6 @@ public class CJR {
 //					sc.close();
 //					break;
 //				}
-c = in.nextInt();
-a = parseSpecialCommand(in.nextLine());
-cf.set(--c, a);
                 }
 			case "append" -> {
                 }

@@ -81,8 +81,9 @@ save /romfs/data/dispos/003.txt
 
 load /exls/003.exl
 
-blreplace 80 PID_カラム CHARACTER_ACCESS Kellam CID
-blreplace 105 PID_クロム CHARACTER_ACCESS Chrom CID
+blreplace 176 PID_カラム CHARACTER_ACCESS Kellam CID
+blreplace 178 PID_カラム CHARACTER_ACCESS Kellam CID
+blreplace 176 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 122 PID_スミア CHARACTER_ACCESS Sumia CID
 replace 127 PID_スミア CHARACTER_ACCESS Sumia CID
 
@@ -308,7 +309,13 @@ blreplace 172 PID_サイリ CHARACTER_ACCESS Say'ri CID
 replace 188 PID_クロム CHARACTER_ACCESS Chrom CID
 save /romfs/scripts/015.exl
 
+#load /exls/012.exl
 
+#bbreplace 759 849 PID_クロム CHARACTER_ACCESS Chrom CID
+#bbreplace 759 849 PID_スミア CHARACTER_ACCESS Sumia CID
+#bbreplace 759 849 PID_リズ CHARACTER_ACCESS Lissa CID
+#bbreplace 759 849 PID_スミア CHARACTER_ACCESS Sumia CID
+#bbreplace 759 849 PID_スミア CHARACTER_ACCESS Sumia CID
 
 
 
