@@ -309,13 +309,22 @@ blreplace 172 PID_サイリ CHARACTER_ACCESS Say'ri CID
 replace 188 PID_クロム CHARACTER_ACCESS Chrom CID
 save /romfs/scripts/015.exl
 
-#load /exls/012.exl
+load /exls/X001.ex
 
-#bbreplace 759 849 PID_クロム CHARACTER_ACCESS Chrom CID
-#bbreplace 759 849 PID_スミア CHARACTER_ACCESS Sumia CID
-#bbreplace 759 849 PID_リズ CHARACTER_ACCESS Lissa CID
-#bbreplace 759 849 PID_スミア CHARACTER_ACCESS Sumia CID
-#bbreplace 759 849 PID_スミア CHARACTER_ACCESS Sumia CID
+replace 108 PID_ドニ CHARACTER_ACCESS Donnel CID
+
+save /romfs/scripts/X001.exl
+
+load /dispos/X001.txt
+
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+lreplace 1147 CHARACTER_ACCESS Donnel CID
+lreplace 1154 WEAPON_SWAP 0 0 Donnel F 1
+
+save /romfs/data/dispos/X001.txt
+
+
+
 
 
 
