@@ -81,9 +81,9 @@ save /romfs/data/dispos/003.txt
 
 load /exls/003.exl
 
-blreplace 176 PID_カラム CHARACTER_ACCESS Kellam CID
-blreplace 178 PID_カラム CHARACTER_ACCESS Kellam CID
-blreplace 176 PID_クロム CHARACTER_ACCESS Chrom CID
+replace 176 PID_クロム CHARACTER_ACCESS Chrom CID
+dblreplace 176 PID_カラム CHARACTER_ACCESS Kellam CID
+replace 178 PID_カラム CHARACTER_ACCESS Kellam CID
 replace 122 PID_スミア CHARACTER_ACCESS Sumia CID
 replace 127 PID_スミア CHARACTER_ACCESS Sumia CID
 
@@ -135,7 +135,7 @@ save /romfs/data/dispos/006.txt
 load /exls/006.exl
 
 replace 338 PID_クロム CHARACTER_ACCESS Chrom CID
-replace 338 PID_ガイア CHARACTER_ACCESS Gaius CID
+dblreplace 338 PID_ガイア CHARACTER_ACCESS Gaius CID
 replace 343 PID_ガイア CHARACTER_ACCESS Gaius CID
 
 save /romfs/scripts/006.exl
@@ -193,9 +193,9 @@ load /exls/009.exl
 
 replace 366 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 375 PID_クロム CHARACTER_ACCESS Chrom CID
-replace 366 PID_リベラ CHARACTER_ACCESS Libra CID
+dblreplace 366 PID_リベラ CHARACTER_ACCESS Libra CID
 replace 329 PID_リベラ CHARACTER_ACCESS Libra CID
-replace 375 PID_サーリャ CHARACTER_ACCESS Tharja CID
+dblreplace 375 PID_サーリャ CHARACTER_ACCESS Tharja CID
 replace 341 PID_サーリャ CHARACTER_ACCESS Tharja CID
 replace 369 PID_リベラ CHARACTER_ACCESS Libra CID
 replace 378 PID_サーリャ CHARACTER_ACCESS Tharja CID
@@ -305,8 +305,10 @@ save /romfs/data/dispos/025.txt
 
 load /exls/015.exl
 
-blreplace 172 PID_サイリ CHARACTER_ACCESS Say'ri CID
 replace 188 PID_クロム CHARACTER_ACCESS Chrom CID
+dblreplace 188 PID_サイリ CHARACTER_ACCESS Say'ri CID
+replace 193 PID_サイリ CHARACTER_ACCESS Say'ri CID
+
 save /romfs/scripts/015.exl
 
 load /exls/X001.ex
@@ -322,6 +324,45 @@ lreplace 1147 CHARACTER_ACCESS Donnel CID
 lreplace 1154 WEAPON_SWAP 0 0 Donnel F 1
 
 save /romfs/data/dispos/X001.txt
+
+load /dispos/X002.txt
+
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+
+save /romfs/data/dispos/X002.txt
+
+load /dispos/X003.txt
+
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+
+save /romfs/data/dispos/X003.txt
+
+load /dispos/X004.txt
+
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+lreplace 1375 CHARACTER_ACCESS Anna CID
+
+save /romfs/data/dispos/X004.txt
+
+load /exls/X004.exl
+
+replace 78 PID_アンナ CHARACTER_ACCESS Anna CID
+replace 94 PID_アンナ CHARACTER_ACCESS Anna CID
+replace 100 PID_アンナ CHARACTER_ACCESS Anna CID
+replace 110 PID_アンナ CHARACTER_ACCESS Anna CID
+replace 122 PID_アンナ CHARACTER_ACCESS Anna CID
+replace 134 PID_クロム CHARACTER_ACCESS Chrom CID
+dblreplace 134 PID_アンナ CHARACTER_ACCESS Anna CID
+replace 140 PID_アンナ CHARACTER_ACCESS Anna CID
+
+save /romfs/scripts/X004.exl
+
+load /dispos/X005.txt
+
+
+
+save romfs/data/dispos/X005.txt
+
 
 
 

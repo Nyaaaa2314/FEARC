@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -36,10 +35,7 @@ public class CJR {
 			case "replace" -> {
                             c = in.nextInt();
                             a = in.next();
-                            b = parseSpecialCommand(in.nextLine());
-                            
-                            //in.nextLine();
-                            
+                            b = parseSpecialCommand(in.nextLine());                
                             d = cf.get(c - 1);
                             d = d.replace(a, b);
                             cf.set(c - 1, d);
@@ -76,6 +72,24 @@ public class CJR {
 								cf.set(i - 1, d);
 							}
 			}
+			case "dblreplace" -> {
+							//this is in the case that a line will have 2 replacements of the same thing (ie a CID) to avoid replacing a replacement rather than the original
+							c = in.nextInt();
+                            a = in.next();
+                            b = parseSpecialCommand(in.nextLine());  
+                            d = cf.get(c - 1);
+							if (d.indexOf(a) == d.lastIndexOf(a)) {
+								d = d.replace(a, b);
+                                cf.set(c - 1, d);
+							}
+							else{
+								//find the second instance of a and replace that one instead of the first
+								int first = d.indexOf(a);
+								int second = d.indexOf(a, first + 1);
+								d = d.substring(0, second) + b + d.substring(second + a.length());
+								cf.set(c - 1, d);
+							}        
+			}
 			case "freplace" -> {
                             //replace first - replaces first instance of substring a with substring b
                             a = in.next();
@@ -93,21 +107,6 @@ public class CJR {
 							c = in.nextInt();
 							a = parseSpecialCommand(in.nextLine());
 							cf.set(--c, a);
-                            //				if(!in.hasNextInt()) {
-//					String nums = in.next();
-//					nums = nums.replace(',', ' ').replace('[', ' ').replace(']', ' ');
-//					ArrayList<Integer> lines = new ArrayList<Integer>();
-//					Scanner sc = new Scanner(nums);
-//					while(sc.hasNextInt()) {
-//						lines.add(sc.nextInt());
-//					}
-//					a = parseSpecialCommand(in.nextLine());
-//					for(int l : lines) {
-//						cf.set(l--, a);
-//					}
-//					sc.close();
-//					break;
-//				}
                 }
 			case "append" -> {
                 }
