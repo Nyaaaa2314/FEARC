@@ -37,7 +37,6 @@ public class CoreData {
 	
 	public static ArrayList<String> getGameData(){
 		return GameData;
-		
 	}
 	
 	
@@ -114,6 +113,8 @@ public class CoreData {
 			Static.set(k + (143 * i) + 1, "0x" + Growths[i][4] + Growths[i][5] + Growths[i][6] + Growths[i][7]);
 		}
 	}
+
+	
 	
 	public static void runModifiers() throws IOException {
 		ensureInitialization();

@@ -9,6 +9,7 @@ public class Unit {
 	public String CID;
 	public ArrayList<String> classset;
 	public String replacementChar;
+	public String parent;
 	public boolean isChild;
 	public boolean cjr;
 	public boolean isRobin;

@@ -369,6 +369,9 @@ public class CJR {
 				StaticS.set(n - 9, Static.get(n - 9).substring(0,4) + "10" + Static.get(n - 9).substring(6));
 			}
 			//i++;
+			if(u.isChild && !u.isMorgan) {
+				StaticS.set(n + 18, Util.search(u.parent).CID);
+			}
 		}
 //		Unit temp = Util.search("Lucina");
 //		if(!temp.name.equals("Lucina")) {
