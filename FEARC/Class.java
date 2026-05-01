@@ -103,6 +103,44 @@ public class Class {
 		
 		return ret.append("\n").toString();
 	}
+
+	public String toJsonString() {
+		StringBuilder ret = new StringBuilder("{\n\"name\": \"" + name + "\"");
+		if(growths != null) {
+			ret.append(",\n\"growths\": { \"HP\": " + growths[0] + ", \"Str\": " + growths[1] +
+					", \"Mag\": " + growths[2] + ", \"Skl\": " + growths[3] + ", \"Spd\": " + 
+					growths[4] + ", \"Lck\": " + growths[5] + ", \"Def\": " + growths[6] +
+					", \"Res\": " + growths[7] + " }");
+		}
+		if(caps != null) {
+			ret.append(",\n\"caps\": { \"HP\": " + caps[0] + ", \"Str\": " + caps[1] +
+					", \"Mag\": " + caps[2] + ", \"Skl\": " + caps[3] + ", \"Spd\": " + 
+					caps[4] + ", \"Lck\": " + caps[5] + ", \"Def\": " + caps[6] +
+					", \"Res\": " + caps[7] + " }");
+		}
+		if(pairups != null) {
+			ret.append(",\n\"pairups\": { \"Mov\": " + pairups[0] + ", \"Str\": " + pairups[1] +
+					", \"Mag\": " + pairups[2] + ", \"Skl\": " + pairups[3] + ", \"Spd\": " + 
+					pairups[4] + ", \"Lck\": " + pairups[5] + ", \"Def\": " + pairups[6] +
+					", \"Res\": " + pairups[7] + " }");
+		}
+		if(skills.size() > 0) {
+			ret.append(",\n\"skills\": [ \""  );
+			for(int i = 0; i < skills.size(); i++) {
+				ret.append(Data.skillNames[Util.indexOf(Data.Skills, skills.get(i))]);
+				if(i != skills.size() - 1) {
+					ret.append("\", \"");
+				}
+			}
+		}
+		if(skills.size() > 0) {
+			ret.append("\" ]");
+		}	
+		if(sp) {
+			ret.append(",\n\"promotions\": [ \"" + promotions.get(0) + "\", \"" + promotions.get(1) + "\" ]");
+		}
+		return ret.append("\n},").toString();
+	}
 	
 	public Class(String name, boolean promoted, String wa, String wb, String wc, String JID, boolean flier) {
 		this.name = name;

@@ -109,8 +109,32 @@ public class Ylisse {
 				log.add(c.toLog());
 			}
 		}
+		ArrayList<String> Json = new ArrayList<String>();
+		Json.add("{");
+		if(CR){
+			Json.add("\"Characters\": [");
+			for (Unit u : Data.units) {
+				Json.add(u.toJsonString());
+			}
+			Json.set(Json.size() - 1, Json.get(Json.size() - 1).replaceAll("},", "}"));
+			Json.add("]");
+			if(CS){
+				Json.add(",");
+			}
+		}
+		if(CS) {
+			Json.add("\"Classes\": [");
+			for (Class c : Data.classes) {
+				Json.add(c.toJsonString());
+			}
+			Json.set(Json.size() - 1, Json.get(Json.size() - 1).substring(0, Json.get(Json.size() - 1).length() - 1));
+			Json.add("]");
+		}
+		Json.add("}");
+		
 		CoreData.close();
 		f.writeFile("/output/log.txt", log);
+		f.writeFile("/output/log.json", Json);
 		System.out.println("Game randomized. See log.txt in the output folder for all the info on the randomized data.");
 	}
 	

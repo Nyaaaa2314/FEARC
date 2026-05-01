@@ -72,6 +72,38 @@ public class Unit {
 		
 		
 	}
+
+	public String toJsonString(){
+		StringBuilder ret = new StringBuilder("{\n");
+		ret.append("\t\"name\": \"" + name + "\",\n");
+		//appent parent and replacement char if cjr
+		if(cjr) {
+			ret.append("\t\"originalChar\": \"" + replacementChar + "\",\n");
+			if(isChild && !isMorgan){
+				ret.append("\t\"parent\": \"" + parent + "\",\n");
+			}
+		}
+		if(growths != null) {
+			ret.append("\t\"growths\": [ " + growths[0] + ", " + growths[1] +
+					", " + growths[2] + ", " + growths[3] + ", " + growths[4] + 
+					", " + growths[5] + ", " + growths[6] + ", " + growths[7] + " ]");
+		}
+		if(caps != null) {
+			ret.append(",\n");
+			ret.append("\t\"caps\": [ " + caps[0] +
+					", " + caps[1] + ", " + caps[2] + ", " + caps[3] +
+					", " + caps[4] + ", " + caps[5] + ", " + caps[6] + " ]");
+		}
+		if(classset != null) {
+			ret.append(",\n");
+			ret.append("\t\"classset\": [ \"" + classset.get(0) +
+					"\", \"" + classset.get(1) +
+					"\", \"" + classset.get(2) +
+					"\" ]\n");
+		}
+		
+		return ret.append("},").toString();
+	}
 	
 	
 	
