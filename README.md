@@ -18,7 +18,7 @@ Class Set Randomization
 
 Class Promotions Randomization
 
-Characater Join Order Randomization (Main Story)
+Characater Join Order Randomization
 
 Chest drops
 
@@ -26,7 +26,7 @@ Chest drops
 
 ## WIP Features:
 
-Characater Join Order Randomization (Paralogues)
+Weight options for stats
 
 
 
