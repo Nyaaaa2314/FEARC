@@ -25,7 +25,9 @@ public class Unit {
 	public Unit(String name, String CID) {
 		this.name = name;
 		this.CID = CID;
+		isChild = Util.contains(Data.gen2, name);
 		isRobin = false;
+		isMorgan = name.contains("Morgan");
 	}
 	public Unit (String name, boolean isRobin) {
 		this.name = name;
@@ -43,6 +45,12 @@ public class Unit {
 		StringBuilder ret = new StringBuilder(name + "\n");
 		if(cjr) {
 			ret.append("Original Character: " + replacementChar + "\n");
+			if(isChild && !isMorgan){
+				if(parent == null){
+					parent = "Chrom";
+				}
+				ret.append("Parent: " + parent + "\n");
+			}
 			//ret.append("CID: " + CID + " | DEBUG LINE, REMOVE LATER" + "\n"); //TODO: remove line
 			ret.append("Class set [ " + classset.get(0) + ", " + classset.get(1) + ", " + classset.get(2) + " ]\n");
 			//TODO: add code for logging stuff

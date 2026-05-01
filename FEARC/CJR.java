@@ -361,7 +361,7 @@ public class CJR {
 			}
 			i++;
 			StaticS.set(n + 8, Static.get(n+8).substring(0, 4) + tempLv + Static.get(n+8).substring(6, 10));
-			if(Util.search(u.name).equals("Lucina")) {
+			if(Util.search(u.name).name.equals("Lucina")) {
 				if(u.name.equals("Lucina")) {
 					continue;
 				}

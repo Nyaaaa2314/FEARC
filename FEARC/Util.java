@@ -149,7 +149,7 @@ public class Util<T> {
 	}
 	
 	public static boolean validShuffle(ArrayList<ArrayList<String>> shuffle) {
-		if(shuffle.size() == 0) {
+		if(shuffle.isEmpty()) {
 			return false;
 		}
 		int i = 0;
@@ -191,7 +191,11 @@ public class Util<T> {
 		shuffle = new ArrayList<Unit>();
 		
 		for(Unit u : Data.units) {
-			if(u.isRobin || u.isMorgan) {
+			if(u.isRobin) {
+				continue;
+			}
+			if(u.isMorgan) {
+				shuffle.add(u);
 				continue;
 			}
 			if(!contains(Data.gen2, u.name)) {

@@ -54,7 +54,12 @@ public class FileSys {
 	public void writeFile(String path, ArrayList<String> content) throws IOException {
 		File temp = new File(ensureFormat(userdir + path));
 		if(!temp.exists()) {
-			temp.createNewFile();
+			try {
+				temp.createNewFile();
+			} catch (Exception e) {
+				throw new IOException("Error encountered trying to create " + userdir + path);
+			}
+			
 		}
 		Files.write(temp.toPath(), content, StandardOpenOption.TRUNCATE_EXISTING);
 	}

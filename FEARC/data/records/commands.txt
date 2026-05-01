@@ -311,7 +311,7 @@ replace 193 PID_サイリ CHARACTER_ACCESS Say'ri CID
 
 save /romfs/scripts/015.exl
 
-load /exls/X001.ex
+load /exls/X001.exl
 
 replace 108 PID_ドニ CHARACTER_ACCESS Donnel CID
 
@@ -365,7 +365,7 @@ freplace PID_クロム CHARACTER_ACCESS Chrom CID
 replace 1288 PID_ウード CHARACTER_ACCESS Owain CID
 lreplace 1295 WEAPON_SWAP 2 2 Owain F 1
 
-save romfs/data/dispos/X005.txt
+save /romfs/data/dispos/X005.txt
 
 load /exls/X005.exl
 
@@ -385,7 +385,7 @@ freplace PID_クロム CHARACTER_ACCESS Chrom CID
 replace 1694 PID_アズール CHARACTER_ACCESS Inigo CID
 lreplace 1701 WEAPON_SWAP 5 2 Inigo F 1
 
-save romfs/data/dispos/X006.txt
+save /romfs/data/dispos/X006.txt
 
 load /exls/X006.exl
 
@@ -550,7 +550,7 @@ freplace PID_クロム CHARACTER_ACCESS Chrom CID
 replace 1810 PID_ンン CHARACTER_ACCESS Nah CID
 lreplace 1817 WEAPON_SWAP 2 2 Nah F 1
 
-save romfs/data/dispos/X016.txt
+save /romfs/data/dispos/X016.txt
 
 load /exls/X016.exl
 
