@@ -150,7 +150,13 @@ public class CJR {
                                 CoreData.GameData = g;
                             }
                 }
-			case "save" -> f.writeFile("/output" + in.nextLine().trim(), cf);
+			case "save" -> {
+				String st = in.nextLine().trim();
+				f.writeFile("/output" + st, cf);
+				if (Ylisse.debug){
+					f.writeFile("/debugoutput" + st, cf);
+				}
+			}
 			default -> throw new IllegalArgumentException("Command invalid: " + s);
 		}
 		
@@ -165,8 +171,14 @@ public class CJR {
 			access.next(); //throw out the access token
 			String name = access.next(); //grab the name of the og character
 			String field = access.next(); //what are we accessing
-			Unit temp = Util.search(name);
-			
+			Unit temp;
+			if(name.contains("_")){
+				//temp = Util.puresearch(Data.rParents.get(Util.indexOf(Data.Parents, name.split("_")[0])));
+				temp = Util.puresearch(Util.search(Data.Children[Util.indexOf(Data.Parents, name.split("_")[0])]).parent);
+			}
+			else {
+				temp = Util.search(name);
+			}
 			if(temp == null) {
 				access.close();
 				throw new IllegalStateException("Name of character is invalid in command: " + in);

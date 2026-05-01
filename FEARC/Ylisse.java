@@ -7,7 +7,7 @@ public class Ylisse {
 	public static boolean CS;
 	
 	public static void main(String[] args) throws IOException {
-		debug = true;
+		debug = false;
 		CS = false;
 		CR = false;
 		unix = !System.getProperty("os.name").contains("Windows"); //Linux and Mac both use the same formatting so the edge case is then Windows devices

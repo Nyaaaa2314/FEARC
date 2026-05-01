@@ -46,9 +46,6 @@ public class Unit {
 		if(cjr) {
 			ret.append("Original Character: " + replacementChar + "\n");
 			if(isChild && !isMorgan){
-				if(parent == null){
-					parent = "Chrom";
-				}
 				ret.append("Parent: " + parent + "\n");
 			}
 			//ret.append("CID: " + CID + " | DEBUG LINE, REMOVE LATER" + "\n"); //TODO: remove line

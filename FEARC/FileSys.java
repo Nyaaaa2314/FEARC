@@ -71,5 +71,13 @@ public class FileSys {
 		new File(ensureFormat(userdir + "/output/romfs/data/person" )).mkdirs();
 		new File(ensureFormat(userdir + "/output/romfs/data/dispos" )).mkdirs();
 		new File(ensureFormat(userdir + "/output/romfs/scripts" )).mkdirs();
+		if (Ylisse.debug){
+			new File(ensureFormat(userdir + "/debugoutput" )).mkdirs();
+			new File(ensureFormat(userdir + "/debugoutput/romfs" )).mkdirs();
+			new File(ensureFormat(userdir + "/debugoutput/romfs/data" )).mkdirs();
+			new File(ensureFormat(userdir + "/debugoutput/romfs/data/person" )).mkdirs();
+			new File(ensureFormat(userdir + "/debugoutput/romfs/data/dispos" )).mkdirs();
+			new File(ensureFormat(userdir + "/debugoutput/romfs/scripts" )).mkdirs();
+		}
 	}
 }

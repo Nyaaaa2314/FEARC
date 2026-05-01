@@ -456,6 +456,10 @@ public class CoreData {
 	public static void close() throws IOException {
 		f.writeFile("/output/romfs/data/person/static.txt", Static);
 		f.writeFile("/output/romfs/data/GameData.txt", GameData);
+		if (Ylisse.debug){
+			f.writeFile("/debugoutput/romfs/data/person/static.txt", Static);
+			f.writeFile("/debugoutput/romfs/data/GameData.txt", GameData);
+		}
 	}
 	
 	
