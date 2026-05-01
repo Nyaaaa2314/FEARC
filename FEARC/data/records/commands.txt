@@ -506,7 +506,7 @@ freplace PID_クロム CHARACTER_ACCESS Chrom CID
 replace 430 PID_シャンブレー CHARACTER_ACCESS Yarne CID
 lreplace 437 WEAPON_SWAP 2 2 Yarne F 1
 
-save /romfs/scripts/X013.exl
+save /romfs/data/dispos/X013.txt
 
 load /exls/X013.exl
 
@@ -523,4 +523,58 @@ save /romfs/scripts/X013.exl
 load /dispos/X014.txt
 
 freplace PID_クロム CHARACTER_ACCESS Chrom CID
+replace 1455 PID_ロラン CHARACTER_ACCESS Laurent CID
+lreplace 1462 WEAPON_SWAP 1 1 Laurent F 1
 
+save /romfs/data/dispos/X014.txt
+
+load /dispos/X015.txt
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+replace 2158 PID_ノワール CHARACTER_ACCESS Noire CID
+
+save /romfs/data/dispos/X015.txt
+
+load /exls/X015.exl
+
+replace 108 PID_ノワール CHARACTER_ACCESS Noire CID
+replace 100 PID_ノワール CHARACTER_ACCESS Noire CID
+replace 90 PID_ノワール CHARACTER_ACCESS Noire CID
+replace 83 PID_ノワール CHARACTER_ACCESS Noire CID
+replace 118 IID_鋼の弓 WEAPON_SWAP 2 2 Noire F 1
+
+save /romfs/scripts/X015.exl
+
+load /dispos/X016.txt
+
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+replace 1810 PID_ンン CHARACTER_ACCESS Nah CID
+lreplace 1817 WEAPON_SWAP 2 2 Nah F 1
+
+save romfs/data/dispos/X016.txt
+
+load /exls/X016.exl
+
+replace 119 PID_ンン CHARACTER_ACCESS Nah CID
+replace 136 PID_ンン CHARACTER_ACCESS Nah CID
+replace 136 PID_クロム CHARACTER_ACCESS Chrom CID
+replace 145 PID_ノノ CHARACTER_ACCESS Nowi CID
+replace 145 PID_ンン CHARACTER_ACCESS Nah CID
+replace 140 PID_ンン CHARACTER_ACCESS Nah CID
+replace 151 PID_ンン CHARACTER_ACCESS Nah CID
+
+save /romfs/scripts/X016.exl
+
+load /dispos/X017.txt
+
+freplace PID_クロム CHARACTER_ACCESS Chrom CID
+replace 744 PID_チキ CHARACTER_ACCESS Tiki CID
+
+save /romfs/data/dispos/X017.txt
+
+load /exls/X017.exl
+
+replace 82 PID_チキ CHARACTER_ACCESS Tiki CID
+replace 89 PID_チキ CHARACTER_ACCESS Tiki CID
+replace 92 IID_真竜石 WEAPON_SWAP 3 3 Tiki T 1
+
+save /romfs/scripts/X017.exl
