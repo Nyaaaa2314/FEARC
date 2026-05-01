@@ -373,7 +373,7 @@ replace 68 PID_ウード CHARACTER_ACCESS Owain CID
 replace 83 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 83 PID_ウード CHARACTER_ACCESS Owain CID
 replace 92 PID_ウード CHARACTER_ACCESS Owain CID
-replace 97 PID_リズ CHARACTER_ACCESS Lissa CID
+replace 97 PID_リズ CHARACTER_ACCESS Lissa_P CID
 replace 97 PID_ウード CHARACTER_ACCESS Owain CID
 replace 103 PID_ウード CHARACTER_ACCESS Owain CID
 
@@ -392,7 +392,7 @@ load /exls/X006.exl
 replace 122 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 122 PID_アズール CHARACTER_ACCESS Inigo CID
 replace 134 PID_アズール CHARACTER_ACCESS Inigo CID
-replace 139 PID_オリヴィエ CHARACTER_ACCESS Olivia CID
+replace 139 PID_オリヴィエ CHARACTER_ACCESS Olivia_P CID
 replace 139 PID_アズール CHARACTER_ACCESS Inigo CID
 replace 80 PID_アズール CHARACTER_ACCESS Inigo CID
 replace 85 PID_アズール CHARACTER_ACCESS Inigo CID
@@ -415,7 +415,7 @@ replace 130 PID_ブレディ CHARACTER_ACCESS Brady CID
 replace 136 PID_ブレディ CHARACTER_ACCESS Brady CID
 replace 141 PID_ブレディ CHARACTER_ACCESS Brady CID
 replace 69 PID_ブレディ CHARACTER_ACCESS Brady CID
-replace 136 PID_マリアベル CHARACTER_ACCESS Maribelle CID
+replace 136 PID_マリアベル CHARACTER_ACCESS Maribelle_P CID
 
 save /romfs/scripts/X007.exl
 
@@ -435,7 +435,7 @@ replace 270 PID_デジェル CHARACTER_ACCESS Kjelle CID
 replace 281 PID_デジェル CHARACTER_ACCESS Kjelle CID
 replace 286 PID_デジェル CHARACTER_ACCESS Kjelle CID
 replace 292 PID_デジェル CHARACTER_ACCESS Kjelle CID
-replace 286 PID_ソワレ CHARACTER_ACCESS Sully CID
+replace 286 PID_ソワレ CHARACTER_ACCESS Sully_P CID
 
 save /romfs/scripts/X008.exl
 
@@ -452,7 +452,7 @@ load /exls/X009.exl
 replace 147 PID_クロム CHARACTER_ACCESS Chrom CID
 replace 147 PID_シンシア CHARACTER_ACCESS Cynthia CID
 replace 167 PID_シンシア CHARACTER_ACCESS Cynthia CID
-replace 167 PID_スミア CHARACTER_ACCESS Sumia CID
+replace 167 PID_スミア CHARACTER_ACCESS Sumia_P CID
 replace 173 PID_シンシア CHARACTER_ACCESS Cynthia CID
 
 save /romfs/scripts/X009.exl
@@ -490,7 +490,7 @@ replace 170 PID_ジェローム CHARACTER_ACCESS Gerome CID
 replace 175 PID_ジェローム CHARACTER_ACCESS Gerome CID
 replace 181 PID_ジェローム CHARACTER_ACCESS Gerome CID
 replace 164 PID_クロム CHARACTER_ACCESS Chrom CID
-replace 175 PID_セルジュ CHARACTER_ACCESS Cherche CID
+replace 175 PID_セルジュ CHARACTER_ACCESS Cherche_P CID
 
 save /romfs/scripts/X011.exl
 
@@ -516,7 +516,7 @@ replace 152 PID_シャンブレー CHARACTER_ACCESS Yarne CID
 replace 157 PID_シャンブレー CHARACTER_ACCESS Yarne CID
 replace 161 PID_シャンブレー CHARACTER_ACCESS Yarne CID
 replace 148 PID_クロム CHARACTER_ACCESS Chrom CID
-replace 157 PID_ベルベット CHARACTER_ACCESS Panne CID
+replace 157 PID_ベルベット CHARACTER_ACCESS Panne_P CID
 
 save /romfs/scripts/X013.exl
 
@@ -557,7 +557,7 @@ load /exls/X016.exl
 replace 119 PID_ンン CHARACTER_ACCESS Nah CID
 replace 136 PID_ンン CHARACTER_ACCESS Nah CID
 replace 136 PID_クロム CHARACTER_ACCESS Chrom CID
-replace 145 PID_ノノ CHARACTER_ACCESS Nowi CID
+replace 145 PID_ノノ CHARACTER_ACCESS Nowi_P CID
 replace 145 PID_ンン CHARACTER_ACCESS Nah CID
 replace 140 PID_ンン CHARACTER_ACCESS Nah CID
 replace 151 PID_ンン CHARACTER_ACCESS Nah CID

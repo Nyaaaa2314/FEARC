@@ -15,6 +15,16 @@ public class Util<T> {
 		return -1;
 		
 	}
+	public static Unit puresearch(String name){
+		Unit temp = null;
+		for(Unit u : Data.units) {
+			if(u.name.equals(name)) {
+				temp = u;
+				break;
+			}
+		}
+		return temp;
+	}
 	public static Unit search(String name) {
 		Unit temp = null;
 		for(Unit u : Data.rUnits) {

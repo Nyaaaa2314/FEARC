@@ -1,14 +1,16 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Random;
-
+import java.util.Collections;
 
 public class Data {
 	private static Data d;
 	public final static String[] CharacterNames = { "Chrom", "Lissa", "Frederick", "Virion", "Sully", "Vaike", "Stahl", "Miriel", "Kellam", "Sumia", "Lon'qu", "Ricken", "Maribelle", "Panne", "Gaius", "Cordelia", "Gregor", "Nowi", "Libra", "Tharja", "Olivia", "Cherche", "Henry", "Lucina", "Say'ri", "Basilio", "Flavia", "Donnel", "Anna", "Owain", "Inigo", "Brady", "Kjelle", "Cynthia", "Severa", "Gerome", "M!Morgan", "F!Morgan", "Yarne", "Laurent", "Noire", "Nah", "Tiki", "Gangrel", "Walhart", "Emmeryn", "Yen'fay", "Aversa", "Priam" };
-    public final static String[] Parents = {"Lissa","Miriel","Sully","Sumia","Panne","Maribelle","Cordelia","Nowi","Tharja","Cherche","Olivia"};
-    public final static String[] Children = {"Owain","Laurent","Kjelle","Cynthia","Yarne","Brady","Severa","Nah","Noire","Gerome","Inigo"};
+    public final static String[] Parents = {"Lissa","Miriel","Sully","Sumia","Panne","Maribelle","Cordelia","Nowi","Tharja","Cherche","Olivia","Chrom"};
+    public final static String[] Children = {"Owain","Laurent","Kjelle","Cynthia","Yarne","Brady","Severa","Nah","Noire","Gerome","Inigo","Lucina"};
 	public final static String[] PromotedChars = {"Frederick", "Libra", "Say'ri", "Basilio", "Flavia","Emmeryn","Walhart","Anna","Priam","Aversa","Yen'fay","Gangrel"};
     public final static String[] Robinsexuals = {"Walhart", "Emmeryn", "Yen'fay", "Aversa", "Priam", "Tiki", "Gangrel", "Anna","Flavia","Say'ri","Basilio"};
 	public static ArrayList<Unit> units;
@@ -25,6 +27,7 @@ public class Data {
 	public static ArrayList<ArrayList<String>> classSets;
 	public static ArrayList<Unit> rUnits;
 	public static HashMap<String, ArrayList<String>> bpPromote;
+    public static ArrayList<String> rParents;
 	
 	public final static String[] swords = {"IID_青銅の剣", "IID_鉄の剣", "IID_鋼の剣", "IID_銀の剣", "IID_勇者の剣", "IID_キルソード", "IID_アーマーキラー", "IID_アーマーキラー", "IID_サンダーソード", "IID_太陽", "IID_ラグネル", "IID_メリクル" };
     public final static String[] lances = { "IID_青銅の槍", "IID_鉄の槍", "IID_鋼の槍", "IID_銀の槍", "IID_勇者の槍", "IID_キラーランス","NA", "IID_ビーストキラー","IID_しびれる槍", "IID_グラディウス", "IID_グングニル", "IID_ゲイボルグ" };
@@ -88,8 +91,20 @@ public class Data {
 			
 		}
 	}
-	
+
+	public static void shuffleparents() {
+        rParents = new ArrayList<String>(Arrays.asList(CharacterNames));
+        rParents.removeAll(Arrays.asList(gen2));
+        rParents.removeAll(Arrays.asList(Robinsexuals));
+        Collections.shuffle(rParents);
+        //trim to same size as Parents array
+        rParents = new ArrayList<String>(rParents.subList(0, Parents.length));
+        if(Ylisse.debug) {
+            System.out.println(rParents.toString());
+        }
+    }
 	public static void initCJR() {
+        shuffleparents();
 		ArrayList<String> all = new ArrayList<String>();
 		for(Class c : classes) {
 			if(!c.promoted || Util.contains(sClasses, c.name)) {
@@ -150,15 +165,19 @@ public class Data {
 			u.classset = classSets.get(i++);
 
             //replace with a new parent shuffling algorithm that ensures no child gets a robinsexual parent
-            if(u.isChild && !u.isMorgan && u.replacementChar != "Lucina"){
-                u.parent = Parents[Util.indexOf(Children, u.replacementChar)];
-            }
-            if(u.replacementChar.equals("Lucina")){
-                u.parent = "Chrom";
-            }
+            
+            // if(u.replacementChar.equals("Lucina")){
+            //     u.parent = Util.search("Chrom").replacementChar;
+            // }
         }
 		rUnits = new ArrayList<Unit>(units.subList(2, units.size()));
-		
+        for (Unit u : rUnits) {
+            if(u.isChild && !u.isMorgan){
+                u.parent = rParents.get(Util.indexOf(Children, Util.search(u.name).replacementChar));
+            }
+        }
+		// Unit lucina = Util.search("Lucina");
+        // lucina.parent = Util.search("Chrom").replacementChar;
 	}
 	
 	
